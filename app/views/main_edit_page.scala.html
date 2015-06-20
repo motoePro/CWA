@@ -1,0 +1,38 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>@title</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <script src="@routes.Assets.at("javascripts/Object_in.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/jquery.contextmenu.r2.js")" type="text/javascript"></script>
+        <script type='text/javascript'>
+		$(function() {
+    		$('.demo1').contextMenu('myMenu',
+        		{
+            		bindings: {
+                	'open': function(t) {
+                		alert('Trigger was '+t.id+'\nAction was Open');
+            		},
+            		'email': function(t) {
+                		alert('Trigger was '+t.id+'\nAction was Email');
+            		},
+            		'save': function(t) {
+                		alert('Trigger was '+t.id+'\nAction was Save');
+            		},
+            		'delete': function(t) {
+                		alert('Trigger was '+t.id+'\nAction was Delete');
+            		}
+        		}
+    		});
+		});
+		</script>
+    </head>
+    <body>
+        @content
+    </body>
+</html>

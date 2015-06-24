@@ -1,0 +1,7 @@
+New log file opened at Sun Jun 21 02:43:32 JST 2015 by 13278@woon.local
+Taking next connection to: 55264
+New client attempting to connect on port: 55265-55264
+  Address = /192.168.11.4:55264
+This client on port 55265 has uuid 5cd1a1ac-aa90-402d-b654-7860e8c7ab38 configName activator humanReadableName Activator protocolVersion 3 featureTags Vector()
+Connected Clients: activator-5cd1a1ac-aa90-402d-b654-7860e8c7ab38
+Taking next connection to: 55264

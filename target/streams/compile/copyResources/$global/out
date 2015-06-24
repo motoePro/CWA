@@ -1,3 +1,6 @@
 [0m[[0mdebug[0m] [0mCopy resource mappings: [0m
-[0m[[0mdebug[0m] [0m	(/Users/hasegawakazuya/CWA/conf/application.conf,/Users/hasegawakazuya/CWA/target/scala-2.10/classes/application.conf)[0m
-[0m[[0mdebug[0m] [0m	(/Users/hasegawakazuya/CWA/conf/routes,/Users/hasegawakazuya/CWA/target/scala-2.10/classes/routes)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/conf/application.conf,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/application.conf)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/conf/evolutions,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/evolutions)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/conf/routes,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/routes)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/conf/evolutions/default,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/evolutions/default)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/conf/evolutions/default/1.sql,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/evolutions/default/1.sql)[0m

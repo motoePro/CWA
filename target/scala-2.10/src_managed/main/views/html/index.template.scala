@@ -28,11 +28,12 @@ object index extends BaseScalaTemplate[play.api.templates.HtmlFormat.Appendable,
 
 Seq[Any](format.raw/*1.19*/("""
 
-"""),_display_(Seq[Any](/*3.2*/main("Welcome to Play")/*3.25*/ {_display_(Seq[Any](format.raw/*3.27*/("""
-
-    """),_display_(Seq[Any](/*5.6*/play20/*5.12*/.welcome(message, style = "Java"))),format.raw/*5.45*/("""
-
-""")))})),format.raw/*7.2*/("""
+"""),_display_(Seq[Any](/*3.2*/main("TOP")/*3.13*/ {_display_(Seq[Any](format.raw/*3.15*/("""
+	<h1>トップページ</h1>
+	<p>ようこそ。"""),_display_(Seq[Any](/*5.11*/session)),format.raw/*5.18*/(""" さん</p>
+	<p><a href=""""),_display_(Seq[Any](/*6.15*/routes/*6.21*/.Application.register())),format.raw/*6.44*/("""">会員登録</a></p>
+	<p><a href=""""),_display_(Seq[Any](/*7.15*/routes/*7.21*/.Application.login())),format.raw/*7.41*/("""">ログインはこちら</a></p>
+""")))})),format.raw/*8.2*/("""
 """))}
     }
     
@@ -45,11 +46,11 @@ Seq[Any](format.raw/*1.19*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Tue Jun 16 01:40:04 JST 2015
-                    SOURCE: /Users/hasegawakazuya/CWA/app/views/index.scala.html
-                    HASH: c1c7a8094ff6fdf7b189be1a11ff9a14918bbdfd
-                    MATRIX: 774->1|885->18|922->21|953->44|992->46|1033->53|1047->59|1101->92|1134->95
-                    LINES: 26->1|29->1|31->3|31->3|31->3|33->5|33->5|33->5|35->7
+                    DATE: Wed Jun 24 14:24:50 JST 2015
+                    SOURCE: /Users/woon/Documents/workspace/CWA/app/views/index.scala.html
+                    HASH: c75f35af67185cad8491c6114373fc1bf246707b
+                    MATRIX: 774->1|885->18|922->21|941->32|980->34|1043->62|1071->69|1128->91|1142->97|1186->120|1250->149|1264->155|1305->175|1355->195
+                    LINES: 26->1|29->1|31->3|31->3|31->3|33->5|33->5|34->6|34->6|34->6|35->7|35->7|35->7|36->8
                     -- GENERATED --
                 */
             

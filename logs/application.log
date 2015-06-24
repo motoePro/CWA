@@ -1,42 +1,115 @@
-2015-06-19 11:02:42,054 - [INFO] - from play in pool-4-thread-3 
+2015-06-24 16:02:42,730 - [INFO] - from play in pool-4-thread-4 
 Listening for HTTP on /0:0:0:0:0:0:0:0:9000
 
-2015-06-19 11:02:46,194 - [INFO] - from play in play-internal-execution-context-1 
+2015-06-24 16:02:46,012 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:h2:file:play
+
+2015-06-24 16:02:46,991 - [INFO] - from play in play-internal-execution-context-1 
 Application started (Dev)
 
-2015-06-19 11:03:36,234 - [INFO] - from play in play-internal-execution-context-2 
+2015-06-24 16:03:53,943 - [ERROR] - from application in New I/O worker #1 
+
+
+! @6mhi3nlaf - Internal server error, for (GET) [/] ->
+
+play.PlayExceptions$CompilationException: Compilation error[エラー: この文に制御が移ることはありません]
+	at play.PlayReloader$$anon$1$$anonfun$reload$2$$anonfun$apply$14$$anonfun$apply$16.apply(PlayReloader.scala:304) ~[na:na]
+	at play.PlayReloader$$anon$1$$anonfun$reload$2$$anonfun$apply$14$$anonfun$apply$16.apply(PlayReloader.scala:304) ~[na:na]
+	at scala.Option.map(Option.scala:145) ~[scala-library.jar:na]
+	at play.PlayReloader$$anon$1$$anonfun$reload$2$$anonfun$apply$14.apply(PlayReloader.scala:304) ~[na:na]
+	at play.PlayReloader$$anon$1$$anonfun$reload$2$$anonfun$apply$14.apply(PlayReloader.scala:298) ~[na:na]
+	at scala.Option.map(Option.scala:145) ~[scala-library.jar:na]
+	at play.PlayReloader$$anon$1$$anonfun$reload$2.apply(PlayReloader.scala:298) ~[na:na]
+	at play.PlayReloader$$anon$1$$anonfun$reload$2.apply(PlayReloader.scala:296) ~[na:na]
+	at scala.util.Either$LeftProjection.map(Either.scala:377) ~[scala-library.jar:na]
+	at play.PlayReloader$$anon$1.reload(PlayReloader.scala:296) ~[na:na]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:104) ~[play_2.10-2.2.6.jar:2.2.6]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:102) ~[play_2.10-2.2.6.jar:2.2.6]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24) ~[scala-library.jar:na]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1361) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) ~[scala-library.jar:na]
+
+2015-06-24 16:04:13,770 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:h2:file:play
+
+2015-06-24 16:04:13,845 - [INFO] - from play in play-internal-execution-context-1 
 Application started (Dev)
 
-2015-06-19 11:08:34,751 - [INFO] - from play in play-internal-execution-context-3 
+2015-06-24 16:05:11,212 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:h2:file:play
+
+2015-06-24 16:05:11,274 - [INFO] - from play in play-internal-execution-context-1 
 Application started (Dev)
 
-2015-06-19 11:08:52,297 - [INFO] - from play in play-internal-execution-context-3 
+2015-06-24 16:07:07,181 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:h2:file:play
+
+2015-06-24 16:07:07,250 - [INFO] - from play in play-internal-execution-context-1 
 Application started (Dev)
 
-2015-06-19 11:24:45,466 - [INFO] - from play in play-internal-execution-context-7 
+2015-06-24 16:07:30,870 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:h2:file:play
+
+2015-06-24 16:07:30,923 - [INFO] - from play in play-internal-execution-context-1 
 Application started (Dev)
 
-2015-06-19 11:35:45,880 - [INFO] - from play in play-internal-execution-context-8 
+2015-06-24 16:11:39,364 - [ERROR] - from application in New I/O worker #3 
+
+
+! @6mhi4o7nh - Internal server error, for (GET) [/] ->
+
+play.PlayExceptions$CompilationException: Compilation error[エラー: クラス user_pageのメソッド renderは指定された型に適用できません。]
+	at play.PlayReloader$$anon$1$$anonfun$reload$2$$anonfun$apply$14$$anonfun$apply$16.apply(PlayReloader.scala:304) ~[na:na]
+	at play.PlayReloader$$anon$1$$anonfun$reload$2$$anonfun$apply$14$$anonfun$apply$16.apply(PlayReloader.scala:304) ~[na:na]
+	at scala.Option.map(Option.scala:145) ~[scala-library.jar:na]
+	at play.PlayReloader$$anon$1$$anonfun$reload$2$$anonfun$apply$14.apply(PlayReloader.scala:304) ~[na:na]
+	at play.PlayReloader$$anon$1$$anonfun$reload$2$$anonfun$apply$14.apply(PlayReloader.scala:298) ~[na:na]
+	at scala.Option.map(Option.scala:145) ~[scala-library.jar:na]
+	at play.PlayReloader$$anon$1$$anonfun$reload$2.apply(PlayReloader.scala:298) ~[na:na]
+	at play.PlayReloader$$anon$1$$anonfun$reload$2.apply(PlayReloader.scala:296) ~[na:na]
+	at scala.util.Either$LeftProjection.map(Either.scala:377) ~[scala-library.jar:na]
+	at play.PlayReloader$$anon$1.reload(PlayReloader.scala:296) ~[na:na]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:104) ~[play_2.10-2.2.6.jar:2.2.6]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:102) ~[play_2.10-2.2.6.jar:2.2.6]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24) ~[scala-library.jar:na]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1361) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) ~[scala-library.jar:na]
+
+2015-06-24 16:11:51,557 - [INFO] - from play in play-internal-execution-context-2 
+database [default] connected at jdbc:h2:file:play
+
+2015-06-24 16:11:51,620 - [INFO] - from play in play-internal-execution-context-2 
 Application started (Dev)
 
-2015-06-19 11:36:15,418 - [INFO] - from play in play-internal-execution-context-8 
+2015-06-24 16:12:25,746 - [INFO] - from play in play-internal-execution-context-3 
+database [default] connected at jdbc:h2:file:play
+
+2015-06-24 16:12:25,791 - [INFO] - from play in play-internal-execution-context-3 
 Application started (Dev)
 
-2015-06-19 11:39:26,072 - [INFO] - from play in play-internal-execution-context-8 
+2015-06-24 16:13:29,223 - [INFO] - from play in play-internal-execution-context-3 
+database [default] connected at jdbc:h2:file:play
+
+2015-06-24 16:13:29,292 - [INFO] - from play in play-internal-execution-context-3 
 Application started (Dev)
 
-2015-06-19 11:39:39,431 - [INFO] - from play in play-internal-execution-context-8 
+2015-06-24 16:24:26,676 - [INFO] - from play in play-internal-execution-context-3 
+database [default] connected at jdbc:h2:file:play
+
+2015-06-24 16:24:26,723 - [INFO] - from play in play-internal-execution-context-3 
 Application started (Dev)
 
-2015-06-19 11:39:49,821 - [INFO] - from play in play-internal-execution-context-16 
-Application started (Dev)
+2015-06-24 16:25:02,283 - [INFO] - from play in play-internal-execution-context-3 
+database [default] connected at jdbc:h2:file:play
 
-2015-06-19 11:39:58,999 - [INFO] - from play in play-internal-execution-context-15 
-Application started (Dev)
-
-2015-06-19 11:40:36,246 - [INFO] - from play in play-internal-execution-context-18 
-Application started (Dev)
-
-2015-06-19 11:49:07,328 - [INFO] - from play in play-internal-execution-context-19 
+2015-06-24 16:25:02,335 - [INFO] - from play in play-internal-execution-context-3 
 Application started (Dev)
 

@@ -99,15 +99,15 @@ public class Application extends Controller {
 	
 	//アカウントページ
 	public static Result userPage(String name) {
-		System.out.println(session("username").getClass());
-		if(name != session("username").toString().trim()) {
+		System.out.println(name.equals(session("username")));
+		if(name.equals(session("username"))) {
+			System.out.println("seikou!:)");
+			return ok(user_page.render(""));
+		} else {
 			System.out.println("name:        "+name);
 			System.out.println("sessionname: "+session("username"));
 			System.out.println("sippai...X(");
 			return redirect(routes.Application.index());
-		} else {
-			System.out.println("seikou!:)");
-			return ok(user_page.render(""));
 		}
 	}
 	

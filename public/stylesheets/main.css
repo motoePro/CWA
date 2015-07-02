@@ -1,0 +1,23 @@
+
+div.hover {
+	border-style: solid;
+	border-color: rgba(0,0,255,0);
+}
+
+div.hover:hover {
+	border-style: solid;
+	border-color: rgba(0,0,255,1);
+}
+
+
+input.invisible {
+	border-style: none;
+}
+
+.head_menu {
+	width: 350px;
+	margin-left: auto;
+}
+.head {
+	width: 350px;
+}

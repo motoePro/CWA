@@ -8,8 +8,10 @@
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
     </head>
-    <frameset cols="150px,*">
-  		<frame src="edit_menu" name="menu">
-  		<frame src="edit_page" name="main">
+    <frameset rows="125px,*">
+  		<frame name="edit_head" src="edit_head">
+  	<frameset cols="255px,*">
+  		<frame name="menu" src="edit_menu">
+  		<frame name="main" src="edit_page">
 	</frameset>
 </html>

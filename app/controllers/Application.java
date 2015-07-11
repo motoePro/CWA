@@ -133,15 +133,23 @@ public class Application extends Controller {
     
     public static Result new_page(){
         String name = Form.form().bindFromRequest().get("name");
-        System.out.println(name);
+        //System.out.println(name);
         create_page(name);
         return redirect("/edit_page");
     }
     
     public static void create_page(String name){
         String dir = System.getProperty("user.dir");
-        System.out.println(dir);
-        File file = new File(dir + "/user/" + name + ".html");
+        File userdir = new File(dir + "/user/" + session("username") + "/");
+        /* ディレクトリ作成 */
+        if(userdir.exists()){
+            //System.out.println("Found User " + session("username"));
+        }else{
+            //System.out.println("Not Found User " + session("username"));
+            userdir.mkdir();
+        }
+        
+        File file = new File(dir + "/user/" + session("username") + "/" + name + ".html");
         PrintWriter pw = null;
         try {
             // 出力ストリームを生成します。
@@ -158,7 +166,7 @@ public class Application extends Controller {
             pw.println("</body>");
             pw.println("</html>");
             
-            System.out.println("ファイルの作成に成功しました!"); //作成後に、特定のファイルを呼び出す場合の処理が未実装
+            //System.out.println("ファイルの作成に成功しました!"); //作成後に、特定のファイルを呼び出す場合の処理が未実装
             //制作時は、サーバから表示するページのデータを取得し、1行ずつ読む工程で描画する必要性あり。
         } catch (IOException e) {
             System.out.println(e);

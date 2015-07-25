@@ -43,8 +43,8 @@ Seq[Any](format.raw/*1.19*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Wed Jun 24 14:16:58 JST 2015
-                    SOURCE: /Users/woon/Documents/workspace/CWA/app/views/user_page.scala.html
+                    DATE: Sat Jul 25 12:38:15 JST 2015
+                    SOURCE: /Users/hasegawakazuya/Desktop/aaa/CWA/app/views/user_page.scala.html
                     HASH: 92ce563a619a6918d27df230f4875f34b7ed76ec
                     MATRIX: 778->1|889->18|926->21|948->35|987->37|1051->66|1079->73
                     LINES: 26->1|29->1|31->3|31->3|31->3|33->5|33->5

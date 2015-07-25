@@ -1,4 +1,4 @@
-@(title: String)
+@(title: String)(httpLine: Array[String])
 
 <!DOCTYPE html>
 
@@ -60,7 +60,12 @@
 		</script>
     </head>
     <body>
-    
+        <div>
+            @for(line <- httpLine) {
+                @line<br>
+            }
+        </div>
+        
         <div class='contextMenu' id='myMenu'>
     		<ul>
         		<li id='open'>Open</li>

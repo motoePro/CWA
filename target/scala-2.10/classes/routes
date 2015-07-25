@@ -15,8 +15,10 @@ GET     /edit_menu                  	controllers.Application.edit_menu()
 GET     /edit_page                  	controllers.Application.edit_page()
 GET     /edit_head                  	controllers.Application.edit_head()
 GET	/edit_call/call_dicition_name	controllers.Application.dicition_name()
-GET  	/edit_call/new		  	controllers.Application.new_page()
+POST  	/edit_call/new		  	controllers.Application.new_page()
 GET  	/edit_call/save			controllers.Application.save()
+GET 	/edit_call/change		controllers.Application.change()
+GET 	/edit_call/input_file/:name	controllers.Application.input_file(name: String)
 
 #ログイン関連
 GET     /login                      controllers.Application.login()

@@ -62,10 +62,8 @@ Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
         <div class="head_menu">
 			<div class="head"><button onclick="call_dicition_name()">新規作成</button></div>
 			<div class="head">
-				<input type="file" >
-					<button onclick="change_page()">ページの変更</button>
-			</div>
-			<div class="head">
+				<button onclick="change_page()">ページの変更</button>
+			</div>			<div class="head">
 				<form action="/edit_call/save">
 					<p><button type="submit">保存</button></p>
 				</form>
@@ -93,9 +91,9 @@ Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
 }
                 /*
                     -- GENERATED --
-                    DATE: Fri Jul 10 11:23:42 JST 2015
-                    SOURCE: /Users/woon/Documents/workspace/CWA/app/views/edit_head.scala.html
-                    HASH: 79b56ac745770b607caa9134e65becb39d08619f
+                    DATE: Sat Jul 25 12:44:08 JST 2015
+                    SOURCE: /Users/hasegawakazuya/Desktop/aaa/CWA/app/views/edit_head.scala.html
+                    HASH: e194535df0998df632cc62bfe4d62db8773d32e9
                     MATRIX: 859->0|1008->114|1022->120|1077->154|1168->210|1182->216|1237->250|1333->311|1347->317|1400->349|1460->374|1474->380|1533->418|1625->475|1639->481|1705->526|1798->583|1813->589|1885->639|2003->729|2032->730|2111->781|2140->782|2193->807|2222->808|2288->846|2317->847|2426->928|2455->929|2520->966|2549->967|2659->1049|2688->1050|2752->1086|2781->1087|2890->1168|2919->1169|2985->1207|3014->1208|3125->1291|3154->1292|3193->1303|3222->1304|3256->1311|3284->1312|3316->1317|3344->1318
                     LINES: 29->1|33->5|33->5|33->5|34->6|34->6|34->6|35->7|35->7|35->7|36->8|36->8|36->8|37->9|37->9|37->9|38->10|38->10|38->10|40->12|40->12|42->14|42->14|43->15|43->15|44->16|44->16|46->18|46->18|47->19|47->19|49->21|49->21|50->22|50->22|52->24|52->24|53->25|53->25|55->27|55->27|56->28|56->28|57->29|57->29|58->30|58->30
                     -- GENERATED --

@@ -43,10 +43,11 @@
 		</div>
 		<h2>新たに作成するページの名前を指定してください。</h2>
 		
-		<form action="/edit_call/new" method="get">
-				<input name="name"type="text"></input>.html</br>
-				<input type="submit" value="決定"/>
-		</form>
+        @helper.form(action = routes.Application.new_page()) {
+        @helper.CSRF.formField
+        <input name="name" type="text"></input>.html</br>
+        <input type="submit" value="決定"/>
+        }
 		<input type="button" onclick="location.href='/edit_page'" value="編集画面に戻る" />
     </body>
 </html>

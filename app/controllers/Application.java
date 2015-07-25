@@ -10,19 +10,22 @@ import views.html.*;
 import models.Account;
 import models.Login;
 import play.data.Form;
-import static play.data.Form.form; 
+import static play.data.Form.form;
 import play.filters.csrf.AddCSRFToken;
 import play.filters.csrf.RequireCSRFCheck;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.FileReader;
 import java.io.BufferedWriter;
+import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
+import java.io.FileNotFoundException;
 
 import org.w3c.dom.*;
 
@@ -40,9 +43,11 @@ public class Application extends Controller {
 		return ok(edit_menu.render());
 	}
 
-	public static Result edit_page() {
-		return ok(edit_page.render("edit"));
-	}
+    public static Result edit_page() {
+        /* ユーザディレクトリ　チェック*/
+        String[] nullLine = new String[1];
+        return ok(edit_page.render("edit",nullLine));
+    }
     public static Result edit_head() {
         return ok(edit_head.render());
     }
@@ -131,6 +136,7 @@ public class Application extends Controller {
         return ok(edit_new_page.render(""));
     }
     
+    @RequireCSRFCheck
     public static Result new_page(){
         String name = Form.form().bindFromRequest().get("name");
         //System.out.println(name);
@@ -216,6 +222,104 @@ public class Application extends Controller {
             }
         }
         return redirect("/edit_head");
+    }
+    
+    public static Result change(){
+        String dir = System.getProperty("user.dir");
+        File filedir = new File(dir + "/user/" + session("username"));
+        File[] files = filedir.listFiles();
+        String[] fileNames = new String[files.length];
+        for (int i = 0; i < files.length; i++) {
+            File file = files[i];
+            fileNames[i] = file.getName().replace(".html","");
+        }
+        
+        String[] optFileNames = optimization(fileNames);
+        
+        //    	System.out.println("");
+        //    	System.out.println("---出力開始---");
+        //    	for (int i = 0; i < optFileNames.length; i++) {
+        //    		System.out.println(optFileNames[i]);
+        //    	}
+        //    	System.out.println("---出力完了---");
+        //    	System.out.println("");
+        
+        return ok(edit_change_page.render(optFileNames));
+    }
+    
+    /**
+     * 配列の最適化アクション
+     */
+    public static String[] optimization(String[] nameArray){
+        int length = nameArray.length;
+        for(int i = 0; i < nameArray.length; i++){
+            if(nameArray[i].startsWith(".")){
+                for(int j = i; j < nameArray.length - 1; j++){
+                    nameArray[j] = nameArray[j+1];
+                }
+                length--;
+            }
+        }
+        String[] optFileArray = new String[length];
+        for(int i = 0; i < length; i++){
+            optFileArray[i] = nameArray[i];
+        }
+        return optFileArray;
+    }
+    
+    
+    public static Result input_file(String fileName) {
+        int lineLength = 0;
+        try{
+            String dir = System.getProperty("user.dir");
+            File file = new File(dir + "/user/" + session("username") + "/" + fileName + ".html");
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            
+            String str = br.readLine();
+            while(str != null){
+                lineLength++;
+                str = br.readLine();
+                if(str.startsWith("</body>")){
+                    br.close();
+                }
+            }
+            
+            br.close();
+        }catch(FileNotFoundException e){
+        }catch(IOException e){
+        }
+        
+        String[] htmlLine = new String[lineLength];
+        try{
+            String dir = System.getProperty("user.dir");
+            File file = new File(dir + "/user/" + session("username") + "/" + fileName + ".html");
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            
+            String str = br.readLine();
+            
+            int linePosition = 0;
+            while(str != null){
+                str = br.readLine();
+                if(str.startsWith("<body>")){
+                    while(str != null){
+                        str = br.readLine();
+                        if(str.startsWith("</body>")){
+                            br.close();
+                        }else{
+                            htmlLine[linePosition] = str;
+                            linePosition++;
+                        }
+                    }
+                }
+                //        		System.out.println("");
+            }
+            br.close();
+        }catch(FileNotFoundException e){
+        }catch(IOException e){
+        }
+        
+        //return TODO;
+        return ok(edit_page.render("edit",htmlLine));
     }
     
     /**

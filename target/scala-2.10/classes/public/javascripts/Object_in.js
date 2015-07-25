@@ -26,7 +26,7 @@ function addTxt(){
 	
 	var txt_tag = document.createElement('p');
 	txt_tag.className = "pchan";
-	txt_tag.innerHTML = "Sample";
+	txt_tag.innerHTML = "タイトル";
 	txt_tag.style = "background-color: red;margin:0; padding:0";
 	txt_tag.id = "txt_chan";
 	// body.appendChild(tag);
@@ -177,12 +177,9 @@ function call_dicition_name(){
 	parent.main.location.href = "/edit_call/call_dicition_name";
 }
 
-/*
-function change_page(String value){
-	var dir = System.getProperty("user.dir");
-	parent.main.location.href = dir + "/user/" + value;
+function change_page(){
+	parent.main.location.href = "/edit_call/change";
 }
-*/
 
 function read_directory(){
 	var fs = new ActiveXObject( "Scripting.FileSystemObject" );

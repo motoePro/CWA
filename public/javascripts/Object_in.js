@@ -177,12 +177,9 @@ function call_dicition_name(){
 	parent.main.location.href = "/edit_call/call_dicition_name";
 }
 
-/*
-function change_page(String value){
-	var dir = System.getProperty("user.dir");
-	parent.main.location.href = dir + "/user/" + value;
+function change_page(){
+	parent.main.location.href = "/edit_call/change";
 }
-*/
 
 function read_directory(){
 	var fs = new ActiveXObject( "Scripting.FileSystemObject" );

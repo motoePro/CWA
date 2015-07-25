@@ -8,9 +8,15 @@ GET     /                           controllers.Application.index()
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 GET     /index                      controllers.Application.index()
-GET     /edit_call                  controllers.Application.call()
-GET     /edit_menu                  controllers.Application.edit_menu()
-GET     /edit_page                  controllers.Application.edit_page()
+
+#編集ページ関係
+GET     /edit_call                  	controllers.Application.call()
+GET     /edit_menu                  	controllers.Application.edit_menu()
+GET     /edit_page                  	controllers.Application.edit_page()
+GET     /edit_head                  	controllers.Application.edit_head()
+GET	/edit_call/call_dicition_name	controllers.Application.dicition_name()
+GET  	/edit_call/new		  	controllers.Application.new_page()
+GET  	/edit_call/save			controllers.Application.save()
 
 #ログイン関連
 GET     /login                      controllers.Application.login()

@@ -19,16 +19,20 @@ function addBtn(){
 
 function addTxt(){
 	var body = parent.main.document.getElementsByTagName('body')[0];
-	var tag = document.createElement('div');
-	tag.id = "txt_id";
-	tag.class = "demo1";
-	tag.style.width =  "130px";
+	// var tag = document.createElement('div');
+	// tag.id = "txt_id";
+	// tag.className = "a";
+	// tag.style.width =  "130px";
 	
 	var txt_tag = document.createElement('p');
+	txt_tag.className = "pchan";
 	txt_tag.innerHTML = "Sample";
-	
-	body.appendChild(tag);
-	tag.appendChild(txt_tag);
+	txt_tag.style = "background-color: red;margin:0; padding:0";
+	txt_tag.id = "txt_chan";
+	// body.appendChild(tag);
+	// tag.appendChild(txt_tag);
+	body.appendChild(txt_tag);
+	parent.main.txtmv();
 }
 
 function addTxb(){
@@ -36,15 +40,17 @@ function addTxb(){
 	var tag = document.createElement('div');
 	tag.id = "txb_id";
 	tag.class = "demo1";
-	tag.style.width =  "130px";
+	// tag.style.width =  "130px";
 	
 	var txb_tag = document.createElement('input');
 	txb_tag.type = "text";
 	txb_tag.id = "txb_id";
 	txb_tag.value = "Sample";
+	txb_tag.className = "pchan";
 	
 	body.appendChild(tag);
 	tag.appendChild(txb_tag);
+	parent.main.drg();
 }
 
 function addPct(){
@@ -56,9 +62,12 @@ function addPct(){
 	
 	var pct_tag = document.createElement('img');
 	pct_tag.src = "/assets/images/senshu-u.png";
+	pct_tag.className = "img_chan";
 	
-	body.appendChild(tag);
-	tag.appendChild(pct_tag);
+	// body.appendChild(tag);
+	// tag.appendChild(pct_tag);
+	body.appendChild(pct_tag);
+	parent.main.pctmv();
 }
 
 function addTwt(){
@@ -139,7 +148,53 @@ function addFace(){
     body.appendChild(tag);
     tag.appendChild(div_face);
 }
+function Window_YouTube(){
+	//https://www.youtube.com/watch?v=TiOWI1dBPcA
+	var Url;
+	Url = prompt("Urlを入力してください。","");
+	if(!(Url == "" || Url == null)){
+		var body = parent.main.document.getElementsByTagName('body')[0];
+		var tag = document.createElement('div');
+		tag.className = "hover img_chan";
+		tag.style.width =  "644px";
+		tag.style.height = "364px";
+		
+		var div_youtube = document.createElement("iframe");
+		Url = Url.replace("https://www.youtube.com/watch?v=","https://www.youtube.com/embed/")+"?rel=0&amp;showinfo=0";
+		div_youtube.src = Url;
+    	div_youtube.frameborder = "0";
+    	div_youtube.style.width  = "640px";
+    	div_youtube.style.height = "360px";
+    	div_youtube.allowfullscreen;
+    	
+    	body.appendChild(tag);
+    	tag.appendChild(div_youtube);
+    	parent.main.pctmv();
+	}
+}
 
-function start(){
-	alert("OK");
+function call_dicition_name(){
+	parent.main.location.href = "/edit_call/call_dicition_name";
+}
+
+/*
+function change_page(String value){
+	var dir = System.getProperty("user.dir");
+	parent.main.location.href = dir + "/user/" + value;
+}
+*/
+
+function read_directory(){
+	var fs = new ActiveXObject( "Scripting.FileSystemObject" );
+	//  Folderオブジェクトを取得
+	var folder = fs.GetFolder( "C:/TEST" );
+	//  EnumeratorオブジェクトにFolderオブジェクトに
+	//  含まれている全てのFileオブジェクトを格納
+	var em = new Enumerator( folder.Files );
+	//  格納したFileオブジェクトのファイル名を全て表示
+	for( em.moveFirst(); !em.atEnd(); em.moveNext() )
+	    WScript.Echo( em.item().Name );
+	//  オブジェクトを解放
+	fs = null;
+	WScript.Echo( "終了" );
 }

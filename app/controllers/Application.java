@@ -49,7 +49,7 @@ public class Application extends Controller {
         /* ユーザディレクトリ　チェック*/
         String[] nullLine = new String[1];
         nullLine[0] = "";
-        return ok(edit_page.render("edit",nullLine,null));
+        return ok(edit_page.render("edit",nullLine,"null"));
     }
     
     public static Result edit_head(String target_name) {

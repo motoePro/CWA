@@ -1,6 +1,6 @@
-// @SOURCE:/Users/hasegawakazuya/Desktop/aaa/CWA/conf/routes
-// @HASH:0369e655a6c42d421d8c0733a2b788b12bfe697a
-// @DATE:Sat Jul 25 12:41:35 JST 2015
+// @SOURCE:/Users/hasegawakazuya/Desktop/CWA/conf/routes
+// @HASH:f1fbec5c454665f97887aaf125d69de706246a06
+// @DATE:Tue Aug 11 22:15:53 JST 2015
 
 package controllers;
 

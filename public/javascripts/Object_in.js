@@ -1,10 +1,10 @@
-Object_no = 0;
+var ElementID = 0;
 
 function addBtn(){ 
-	var body = parent.main.document.getElementsByTagName('body')[0];
+	var body = parent.main.document.getElementById('body_main');
 	var tag = document.createElement('div');
-	tag.id = "btn_id";
-	tag.className = "demo1";
+	tag.id = ElementID;
+	tag.className = "context";
 	tag.style.width =  "60px";
 	tag.style.height = "30px";
 	
@@ -15,59 +15,71 @@ function addBtn(){
 	
 	body.appendChild(tag);
 	tag.appendChild(btn_tag);
-} 
+	
+	ElementID++;
+	parent.main.context();
+}
 
 function addTxt(){
-	var body = parent.main.document.getElementsByTagName('body')[0];
+	var body = parent.main.document.getElementById('body_main');
 	// var tag = document.createElement('div');
 	// tag.id = "txt_id";
-	// tag.className = "a";
+	// tag.className = "context";
 	// tag.style.width =  "130px";
 	
 	var txt_tag = document.createElement('p');
-	txt_tag.className = "pchan";
+	txt_tag.id = ElementID;
+	txt_tag.className = "pchan context";
 	txt_tag.innerHTML = "タイトル";
 	txt_tag.style = "background-color: red;margin:0; padding:0";
-	txt_tag.id = "txt_chan";
+	// txt_tag.id = "txt_chan";
 	// body.appendChild(tag);
 	// tag.appendChild(txt_tag);
 	body.appendChild(txt_tag);
 	parent.main.txtmv();
+	
+	ElementID++;
+	parent.main.context();
 }
 
 function addTxb(){
-	var body = parent.main.document.getElementsByTagName('body')[0];
+	var body = parent.main.document.getElementById('body_main');
 	var tag = document.createElement('div');
-	tag.id = "txb_id";
-	tag.class = "demo1";
+	tag.id = ElementID;
+	tag.className = "context";
 	// tag.style.width =  "130px";
 	
 	var txb_tag = document.createElement('input');
 	txb_tag.type = "text";
-	txb_tag.id = "txb_id";
 	txb_tag.value = "Sample";
 	txb_tag.className = "pchan";
 	
 	body.appendChild(tag);
 	tag.appendChild(txb_tag);
-	parent.main.drg();
+	parent.main.txtmv();
+	//parent.main.drg();
+
+	ElementID++;
+	parent.main.context();
 }
 
 function addPct(){
-	var body = parent.main.document.getElementsByTagName('body')[0];
+	var body = parent.main.document.getElementById('body_main');
 	var tag = document.createElement('div');
-	tag.id = "pct_id";
-	tag.class = "demo1";
-	tag.style.width =  "25%";
+	tag.id = ElementID;
+	tag.className = "context";
+	tag.style.width =  "100%";
 	
 	var pct_tag = document.createElement('img');
 	pct_tag.src = "/assets/images/senshu-u.png";
 	pct_tag.className = "img_chan";
 	
-	// body.appendChild(tag);
-	// tag.appendChild(pct_tag);
-	body.appendChild(pct_tag);
+	body.appendChild(tag);
+	tag.appendChild(pct_tag);
 	parent.main.pctmv();
+
+	ElementID++;
+	parent.main.context();
 }
 
 function addTwt(){
@@ -104,6 +116,7 @@ function addTwt(){
             (document, 'script', 'twitter-wjs');
     */
 }
+
 function addLine() {
 	var body = parent.main.document.getElementsByTagName('body')[0];
 	var tag = document.createElement("div");
@@ -128,7 +141,7 @@ function addLine() {
 }
 
 function addFace(){
-	var body = parent.main.document.getElementsByTagName('body')[0];
+	var body = parent.main.document.getElementById('body_main');
 	var tag = document.createElement("div");
 	tag.id = "face";
 	tag.className = "demo1";
@@ -152,10 +165,11 @@ function Window_YouTube(){
 	//https://www.youtube.com/watch?v=TiOWI1dBPcA
 	var Url;
 	Url = prompt("Urlを入力してください。","");
-	if(!(Url == "" || Url == null)){
-		var body = parent.main.document.getElementsByTagName('body')[0];
+	if(Url.match(/www.youtube.com/)){
+		var body = parent.main.document.getElementById('body_main');
 		var tag = document.createElement('div');
-		tag.className = "hover img_chan";
+		tag.id = ElementID;
+		tag.className = "hover img_chan context";
 		tag.style.width =  "644px";
 		tag.style.height = "364px";
 		
@@ -170,6 +184,9 @@ function Window_YouTube(){
     	body.appendChild(tag);
     	tag.appendChild(div_youtube);
     	parent.main.pctmv();
+    	
+		ElementID++;
+		parent.main.context();
 	}
 }
 
@@ -179,6 +196,37 @@ function call_dicition_name(){
 
 function change_page(){
 	parent.main.location.href = "/edit_call/change";
+}
+
+function save_page(){
+	var body = parent.main.document.getElementById('body_main');
+	var HtmlLine = body.innerHTML;
+	
+	var form = document.createElement("form");
+	
+    document.body.appendChild(form);
+    
+    var Token = document.createElement("input");
+    Token.type = "hidden";
+    Token.name = "csrfToken";
+    Token.value = parent.edit_head.document.save.csrfToken.value;
+    form.appendChild(Token);
+    
+    var name = document.createElement("input");
+    name.type = "text";
+    name.name = "name";
+    name.value = parent.edit_head.document.name.edit_page_name.value;
+    form.appendChild(name);
+    
+    var input = document.createElement("input");
+    input.type = "text";
+    input.name = "html";
+    input.value = HtmlLine;
+    form.appendChild(input);
+    
+    form.setAttribute("action","/edit_call/save");
+    form.setAttribute("method", "POST");
+    form.submit();
 }
 
 function read_directory(){
@@ -194,4 +242,18 @@ function read_directory(){
 	//  オブジェクトを解放
 	fs = null;
 	WScript.Echo( "終了" );
+}
+
+function context() {
+	$('.context').contextMenu('myMenu',
+    {
+           	bindings: {
+          		'delete': function(t) {
+    				var body = parent.main.document.getElementById('body_main');
+    				var asset = parent.main.document.getElementById(t.id);
+    				console.log(asset);
+    				body.removeChild(asset);
+				}
+          	}
+    });
 }

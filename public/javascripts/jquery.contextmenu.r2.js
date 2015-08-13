@@ -71,7 +71,7 @@
       itemStyle: $.extend({}, defaults.itemStyle, options.itemStyle || {}),
       itemHoverStyle: $.extend({}, defaults.itemHoverStyle, options.itemHoverStyle || {}),
       bindings: options.bindings || {},
-      shadow: options.shadow || options.shadow === false ? options.shadow : defaults.shadow,
+      shadow: options.shadow || options.shadow == false ? options.shadow : defaults.shadow,
       onContextMenu: options.onContextMenu || defaults.onContextMenu,
       onShowMenu: options.onShowMenu || defaults.onShowMenu,
       eventPosX: options.eventPosX || defaults.eventPosX,

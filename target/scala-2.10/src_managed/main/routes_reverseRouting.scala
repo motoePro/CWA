@@ -1,6 +1,6 @@
-// @SOURCE:/Users/hasegawakazuya/Desktop/aaa/CWA/conf/routes
-// @HASH:0369e655a6c42d421d8c0733a2b788b12bfe697a
-// @DATE:Sat Jul 25 12:41:35 JST 2015
+// @SOURCE:/Users/hasegawakazuya/Desktop/CWA/conf/routes
+// @HASH:f1fbec5c454665f97887aaf125d69de706246a06
+// @DATE:Tue Aug 11 22:15:53 JST 2015
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -72,9 +72,9 @@ def change(): Call = {
 }
                                                 
 
-// @LINE:21
-def input_file(name:String): Call = {
-   Call("GET", _prefix + { _defaultPrefix } + "edit_call/input_file/" + implicitly[PathBindable[String]].unbind("name", dynamicString(name)))
+// @LINE:16
+def edit_head(target_name:String): Call = {
+   Call("GET", _prefix + { _defaultPrefix } + "edit_head/target/" + implicitly[PathBindable[String]].unbind("target_name", dynamicString(target_name)))
 }
                                                 
 
@@ -93,12 +93,6 @@ def edit_page(): Call = {
 // @LINE:29
 def create(): Call = {
    Call("POST", _prefix + { _defaultPrefix } + "create")
-}
-                                                
-
-// @LINE:16
-def edit_head(): Call = {
-   Call("GET", _prefix + { _defaultPrefix } + "edit_head")
 }
                                                 
 
@@ -132,9 +126,15 @@ def register(): Call = {
 }
                                                 
 
+// @LINE:21
+def render_file(name:String): Call = {
+   Call("GET", _prefix + { _defaultPrefix } + "edit_call/render_file/" + implicitly[PathBindable[String]].unbind("name", dynamicString(name)))
+}
+                                                
+
 // @LINE:19
 def save(): Call = {
-   Call("GET", _prefix + { _defaultPrefix } + "edit_call/save")
+   Call("POST", _prefix + { _defaultPrefix } + "edit_call/save")
 }
                                                 
 
@@ -245,12 +245,12 @@ def change : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:21
-def input_file : JavascriptReverseRoute = JavascriptReverseRoute(
-   "controllers.Application.input_file",
+// @LINE:16
+def edit_head : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.Application.edit_head",
    """
-      function(name) {
-      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "edit_call/input_file/" + (""" + implicitly[PathBindable[String]].javascriptUnbind + """)("name", encodeURIComponent(name))})
+      function(target_name) {
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "edit_head/target/" + (""" + implicitly[PathBindable[String]].javascriptUnbind + """)("target_name", encodeURIComponent(target_name))})
       }
    """
 )
@@ -284,17 +284,6 @@ def create : JavascriptReverseRoute = JavascriptReverseRoute(
    """
       function() {
       return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "create"})
-      }
-   """
-)
-                        
-
-// @LINE:16
-def edit_head : JavascriptReverseRoute = JavascriptReverseRoute(
-   "controllers.Application.edit_head",
-   """
-      function() {
-      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "edit_head"})
       }
    """
 )
@@ -355,12 +344,23 @@ def register : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
+// @LINE:21
+def render_file : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.Application.render_file",
+   """
+      function(name) {
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "edit_call/render_file/" + (""" + implicitly[PathBindable[String]].javascriptUnbind + """)("name", encodeURIComponent(name))})
+      }
+   """
+)
+                        
+
 // @LINE:19
 def save : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.save",
    """
       function() {
-      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "edit_call/save"})
+      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "edit_call/save"})
       }
    """
 )
@@ -482,9 +482,9 @@ def change(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 )
                       
 
-// @LINE:21
-def input_file(name:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   controllers.Application.input_file(name), HandlerDef(this, "controllers.Application", "input_file", Seq(classOf[String]), "GET", """""", _prefix + """edit_call/input_file/$name<[^/]+>""")
+// @LINE:16
+def edit_head(target_name:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.Application.edit_head(target_name), HandlerDef(this, "controllers.Application", "edit_head", Seq(classOf[String]), "GET", """""", _prefix + """edit_head/target/$target_name<[^/]+>""")
 )
                       
 
@@ -503,12 +503,6 @@ def edit_page(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 // @LINE:29
 def create(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.create(), HandlerDef(this, "controllers.Application", "create", Seq(), "POST", """""", _prefix + """create""")
-)
-                      
-
-// @LINE:16
-def edit_head(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   controllers.Application.edit_head(), HandlerDef(this, "controllers.Application", "edit_head", Seq(), "GET", """""", _prefix + """edit_head""")
 )
                       
 
@@ -542,9 +536,15 @@ def register(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 )
                       
 
+// @LINE:21
+def render_file(name:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.Application.render_file(name), HandlerDef(this, "controllers.Application", "render_file", Seq(classOf[String]), "GET", """""", _prefix + """edit_call/render_file/$name<[^/]+>""")
+)
+                      
+
 // @LINE:19
 def save(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   controllers.Application.save(), HandlerDef(this, "controllers.Application", "save", Seq(), "GET", """""", _prefix + """edit_call/save""")
+   controllers.Application.save(), HandlerDef(this, "controllers.Application", "save", Seq(), "POST", """""", _prefix + """edit_call/save""")
 )
                       
 

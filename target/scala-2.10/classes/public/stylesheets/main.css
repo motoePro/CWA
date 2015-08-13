@@ -9,15 +9,15 @@ div.hover:hover {
 	border-color: rgba(0,0,255,1);
 }
 
-
 input.invisible {
 	border-style: none;
 }
 
 .head_menu {
-	width: 350px;
 	margin-left: auto;
-}
-.head {
 	width: 350px;
+}
+
+.head { 
+	display: inline;
 }

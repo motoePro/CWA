@@ -40,9 +40,9 @@ Seq[Any](format.raw/*1.32*/("""
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
         
     </head>
-    <frameset rows="125px,*">
-  		<frame name="edit_head" src="edit_head">
-  	<frameset cols="255px,*">
+    <frameset rows="100px,*">
+  		<frame name="edit_head" src="edit_head/target/null">
+  	<frameset cols="180px,*">
   		<frame name="menu" src="edit_menu">
   		<frame name="main" src="edit_page">
 	</frameset>
@@ -60,9 +60,9 @@ Seq[Any](format.raw/*1.32*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Sat Jul 25 12:38:14 JST 2015
-                    SOURCE: /Users/hasegawakazuya/Desktop/aaa/CWA/app/views/edit_main.scala.html
-                    HASH: 5fe185a5ce05067a6264e434cb9cca991276b8cf
+                    DATE: Tue Aug 11 22:16:38 JST 2015
+                    SOURCE: /Users/hasegawakazuya/Desktop/CWA/app/views/edit_main.scala.html
+                    HASH: 1cc28b774c06baa8e16ba2841829af3a2f423a5f
                     MATRIX: 783->1|907->31|995->84|1021->89|1118->151|1132->157|1187->191|1283->252|1297->258|1350->290
                     LINES: 26->1|29->1|35->7|35->7|36->8|36->8|36->8|37->9|37->9|37->9
                     -- GENERATED --

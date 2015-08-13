@@ -13,6 +13,7 @@ import play.data.Form;
 import static play.data.Form.form;
 import play.filters.csrf.AddCSRFToken;
 import play.filters.csrf.RequireCSRFCheck;
+import java.net.URL;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -35,6 +36,7 @@ public class Application extends Controller {
 		return ok(index.render("TOP"));
 	}
 
+	@AddCSRFToken
 	public static Result call() {
 		return ok(edit_call.render(""));
 	}
@@ -46,13 +48,14 @@ public class Application extends Controller {
     public static Result edit_page() {
         /* ユーザディレクトリ　チェック*/
         String[] nullLine = new String[1];
-        return ok(edit_page.render("edit",nullLine));
+        nullLine[0] = "";
+        return ok(edit_page.render("edit",nullLine,null));
     }
-    public static Result edit_head() {
-        return ok(edit_head.render());
+    
+    public static Result edit_head(String target_name) {
+    	if(target_name.equals("null")) target_name = "初期ページ";
+        return ok(edit_head.render(target_name));
     }
-
-	
 	
 //	追加分
 	@AddCSRFToken
@@ -139,9 +142,9 @@ public class Application extends Controller {
     @RequireCSRFCheck
     public static Result new_page(){
         String name = Form.form().bindFromRequest().get("name");
-        //System.out.println(name);
         create_page(name);
-        return redirect("/edit_page");
+        String[] htmlLine = input_file(name);
+        return ok(edit_page.render("edit",htmlLine,name));
     }
     
     public static void create_page(String name){
@@ -165,9 +168,9 @@ public class Application extends Controller {
             // ここでファイルに文字を書き込みます。
             pw.println("<!DOCTYPE html>");
             pw.println("<html>");
-            pw.println("<head><title>新規作成</title></head>");
+            pw.println("<head><title>" + name + "</title></head>");
             pw.println("<body>");
-            pw.println("<h1>新規ページ</h1>");
+            pw.println("<h1>" + name + "</h1>");
             pw.println("<p>これはcreate_pageにて作成されました。</p>");
             pw.println("</body>");
             pw.println("</html>");
@@ -195,10 +198,16 @@ public class Application extends Controller {
     /**
      * 保存アクション
      */
+    @RequireCSRFCheck
     public static Result save(){
+    	String name = Form.form().bindFromRequest().get("name");
+    	System.out.println(name);
         String dir = System.getProperty("user.dir");
-        File file = new File(dir + "/user/" + "test.html");  //どのファイルを変更するかの定義が未実装
+        File file = new File(dir + "/user/" + session("username") + "/" + name + ".html");  //どのファイルを変更するかの定義が未実装
         PrintWriter pw = null;
+        String[] source = null;
+        String Html = Form.form().bindFromRequest().get("html");
+        
         try {
             // 出力ストリームを生成します。
             pw = new PrintWriter(
@@ -207,9 +216,18 @@ public class Application extends Controller {
             
             
             // ここでファイルに文字を書き込みます。
-            pw.println("stringその1");
-            pw.println("stringその2");
             
+            pw.println("<!DOCTYPE html>");
+            pw.println("<html>");
+            pw.println("<head><title>" + name + "</title></head>");
+            pw.println("<body>");
+            pw.println(Html);
+            pw.println("</body>");
+            pw.println("</html>");
+            
+//            for(int i = 0; i < source.length; i++){
+//            	pw.println(source[i]);
+//            } 
             
             System.out.println("ファイルの書き込みに成功しました!");
         } catch (IOException e) {
@@ -221,7 +239,7 @@ public class Application extends Controller {
                 pw.close();
             }
         }
-        return redirect("/edit_head");
+        return redirect("/edit_head/null");
     }
     
     public static Result change(){
@@ -267,34 +285,41 @@ public class Application extends Controller {
         return optFileArray;
     }
     
+    public static Result render_file(String fileName) {
+    	edit_head(fileName);
+    	String[] htmlLine = input_file(fileName);
+        return ok(edit_page.render("edit",htmlLine,fileName));
+    }
     
-    public static Result input_file(String fileName) {
-        int lineLength = 0;
+    public static String[] input_file(String fileName) {
+    	int lineLength = 0;
+        String dir = System.getProperty("user.dir");
+        File file = new File(dir + "/user/" + session("username") + "/" + fileName + ".html");
         try{
-            String dir = System.getProperty("user.dir");
-            File file = new File(dir + "/user/" + session("username") + "/" + fileName + ".html");
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            
+        	BufferedReader br = new BufferedReader(new FileReader(file));
             String str = br.readLine();
             while(str != null){
-                lineLength++;
-                str = br.readLine();
-                if(str.startsWith("</body>")){
-                    br.close();
-                }
+            	str = br.readLine();
+            	if(str.startsWith("<body>")){
+            			lineLength--;
+            			while(str != null){
+            				lineLength++;
+            				str = br.readLine();
+            				if(str.startsWith("</body>")){
+            					lineLength--;
+            					br.close();
+            				}
+            			}
+            	}
             }
             
             br.close();
         }catch(FileNotFoundException e){
         }catch(IOException e){
         }
-        
         String[] htmlLine = new String[lineLength];
         try{
-            String dir = System.getProperty("user.dir");
-            File file = new File(dir + "/user/" + session("username") + "/" + fileName + ".html");
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            
+        	BufferedReader br = new BufferedReader(new FileReader(file));
             String str = br.readLine();
             
             int linePosition = 0;
@@ -311,67 +336,49 @@ public class Application extends Controller {
                         }
                     }
                 }
-                //        		System.out.println("");
             }
             br.close();
         }catch(FileNotFoundException e){
         }catch(IOException e){
         }
         
-        //return TODO;
-        return ok(edit_page.render("edit",htmlLine));
+        return htmlLine;
     }
     
-    /**
-     * 構文解析アクション
-     */
-    /*
-     public static Result analysis() throws SAXException, IOException{
-     // DOMを解釈するパーサを準備
-     DOMParser parser = new DOMParser();
-     parser.setFeature("http://xml.org/sax/features/namespaces", false);
-     
-     // 引数があれば第１引数をurlStrにセット、なければ"test.html"をセット
-     // String urlStr = args.length>0 ? args[0] : "test.html";
-     String urlStr =  "/edit_page";
-     System.out.println("SOURCE URL: " + urlStr); //urlStrを表示
-     
-     // 出力ファイル名を生成
-     //$は一番最後のという正規表現
-     String dir = System.getProperty("user.dir");
-     System.out.println(dir);
-     File file = new File(dir + "/test.txt");
-     //String resultFileName = urlStr.replaceAll("../data", "../result").replaceAll("html$", "image_and_text");
-     String resultFileName = dir + "/test.txt";
-     System.out.println(resultFileName);
-     
-     // 出力ファイルをオープン
-     FileOutputStream fos = new FileOutputStream(resultFileName);
-     OutputStreamWriter osw = new OutputStreamWriter(fos , "UTF-8");
-     BufferedWriter bw = new BufferedWriter(osw);
-     
-     // urlStrのファイルをパーサで読み込み、parserにDOMツリーを生成
-     parser.parse(urlStr);
-     // parser内のDOMツリーのドキュメントノードをdocumentにセットする
-     Document document =parser.getDocument();
-     // 指定したタグ名にもつ要素を全て取得する
-     NodeList nodeList = document.getElementsByTagName("title");
-     // 各要素を出力ファイルに出力する
-     for(int i=0; i < nodeList.getLength(); i++){
-     Element element = (Element)nodeList.item(i);
-     System.out.println(element.getTextContent());
-     
-     // outTextを出力ファイルに出力
-     // bw.write(outText);
-     }
-     
-     // 出力が完了したら出力ファイルを閉じる
-     bw.close();
-     osw.close();
-     fos.close();
-     return redirect("/edit_menu");
-     
-     }
-     */
-
+    public static String[] getSourceText(URL url) throws IOException{
+    	int lineLength = 0;
+    	InputStream in = url.openStream();
+    	try {
+        	BufferedReader bf = new BufferedReader(new InputStreamReader(in));
+        	String s;
+        	while ((s=bf.readLine())!=null) {
+        		lineLength++;
+        	}
+        } catch (IOException e) {
+            System.out.println(e);
+        } finally {
+        	in.close();
+        }
+    	System.out.println(lineLength);
+    	System.out.println();
+    	String[] sb = new String[lineLength];
+    	int linePossition = 0;
+    	try {
+    		in = url.openStream();
+    		BufferedReader bf = new BufferedReader(new InputStreamReader(in));
+    		String s;
+    		while ((s=bf.readLine())!=null) {
+    			sb[linePossition] = s;
+    			linePossition++;
+    		}
+    	} catch (IOException e) {
+            System.out.println(e);
+        } finally {
+    		in.close();
+    	}
+    	for(int i = 0; i < sb.length; i++){
+    		System.out.println(sb[i]);
+    	}
+    	return sb;
+    }
 }

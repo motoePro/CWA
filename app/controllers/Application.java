@@ -1,7 +1,5 @@
 package controllers;
 
-
-
 import java.security.NoSuchAlgorithmException;
 
 import play.*;
@@ -49,7 +47,7 @@ public class Application extends Controller {
         /* ユーザディレクトリ　チェック*/
         String[] nullLine = new String[1];
         nullLine[0] = "";
-        return ok(edit_page.render("edit",nullLine,"null"));
+        return ok(edit_page.render("edit",nullLine,nullLine,"null"));
     }
     
     public static Result edit_head(String target_name) {
@@ -142,12 +140,14 @@ public class Application extends Controller {
     @RequireCSRFCheck
     public static Result new_page(){
         String name = Form.form().bindFromRequest().get("name");
-        create_page(name);
+        String type = Form.form().bindFromRequest().get("type");
+        create_page(name,type);
+        String[] headLine = get_headLine(name);
         String[] htmlLine = input_file(name);
-        return ok(edit_page.render("edit",htmlLine,name));
+        return ok(edit_page.render("edit",headLine,htmlLine,name));
     }
     
-    public static void create_page(String name){
+    public static void create_page(String name,String type){
         String dir = System.getProperty("user.dir");
         File userdir = new File(dir + "/user/" + session("username") + "/");
         /* ディレクトリ作成 */
@@ -157,7 +157,6 @@ public class Application extends Controller {
             //System.out.println("Not Found User " + session("username"));
             userdir.mkdir();
         }
-        
         File file = new File(dir + "/user/" + session("username") + "/" + name + ".html");
         PrintWriter pw = null;
         try {
@@ -167,11 +166,60 @@ public class Application extends Controller {
                                                         new FileOutputStream(file)));
             // ここでファイルに文字を書き込みます。
             pw.println("<!DOCTYPE html>");
+            pw.println("<meta charset='utf-8'>");
             pw.println("<html>");
-            pw.println("<head><title>" + name + "</title></head>");
+            pw.println("<head>");
+            pw.println("<title>" + name + "</title>");
+            if("blog".equals(type)){
+            	pw.println("<style type='text/css'>");
+            	pw.println("html,body{margin:0;padding:0;height:100%;width:100%;}");
+            	pw.println("div#contents{background-color:#999;position:relative;min-height:100%;}");
+            	pw.println("#header-bk{background-color:rgb(255,0,0);padding:10px 0px 0px;height:120px;width:100%;}");
+            	pw.println("#header{height:120px;margin:auto;}");
+            	pw.println("#left-sidebar-bk{float:left;background-color:rgb(0,255,0);width:200px;height:600px;overflow:scroll;}");
+            	pw.println("#left-sidebar{}");
+            	pw.println("#right-sidebar-bk{float:right;background-color:rgb(0,0,255);width:200px;height:600px;overflow:scroll;}");
+            	pw.println("#right-sidebar{}");
+            	pw.println("#body-bk{background-color:rgb(126,126,126);height:600px;overflow:scroll;}");
+            	pw.println("#body{}");
+            	pw.println("#footer-bk{background-color:rgb(255,255,153);width:100%;height:50px;position:absolute;bottom:0px;padding:10px 0;}");
+            	pw.println("#footer{height:50px;margin:auto;}");
+            	pw.println("</style>");
+            }
+            pw.println("</head>");
             pw.println("<body>");
-            pw.println("<h1>" + name + "</h1>");
-            pw.println("<p>これはcreate_pageにて作成されました。</p>");
+            if("standard".equals(type)){
+            	pw.println("<h1>" + name + "</h1>");
+            	pw.println("<p>これはcreate_pageにて作成されました。</p>");
+            }else if("blog".equals(type)){
+            	pw.println("<div id='contents'>");
+            	pw.println("<div id='header-bk'>");
+            	pw.println("<div id='header'>");
+            	pw.println("<h1>ブログ</h1>");
+            	pw.println("</div>");
+            	pw.println("</div>");
+            	pw.println("<div id='left-sidebar-bk'>");
+            	pw.println("<div id='left-sidebar'>");
+            	pw.println("<h2>左メニュー</h2>");
+            	pw.println("</div>");
+            	pw.println("</div>");
+            	pw.println("<div id='right-sidebar-bk'>");
+            	pw.println("<div id='right-sidebar'>");
+            	pw.println("<h2>右メニュー</h2>");
+            	pw.println("</div>");
+            	pw.println("</div>");
+            	pw.println("<div id='body-bk'>");
+            	pw.println("<div id='body'>");
+            	pw.println("<h2>ボディ</h2>");
+            	pw.println("</div>");
+            	pw.println("</div>");
+            	pw.println("<div id='footer-bk'>");
+            	pw.println("<div id='footer'>");
+            	pw.println("<p>copyright (c) oooo.com All right reserved. </p>");
+            	pw.println("</div>");
+            	pw.println("</div>");
+            	pw.println("</div>");
+            }
             pw.println("</body>");
             pw.println("</html>");
             
@@ -201,11 +249,11 @@ public class Application extends Controller {
     @RequireCSRFCheck
     public static Result save(){
     	String name = Form.form().bindFromRequest().get("name");
-    	System.out.println(name);
         String dir = System.getProperty("user.dir");
         File file = new File(dir + "/user/" + session("username") + "/" + name + ".html");  //どのファイルを変更するかの定義が未実装
         PrintWriter pw = null;
         String[] source = null;
+        String Head = Form.form().bindFromRequest().get("head");
         String Html = Form.form().bindFromRequest().get("html");
         
         try {
@@ -219,7 +267,9 @@ public class Application extends Controller {
             
             pw.println("<!DOCTYPE html>");
             pw.println("<html>");
-            pw.println("<head><title>" + name + "</title></head>");
+            pw.println("<head>");
+            pw.println(Head);
+            pw.println("</head>");
             pw.println("<body>");
             pw.println(Html);
             pw.println("</body>");
@@ -228,8 +278,6 @@ public class Application extends Controller {
 //            for(int i = 0; i < source.length; i++){
 //            	pw.println(source[i]);
 //            } 
-            
-            System.out.println("ファイルの書き込みに成功しました!");
         } catch (IOException e) {
             System.out.println(e);
         } finally {
@@ -287,8 +335,60 @@ public class Application extends Controller {
     
     public static Result render_file(String fileName) {
     	edit_head(fileName);
+    	String[] headLine = get_headLine(fileName);
     	String[] htmlLine = input_file(fileName);
-        return ok(edit_page.render("edit",htmlLine,fileName));
+        return ok(edit_page.render("edit",headLine,htmlLine,fileName));
+    }
+    
+    public static String[] get_headLine(String fileName) {
+    	int lineLength = 0;
+        String dir = System.getProperty("user.dir");
+        File file = new File(dir + "/user/" + session("username") + "/" + fileName + ".html");
+        try{
+        	BufferedReader br = new BufferedReader(new FileReader(file));
+            String str = br.readLine();
+            while(str != null){
+            	str = br.readLine();
+            	if(str.startsWith("<head>")){
+            			lineLength--;
+            			while(str != null){
+            				lineLength++;
+            				str = br.readLine();
+            				if(str.startsWith("</head>")){
+            					lineLength--;
+            					br.close();
+            				}
+            			}
+            	}
+            }
+            br.close();
+        }catch(FileNotFoundException e){
+        }catch(IOException e){
+        }
+        String[] headLine = new String[lineLength];
+        try{
+        	BufferedReader br = new BufferedReader(new FileReader(file));
+            String str = br.readLine();
+            int linePosition = 0;
+            while(str != null){
+                str = br.readLine();
+                if(str.startsWith("<head>")){
+                    while(str != null){
+                        str = br.readLine();
+                        if(str.startsWith("</head>")){
+                            br.close();
+                        }else{
+                        	headLine[linePosition] = str;
+                            linePosition++;
+                        }
+                    }
+                }
+            }
+            br.close();
+        }catch(FileNotFoundException e){
+        }catch(IOException e){
+        }
+        return headLine;
     }
     
     public static String[] input_file(String fileName) {
@@ -312,7 +412,6 @@ public class Application extends Controller {
             			}
             	}
             }
-            
             br.close();
         }catch(FileNotFoundException e){
         }catch(IOException e){
@@ -321,7 +420,6 @@ public class Application extends Controller {
         try{
         	BufferedReader br = new BufferedReader(new FileReader(file));
             String str = br.readLine();
-            
             int linePosition = 0;
             while(str != null){
                 str = br.readLine();
@@ -341,7 +439,6 @@ public class Application extends Controller {
         }catch(FileNotFoundException e){
         }catch(IOException e){
         }
-        
         return htmlLine;
     }
     

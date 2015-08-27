@@ -1,4 +1,4 @@
-@(title: String)(httpLine: Array[String])(edit_page: String)
+@(title: String)(headLine: Array[String])(httpLine: Array[String])(edit_page: String)
 
 <!DOCTYPE html>
 
@@ -55,6 +55,7 @@
 		});
 		
 		</script>
+		<div id='head_main'>@for(line <- headLine){@Html(line)}</div>
     </head>
     <body>
         <div id='body_main'>@for(line <- httpLine){@Html(line)}</div>
@@ -63,6 +64,6 @@
     		<ul>
         		<li id='delete'>Close</li>
     		</ul>
-	</div>
+		</div>
     </body>
 </html>

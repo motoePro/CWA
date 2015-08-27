@@ -17,6 +17,11 @@
         @helper.form(action = routes.Application.new_page()){
         @helper.CSRF.formField
         <input name="name" type="text"></input>.html</br>
+        </br>
+        <input type="radio" name="type" value="standard" checked="checked">スタンダード
+        <input type="radio" name="type" value="blog">ブログ
+        </br>
+        </br>
         <input type="submit" value="決定"/>
         }
 		<input type="button" onclick="location.href='/edit_page'" value="編集画面に戻る" />

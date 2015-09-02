@@ -36,7 +36,7 @@ public class Application extends Controller {
 
 	@AddCSRFToken
 	public static Result call() {
-		return ok(edit_call.render(""));
+		return ok(edit_call.render());
 	}
 
 	public static Result edit_menu() {
@@ -52,7 +52,8 @@ public class Application extends Controller {
     
     public static Result edit_head(String target_name) {
     	if(target_name.equals("null")) target_name = "初期ページ";
-        return ok(edit_head.render(target_name));
+    	String user_name = session("username");
+        return ok(edit_head.render(target_name,user_name));
     }
 	
 //	追加分
@@ -94,13 +95,15 @@ public class Application extends Controller {
 	@RequireCSRFCheck
 	public static Result authenticate() {
 		Form<Login> loginForm = form(Login.class).bindFromRequest();
+		String Username = (String)loginForm.get().getUsername();
 		if (loginForm.hasErrors()) {
 			return badRequest(views.html.login.render(loginForm));
 		} else {
-			session("username", loginForm.get().getUsername());
+			session("username", Username);
 			String returnUrl = ctx().session().get("returnUrl");
 			if(returnUrl == null || returnUrl.equals("") || returnUrl.equals(routes.Application.login().absoluteURL(request()))) {
 				returnUrl = routes.Application.index().url();
+				returnUrl+=Username;
 			}
 			return redirect(returnUrl);
 		}
@@ -119,14 +122,14 @@ public class Application extends Controller {
 	
 	//アカウントページ
 	public static Result userPage(String name) {
-		System.out.println(name.equals(session("username")));
+		//System.out.println(name.equals(session("username")));
 		if(name.equals(session("username"))) {
-			System.out.println("seikou!:)");
-			return ok(user_page.render(""));
+			//System.out.println("seikou!:)");
+			return ok(user_page.render(name));
 		} else {
-			System.out.println("name:        "+name);
-			System.out.println("sessionname: "+session("username"));
-			System.out.println("sippai...X(");
+			//System.out.println("name:        "+name);
+			//System.out.println("sessionname: "+session("username"));
+			//System.out.println("sippai...X(");
 			return redirect(routes.Application.index());
 		}
 	}
@@ -148,7 +151,15 @@ public class Application extends Controller {
     }
     
     public static void create_page(String name,String type){
-        String dir = System.getProperty("user.dir");
+    	if("standard".equals(type)){
+    		create_standard_page(name);
+        }else if("blog".equals(type)){
+        	create_blog_page(name);
+        }
+    }
+    
+    public static void create_standard_page(String name){
+    	String dir = System.getProperty("user.dir");
         File userdir = new File(dir + "/user/" + session("username") + "/");
         /* ディレクトリ作成 */
         if(userdir.exists()){
@@ -170,66 +181,91 @@ public class Application extends Controller {
             pw.println("<html>");
             pw.println("<head>");
             pw.println("<title>" + name + "</title>");
-            if("blog".equals(type)){
-            	pw.println("<style type='text/css'>");
-            	pw.println("html,body{margin:0;padding:0;height:100%;width:100%;}");
-            	pw.println("div#contents{background-color:#999;position:relative;min-height:100%;}");
-            	pw.println("#header-bk{background-color:rgb(255,0,0);padding:10px 0px 0px;height:120px;width:100%;}");
-            	pw.println("#header{height:120px;margin:auto;}");
-            	pw.println("#left-sidebar-bk{float:left;background-color:rgb(0,255,0);width:200px;height:600px;overflow:scroll;}");
-            	pw.println("#left-sidebar{}");
-            	pw.println("#right-sidebar-bk{float:right;background-color:rgb(0,0,255);width:200px;height:600px;overflow:scroll;}");
-            	pw.println("#right-sidebar{}");
-            	pw.println("#body-bk{background-color:rgb(126,126,126);height:600px;overflow:scroll;}");
-            	pw.println("#body{}");
-            	pw.println("#footer-bk{background-color:rgb(255,255,153);width:100%;height:50px;position:absolute;bottom:0px;padding:10px 0;}");
-            	pw.println("#footer{height:50px;margin:auto;}");
-            	pw.println("</style>");
-            }
             pw.println("</head>");
             pw.println("<body>");
-            if("standard".equals(type)){
-            	pw.println("<h1>" + name + "</h1>");
-            	pw.println("<p>これはcreate_pageにて作成されました。</p>");
-            }else if("blog".equals(type)){
-            	pw.println("<div id='contents'>");
-            	pw.println("<div id='header-bk'>");
-            	pw.println("<div id='header'>");
-            	pw.println("<h1>ブログ</h1>");
-            	pw.println("</div>");
-            	pw.println("</div>");
-            	pw.println("<div id='left-sidebar-bk'>");
-            	pw.println("<div id='left-sidebar'>");
-            	pw.println("<h2>左メニュー</h2>");
-            	pw.println("</div>");
-            	pw.println("</div>");
-            	pw.println("<div id='right-sidebar-bk'>");
-            	pw.println("<div id='right-sidebar'>");
-            	pw.println("<h2>右メニュー</h2>");
-            	pw.println("</div>");
-            	pw.println("</div>");
-            	pw.println("<div id='body-bk'>");
-            	pw.println("<div id='body'>");
-            	pw.println("<h2>ボディ</h2>");
-            	pw.println("</div>");
-            	pw.println("</div>");
-            	pw.println("<div id='footer-bk'>");
-            	pw.println("<div id='footer'>");
-            	pw.println("<p>copyright (c) oooo.com All right reserved. </p>");
-            	pw.println("</div>");
-            	pw.println("</div>");
-            	pw.println("</div>");
-            }
+            pw.println("<h1>" + name + "</h1>");
+            pw.println("<p>これはcreate_pageにて作成されました。</p>");
             pw.println("</body>");
             pw.println("</html>");
-            
-            //System.out.println("ファイルの作成に成功しました!"); //作成後に、特定のファイルを呼び出す場合の処理が未実装
-            //制作時は、サーバから表示するページのデータを取得し、1行ずつ読む工程で描画する必要性あり。
         } catch (IOException e) {
             System.out.println(e);
         } finally {
-            // クローズ処理（成功・失敗に関わらず必ずクローズします。）
-            // クローズ漏れはバグのもとになります。必ずfinally句でクローズしましょう。
+            if (pw != null) {
+                pw.close();
+            }
+        }
+    }
+    
+    public static void create_blog_page(String name){
+    	String dir = System.getProperty("user.dir");
+        File userdir = new File(dir + "/user/" + session("username") + "/");
+        /* ディレクトリ作成 */
+        if(userdir.exists()){
+            //System.out.println("Found User " + session("username"));
+        }else{
+            //System.out.println("Not Found User " + session("username"));
+            userdir.mkdir();
+        }
+        File file = new File(dir + "/user/" + session("username") + "/" + name + ".html");
+        PrintWriter pw = null;
+        try {
+            // 出力ストリームを生成します。
+            pw = new PrintWriter(
+                                 new OutputStreamWriter(
+                                                        new FileOutputStream(file)));
+            pw.println("<!DOCTYPE html>");
+            pw.println("<meta charset='utf-8'>");
+            pw.println("<html>");
+            pw.println("<head>");
+            pw.println("<title>" + name + "</title>");
+            pw.println("<style type='text/css'>");
+            pw.println("html,body{margin:0;padding:0;height:100%;width:100%;}");
+            pw.println("div#contents{background-color:#999;position:relative;min-height:100%;}");
+            pw.println("#header-bk{background-color:rgb(255,0,0);padding:10px 0px 0px;height:120px;width:100%;}");
+            pw.println("#header{height:120px;margin:auto;}");
+            pw.println("#left-sidebar-bk{float:left;background-color:rgb(0,255,0);width:200px;height:600px;overflow:scroll;}");
+            pw.println("#left-sidebar{}");
+            pw.println("#right-sidebar-bk{float:right;background-color:rgb(0,0,255);width:200px;height:600px;overflow:scroll;}");
+            pw.println("#right-sidebar{}");
+            pw.println("#body-bk{background-color:rgb(126,126,126);height:600px;overflow:scroll;}");
+            pw.println("#body{}");
+            pw.println("#footer-bk{background-color:rgb(255,255,153);width:100%;height:50px;position:absolute;bottom:0px;padding:10px 0;}");
+            pw.println("#footer{height:50px;margin:auto;}");
+            pw.println("</style>");
+            pw.println("</head>");
+            pw.println("<body>");
+            pw.println("<div id='contents'>");
+            pw.println("<div id='header-bk'>");
+            pw.println("<div id='header'>");
+            pw.println("<h1>ブログ</h1>");
+            pw.println("</div>");
+            pw.println("</div>");
+            pw.println("<div id='left-sidebar-bk'>");
+            pw.println("<div id='left-sidebar'>");
+            pw.println("<h2>左メニュー</h2>");
+            pw.println("</div>");
+            pw.println("</div>");
+            pw.println("<div id='right-sidebar-bk'>");
+            pw.println("<div id='right-sidebar'>");
+            pw.println("<h2>右メニュー</h2>");
+            pw.println("</div>");
+            pw.println("</div>");
+            pw.println("<div id='body-bk'>");
+            pw.println("<div id='body'>");
+            pw.println("<h2>ボディ</h2>");
+            pw.println("</div>");
+            pw.println("</div>");
+            pw.println("<div id='footer-bk'>");
+            pw.println("<div id='footer'>");
+            pw.println("<p>copyright (c) oooo.com All right reserved. </p>");
+            pw.println("</div>");
+            pw.println("</div>");
+            pw.println("</div>");
+            pw.println("</body>");
+            pw.println("</html>");
+        } catch (IOException e) {
+            System.out.println(e);
+        } finally {
             if (pw != null) {
                 pw.close();
             }
@@ -250,7 +286,7 @@ public class Application extends Controller {
     public static Result save(){
     	String name = Form.form().bindFromRequest().get("name");
         String dir = System.getProperty("user.dir");
-        File file = new File(dir + "/user/" + session("username") + "/" + name + ".html");  //どのファイルを変更するかの定義が未実装
+        File file = new File(dir + "/user/" + session("username") + "/" + name + ".html");
         PrintWriter pw = null;
         String[] source = null;
         String Head = Form.form().bindFromRequest().get("head");
@@ -261,10 +297,7 @@ public class Application extends Controller {
             pw = new PrintWriter(
                                  new OutputStreamWriter(
                                                         new FileOutputStream(file)));
-            
-            
-            // ここでファイルに文字を書き込みます。
-            
+
             pw.println("<!DOCTYPE html>");
             pw.println("<html>");
             pw.println("<head>");
@@ -281,13 +314,11 @@ public class Application extends Controller {
         } catch (IOException e) {
             System.out.println(e);
         } finally {
-            // クローズ処理（成功・失敗に関わらず必ずクローズします。）
-            // クローズ漏れはバグのもとになります。必ずfinally句でクローズしましょう。
             if (pw != null) {
                 pw.close();
             }
         }
-        return redirect("/edit_head/null");
+        return redirect("/edit_head?target_name="+name+"&user_name="+session("username"));
     }
     
     public static Result change(){

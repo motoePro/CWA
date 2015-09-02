@@ -1,6 +1,6 @@
 // @SOURCE:/Users/hasegawakazuya/Desktop/CWA/conf/routes
-// @HASH:f1fbec5c454665f97887aaf125d69de706246a06
-// @DATE:Tue Aug 11 22:15:53 JST 2015
+// @HASH:8a93c1afa29301c2e27debf7d973eb533194c40a
+// @DATE:Thu Sep 03 05:12:17 JST 2015
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -74,7 +74,7 @@ def change(): Call = {
 
 // @LINE:16
 def edit_head(target_name:String): Call = {
-   Call("GET", _prefix + { _defaultPrefix } + "edit_head/target/" + implicitly[PathBindable[String]].unbind("target_name", dynamicString(target_name)))
+   Call("GET", _prefix + { _defaultPrefix } + "edit_head" + queryString(List(Some(implicitly[QueryStringBindable[String]].unbind("target_name", target_name)))))
 }
                                                 
 
@@ -250,7 +250,7 @@ def edit_head : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.edit_head",
    """
       function(target_name) {
-      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "edit_head/target/" + (""" + implicitly[PathBindable[String]].javascriptUnbind + """)("target_name", encodeURIComponent(target_name))})
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "edit_head" + _qS([(""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("target_name", target_name)])})
       }
    """
 )
@@ -484,7 +484,7 @@ def change(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 
 // @LINE:16
 def edit_head(target_name:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   controllers.Application.edit_head(target_name), HandlerDef(this, "controllers.Application", "edit_head", Seq(classOf[String]), "GET", """""", _prefix + """edit_head/target/$target_name<[^/]+>""")
+   controllers.Application.edit_head(target_name), HandlerDef(this, "controllers.Application", "edit_head", Seq(classOf[String]), "GET", """""", _prefix + """edit_head""")
 )
                       
 

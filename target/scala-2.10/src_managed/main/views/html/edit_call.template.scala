@@ -20,34 +20,32 @@ import play.api.data.Field
 import play.mvc.Http.Context.Implicit._
 import views.html._
 /**/
-object edit_call extends BaseScalaTemplate[play.api.templates.HtmlFormat.Appendable,Format[play.api.templates.HtmlFormat.Appendable]](play.api.templates.HtmlFormat) with play.api.templates.Template1[String,play.api.templates.HtmlFormat.Appendable] {
+object edit_call extends BaseScalaTemplate[play.api.templates.HtmlFormat.Appendable,Format[play.api.templates.HtmlFormat.Appendable]](play.api.templates.HtmlFormat) with play.api.templates.Template0[play.api.templates.HtmlFormat.Appendable] {
 
     /**/
-    def apply/*1.2*/(message: String):play.api.templates.HtmlFormat.Appendable = {
+    def apply():play.api.templates.HtmlFormat.Appendable = {
         _display_ {
 
-Seq[Any](format.raw/*1.19*/("""
+Seq[Any](_display_(Seq[Any](/*1.2*/edit_main("編集ページ")/*1.20*/{_display_(Seq[Any](format.raw/*1.21*/("""
 
-"""),_display_(Seq[Any](/*3.2*/edit_main("Welcome to Play")/*3.30*/ {_display_(Seq[Any](format.raw/*3.32*/("""
-
-""")))})),format.raw/*5.2*/("""
+""")))})),format.raw/*3.2*/("""
 """))}
     }
     
-    def render(message:String): play.api.templates.HtmlFormat.Appendable = apply(message)
+    def render(): play.api.templates.HtmlFormat.Appendable = apply()
     
-    def f:((String) => play.api.templates.HtmlFormat.Appendable) = (message) => apply(message)
+    def f:(() => play.api.templates.HtmlFormat.Appendable) = () => apply()
     
     def ref: this.type = this
 
 }
                 /*
                     -- GENERATED --
-                    DATE: Fri Aug 07 04:53:25 JST 2015
+                    DATE: Thu Sep 03 05:12:19 JST 2015
                     SOURCE: /Users/hasegawakazuya/Desktop/CWA/app/views/edit_call.scala.html
-                    HASH: 04bb2656a5e913db5072746968258e7768082271
-                    MATRIX: 778->1|889->18|926->21|962->49|1001->51|1034->54
-                    LINES: 26->1|29->1|31->3|31->3|31->3|33->5
+                    HASH: 34e10c9c121159cce9dac484e68b5a0fed189ae1
+                    MATRIX: 868->1|894->19|932->20|965->23
+                    LINES: 29->1|29->1|29->1|31->3
                     -- GENERATED --
                 */
             

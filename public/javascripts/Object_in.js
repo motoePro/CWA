@@ -201,7 +201,6 @@ function change_page(){
 function save_page(){
 	var head = parent.main.document.getElementById('head_main');
 	var headLine = head.innerHTML;
-	console.log(headLine);
 
 	var body = parent.main.document.getElementById('body_main');
 	var HtmlLine = body.innerHTML;

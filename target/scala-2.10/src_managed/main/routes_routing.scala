@@ -1,6 +1,6 @@
 // @SOURCE:/Users/hasegawakazuya/Desktop/CWA/conf/routes
-// @HASH:f1fbec5c454665f97887aaf125d69de706246a06
-// @DATE:Tue Aug 11 22:15:53 JST 2015
+// @HASH:8a93c1afa29301c2e27debf7d973eb533194c40a
+// @DATE:Thu Sep 03 05:12:17 JST 2015
 
 
 import play.core._
@@ -53,7 +53,7 @@ private[this] lazy val controllers_Application_edit_page5 = Route("GET", PathPat
         
 
 // @LINE:16
-private[this] lazy val controllers_Application_edit_head6 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("edit_head/target/"),DynamicPart("target_name", """[^/]+""",true))))
+private[this] lazy val controllers_Application_edit_head6 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("edit_head"))))
         
 
 // @LINE:17
@@ -99,7 +99,7 @@ private[this] lazy val controllers_Application_create16 = Route("POST", PathPatt
 // @LINE:30
 private[this] lazy val controllers_Application_userPage17 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),DynamicPart("username", """[^/]+""",true))))
         
-def documentation = List(("""GET""", prefix,"""controllers.Application.index()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """index""","""controllers.Application.index()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call""","""controllers.Application.call()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_menu""","""controllers.Application.edit_menu()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_page""","""controllers.Application.edit_page()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_head/target/$target_name<[^/]+>""","""controllers.Application.edit_head(target_name:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call/call_dicition_name""","""controllers.Application.dicition_name()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call/new""","""controllers.Application.new_page()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call/save""","""controllers.Application.save()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call/change""","""controllers.Application.change()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call/render_file/$name<[^/]+>""","""controllers.Application.render_file(name:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """login""","""controllers.Application.login()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """authenticate""","""controllers.Application.authenticate()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """logout""","""controllers.Application.logout()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """register""","""controllers.Application.register()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """create""","""controllers.Application.create()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """$username<[^/]+>""","""controllers.Application.userPage(username:String)""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
+def documentation = List(("""GET""", prefix,"""controllers.Application.index()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """index""","""controllers.Application.index()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call""","""controllers.Application.call()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_menu""","""controllers.Application.edit_menu()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_page""","""controllers.Application.edit_page()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_head""","""controllers.Application.edit_head(target_name:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call/call_dicition_name""","""controllers.Application.dicition_name()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call/new""","""controllers.Application.new_page()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call/save""","""controllers.Application.save()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call/change""","""controllers.Application.change()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call/render_file/$name<[^/]+>""","""controllers.Application.render_file(name:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """login""","""controllers.Application.login()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """authenticate""","""controllers.Application.authenticate()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """logout""","""controllers.Application.logout()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """register""","""controllers.Application.register()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """create""","""controllers.Application.create()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """$username<[^/]+>""","""controllers.Application.userPage(username:String)""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
   case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
   case l => s ++ l.asInstanceOf[List[(String,String,String)]] 
 }}
@@ -157,8 +157,8 @@ case controllers_Application_edit_page5(params) => {
 
 // @LINE:16
 case controllers_Application_edit_head6(params) => {
-   call(params.fromPath[String]("target_name", None)) { (target_name) =>
-        invokeHandler(controllers.Application.edit_head(target_name), HandlerDef(this, "controllers.Application", "edit_head", Seq(classOf[String]),"GET", """""", Routes.prefix + """edit_head/target/$target_name<[^/]+>"""))
+   call(params.fromQuery[String]("target_name", None)) { (target_name) =>
+        invokeHandler(controllers.Application.edit_head(target_name), HandlerDef(this, "controllers.Application", "edit_head", Seq(classOf[String]),"GET", """""", Routes.prefix + """edit_head"""))
    }
 }
         

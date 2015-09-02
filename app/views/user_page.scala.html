@@ -1,6 +1,8 @@
-@(message: String)
+@(UserName: String)
 
 @main("ユーザページ") {
 	<h1>ユーザのページ</h1>
-	<p>ようこそ。@session さん</p>
+	<p>ようこそ。@UserName さん</p>
+	</br>
+	<a href="/edit_call">編集ページへ</a>
 }

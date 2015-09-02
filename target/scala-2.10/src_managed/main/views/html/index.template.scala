@@ -30,10 +30,11 @@ Seq[Any](format.raw/*1.19*/("""
 
 """),_display_(Seq[Any](/*3.2*/main("TOP")/*3.13*/ {_display_(Seq[Any](format.raw/*3.15*/("""
 	<h1>トップページ</h1>
-	<p>ようこそ。"""),_display_(Seq[Any](/*5.11*/session)),format.raw/*5.18*/(""" さん</p>
-	<p><a href=""""),_display_(Seq[Any](/*6.15*/routes/*6.21*/.Application.register())),format.raw/*6.44*/("""">会員登録</a></p>
-	<p><a href=""""),_display_(Seq[Any](/*7.15*/routes/*7.21*/.Application.login())),format.raw/*7.41*/("""">ログインはこちら</a></p>
-""")))})),format.raw/*8.2*/("""
+	<p>ようこそ。
+		<a href=""""),_display_(Seq[Any](/*6.13*/routes/*6.19*/.Application.register())),format.raw/*6.42*/("""">会員登録</a>
+		<a href=""""),_display_(Seq[Any](/*7.13*/routes/*7.19*/.Application.login())),format.raw/*7.39*/("""">ログインはこちら</a>
+	</p>
+""")))})),format.raw/*9.2*/("""
 """))}
     }
     
@@ -46,11 +47,11 @@ Seq[Any](format.raw/*1.19*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Fri Aug 07 04:53:25 JST 2015
+                    DATE: Thu Sep 03 03:49:44 JST 2015
                     SOURCE: /Users/hasegawakazuya/Desktop/CWA/app/views/index.scala.html
-                    HASH: c75f35af67185cad8491c6114373fc1bf246707b
-                    MATRIX: 774->1|885->18|922->21|941->32|980->34|1043->62|1071->69|1128->91|1142->97|1186->120|1250->149|1264->155|1305->175|1355->195
-                    LINES: 26->1|29->1|31->3|31->3|31->3|33->5|33->5|34->6|34->6|34->6|35->7|35->7|35->7|36->8
+                    HASH: 62689a0bccf950f8ff3a9c3dcadd639bb8a139d8
+                    MATRIX: 774->1|885->18|922->21|941->32|980->34|1055->74|1069->80|1113->103|1171->126|1185->132|1226->152|1278->174
+                    LINES: 26->1|29->1|31->3|31->3|31->3|34->6|34->6|34->6|35->7|35->7|35->7|37->9
                     -- GENERATED --
                 */
             

@@ -23,30 +23,32 @@ import views.html._
 object user_page extends BaseScalaTemplate[play.api.templates.HtmlFormat.Appendable,Format[play.api.templates.HtmlFormat.Appendable]](play.api.templates.HtmlFormat) with play.api.templates.Template1[String,play.api.templates.HtmlFormat.Appendable] {
 
     /**/
-    def apply/*1.2*/(message: String):play.api.templates.HtmlFormat.Appendable = {
+    def apply/*1.2*/(UserName: String):play.api.templates.HtmlFormat.Appendable = {
         _display_ {
 
-Seq[Any](format.raw/*1.19*/("""
+Seq[Any](format.raw/*1.20*/("""
 
 """),_display_(Seq[Any](/*3.2*/main("ユーザページ")/*3.16*/ {_display_(Seq[Any](format.raw/*3.18*/("""
 	<h1>ユーザのページ</h1>
-	<p>ようこそ。"""),_display_(Seq[Any](/*5.11*/session)),format.raw/*5.18*/(""" さん</p>
+	<p>ようこそ。"""),_display_(Seq[Any](/*5.11*/UserName)),format.raw/*5.19*/(""" さん</p>
+	</br>
+	<a href="/edit_call">編集ページへ</a>
 """)))})))}
     }
     
-    def render(message:String): play.api.templates.HtmlFormat.Appendable = apply(message)
+    def render(UserName:String): play.api.templates.HtmlFormat.Appendable = apply(UserName)
     
-    def f:((String) => play.api.templates.HtmlFormat.Appendable) = (message) => apply(message)
+    def f:((String) => play.api.templates.HtmlFormat.Appendable) = (UserName) => apply(UserName)
     
     def ref: this.type = this
 
 }
                 /*
                     -- GENERATED --
-                    DATE: Fri Aug 07 04:53:25 JST 2015
+                    DATE: Thu Sep 03 03:19:41 JST 2015
                     SOURCE: /Users/hasegawakazuya/Desktop/CWA/app/views/user_page.scala.html
-                    HASH: 92ce563a619a6918d27df230f4875f34b7ed76ec
-                    MATRIX: 778->1|889->18|926->21|948->35|987->37|1051->66|1079->73
+                    HASH: 95ecc6a036857913e62ff7c4d260014d510fce3a
+                    MATRIX: 778->1|890->19|927->22|949->36|988->38|1052->67|1081->75
                     LINES: 26->1|29->1|31->3|31->3|31->3|33->5|33->5
                     -- GENERATED --
                 */

@@ -20,13 +20,13 @@ import play.api.data.Field
 import play.mvc.Http.Context.Implicit._
 import views.html._
 /**/
-object edit_head extends BaseScalaTemplate[play.api.templates.HtmlFormat.Appendable,Format[play.api.templates.HtmlFormat.Appendable]](play.api.templates.HtmlFormat) with play.api.templates.Template1[String,play.api.templates.HtmlFormat.Appendable] {
+object edit_head extends BaseScalaTemplate[play.api.templates.HtmlFormat.Appendable,Format[play.api.templates.HtmlFormat.Appendable]](play.api.templates.HtmlFormat) with play.api.templates.Template2[String,String,play.api.templates.HtmlFormat.Appendable] {
 
     /**/
-    def apply/*1.2*/(target_name: String):play.api.templates.HtmlFormat.Appendable = {
+    def apply/*1.2*/(target_name: String, user_name: String):play.api.templates.HtmlFormat.Appendable = {
         _display_ {
 
-Seq[Any](format.raw/*1.23*/("""
+Seq[Any](format.raw/*1.42*/("""
 <!DOCTYPE html>
 <html>
     <head>
@@ -44,7 +44,8 @@ Seq[Any](format.raw/*1.23*/("""
     		<input type="hidden" name="edit_page_name" value=""""),_display_(Seq[Any](/*16.58*/target_name)),format.raw/*16.69*/("""">
     	</form>
     	<div class="head_menu">
-    		<p>現在、[ """),_display_(Seq[Any](/*19.16*/target_name)),format.raw/*19.27*/(""" ]を操作しています。</p>
+    		<p>現在、[ """),_display_(Seq[Any](/*19.16*/target_name)),format.raw/*19.27*/(""" ]を操作しています。</br>
+    		<a href="/"""),_display_(Seq[Any](/*20.18*/user_name)),format.raw/*20.27*/("""" target="_top">ユーザページに戻る</a></p>
     	</div>
         <div class="head_menu">
 			<div class="head">
@@ -54,7 +55,7 @@ Seq[Any](format.raw/*1.23*/("""
 				<button onclick="change_page()">ページの変更</button>
 			</div>
 			<form action="#" name="save" class="head">
-				"""),_display_(Seq[Any](/*29.6*/helper/*29.12*/.CSRF.formField)),format.raw/*29.27*/("""
+				"""),_display_(Seq[Any](/*30.6*/helper/*30.12*/.CSRF.formField)),format.raw/*30.27*/("""
 				<button  onclick="save_page()">保存</button>
 			</form>
 		</div>
@@ -63,20 +64,20 @@ Seq[Any](format.raw/*1.23*/("""
 """))}
     }
     
-    def render(target_name:String): play.api.templates.HtmlFormat.Appendable = apply(target_name)
+    def render(target_name:String,user_name:String): play.api.templates.HtmlFormat.Appendable = apply(target_name,user_name)
     
-    def f:((String) => play.api.templates.HtmlFormat.Appendable) = (target_name) => apply(target_name)
+    def f:((String,String) => play.api.templates.HtmlFormat.Appendable) = (target_name,user_name) => apply(target_name,user_name)
     
     def ref: this.type = this
 
 }
                 /*
                     -- GENERATED --
-                    DATE: Tue Aug 11 22:50:31 JST 2015
+                    DATE: Thu Sep 03 05:20:28 JST 2015
                     SOURCE: /Users/hasegawakazuya/Desktop/CWA/app/views/edit_head.scala.html
-                    HASH: 1b8627149eb36f9456b2f7e0124436a5901d68b9
-                    MATRIX: 778->1|893->22|1043->137|1057->143|1112->177|1203->233|1217->239|1272->273|1368->334|1382->340|1435->372|1495->397|1509->403|1575->448|1668->505|1683->511|1743->549|1836->606|1851->612|1923->662|2136->839|2169->850|2265->910|2298->921|2617->1205|2632->1211|2669->1226
-                    LINES: 26->1|29->1|34->6|34->6|34->6|35->7|35->7|35->7|36->8|36->8|36->8|37->9|37->9|37->9|38->10|38->10|38->10|39->11|39->11|39->11|44->16|44->16|47->19|47->19|57->29|57->29|57->29
+                    HASH: b137d03fe535e82a3bbce2a3e3ea86c85f7f8ab5
+                    MATRIX: 785->1|919->41|1069->156|1083->162|1138->196|1229->252|1243->258|1298->292|1394->353|1408->359|1461->391|1521->416|1535->422|1601->467|1694->524|1709->530|1769->568|1862->625|1877->631|1949->681|2162->858|2195->869|2291->929|2324->940|2394->974|2425->983|2762->1285|2777->1291|2814->1306
+                    LINES: 26->1|29->1|34->6|34->6|34->6|35->7|35->7|35->7|36->8|36->8|36->8|37->9|37->9|37->9|38->10|38->10|38->10|39->11|39->11|39->11|44->16|44->16|47->19|47->19|48->20|48->20|58->30|58->30|58->30
                     -- GENERATED --
                 */
             

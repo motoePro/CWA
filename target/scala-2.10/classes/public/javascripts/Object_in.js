@@ -199,6 +199,9 @@ function change_page(){
 }
 
 function save_page(){
+	var head = parent.main.document.getElementById('head_main');
+	var headLine = head.innerHTML;
+
 	var body = parent.main.document.getElementById('body_main');
 	var HtmlLine = body.innerHTML;
 	
@@ -217,6 +220,12 @@ function save_page(){
     name.name = "name";
     name.value = parent.edit_head.document.name.edit_page_name.value;
     form.appendChild(name);
+    
+    var input = document.createElement("input");
+    input.type = "text";
+    input.name = "head";
+    input.value = headLine;
+    form.appendChild(input);
     
     var input = document.createElement("input");
     input.type = "text";

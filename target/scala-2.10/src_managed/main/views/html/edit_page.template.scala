@@ -20,13 +20,13 @@ import play.api.data.Field
 import play.mvc.Http.Context.Implicit._
 import views.html._
 /**/
-object edit_page extends BaseScalaTemplate[play.api.templates.HtmlFormat.Appendable,Format[play.api.templates.HtmlFormat.Appendable]](play.api.templates.HtmlFormat) with play.api.templates.Template3[String,Array[String],String,play.api.templates.HtmlFormat.Appendable] {
+object edit_page extends BaseScalaTemplate[play.api.templates.HtmlFormat.Appendable,Format[play.api.templates.HtmlFormat.Appendable]](play.api.templates.HtmlFormat) with play.api.templates.Template4[String,Array[String],Array[String],String,play.api.templates.HtmlFormat.Appendable] {
 
     /**/
-    def apply/*1.2*/(title: String)(httpLine: Array[String])(edit_page: String):play.api.templates.HtmlFormat.Appendable = {
+    def apply/*1.2*/(title: String)(headLine: Array[String])(httpLine: Array[String])(edit_page: String):play.api.templates.HtmlFormat.Appendable = {
         _display_ {
 
-Seq[Any](format.raw/*1.61*/("""
+Seq[Any](format.raw/*1.86*/("""
 
 <!DOCTYPE html>
 
@@ -49,7 +49,7 @@ Seq[Any](format.raw/*1.61*/("""
         <script type="text/javascript">
         
        	$(function()"""),format.raw/*23.21*/("""{"""),format.raw/*23.22*/("""
-       		parent.edit_head.location.href = "/edit_head/target/"""),_display_(Seq[Any](/*24.63*/edit_page)),format.raw/*24.72*/("""";
+       		parent.edit_head.location.href = "/edit_head?target_name="""),_display_(Seq[Any](/*24.68*/edit_page)),format.raw/*24.77*/("""";
        	"""),format.raw/*25.9*/("""}"""),format.raw/*25.10*/(""");
  
 		//要素にdraggable,resizable属性を加える(テキストのみ)
@@ -83,33 +83,34 @@ Seq[Any](format.raw/*1.61*/("""
 		"""),format.raw/*55.3*/("""}"""),format.raw/*55.4*/(""");
 		
 		</script>
+		<div id='head_main'>"""),_display_(Seq[Any](/*58.24*/for(line <- headLine) yield /*58.45*/{_display_(Seq[Any](_display_(Seq[Any](/*58.47*/Html(line)))))})),format.raw/*58.58*/("""</div>
     </head>
     <body>
-        <div id='body_main'>"""),_display_(Seq[Any](/*60.30*/for(line <- httpLine) yield /*60.51*/{_display_(Seq[Any](_display_(Seq[Any](/*60.53*/Html(line)))))})),format.raw/*60.64*/("""</div>
+        <div id='body_main'>"""),_display_(Seq[Any](/*61.30*/for(line <- httpLine) yield /*61.51*/{_display_(Seq[Any](_display_(Seq[Any](/*61.53*/Html(line)))))})),format.raw/*61.64*/("""</div>
         
         <div class='contextMenu' id='myMenu'>
     		<ul>
         		<li id='delete'>Close</li>
     		</ul>
-	</div>
+		</div>
     </body>
 </html>"""))}
     }
     
-    def render(title:String,httpLine:Array[String],edit_page:String): play.api.templates.HtmlFormat.Appendable = apply(title)(httpLine)(edit_page)
+    def render(title:String,headLine:Array[String],httpLine:Array[String],edit_page:String): play.api.templates.HtmlFormat.Appendable = apply(title)(headLine)(httpLine)(edit_page)
     
-    def f:((String) => (Array[String]) => (String) => play.api.templates.HtmlFormat.Appendable) = (title) => (httpLine) => (edit_page) => apply(title)(httpLine)(edit_page)
+    def f:((String) => (Array[String]) => (Array[String]) => (String) => play.api.templates.HtmlFormat.Appendable) = (title) => (headLine) => (httpLine) => (edit_page) => apply(title)(headLine)(httpLine)(edit_page)
     
     def ref: this.type = this
 
 }
                 /*
                     -- GENERATED --
-                    DATE: Tue Aug 11 22:34:51 JST 2015
+                    DATE: Thu Sep 03 05:19:14 JST 2015
                     SOURCE: /Users/hasegawakazuya/Desktop/CWA/app/views/edit_page.scala.html
-                    HASH: f3c63ea31bf104e7f780f4ce16f56cf7469613c6
-                    MATRIX: 799->1|952->60|1040->113|1066->118|1163->180|1177->186|1237->225|1328->281|1342->287|1397->321|1494->382|1509->388|1563->420|1819->640|1834->646|1898->688|1991->745|2006->751|2067->790|2160->847|2175->853|2240->896|2342->962|2357->968|2417->1006|2510->1063|2525->1069|2597->1119|2729->1223|2758->1224|2857->1287|2888->1296|2926->1307|2955->1308|3048->1373|3077->1374|3159->1428|3188->1429|3243->1456|3272->1457|3330->1487|3359->1488|3414->1515|3443->1516|3509->1555|3537->1556|3588->1579|3617->1580|3674->1609|3703->1610|3758->1637|3787->1638|3853->1677|3881->1678|3954->1723|3983->1724|4042->1756|4070->1757|4165->1824|4194->1825|4275->1878|4304->1879|4357->1904|4386->1905|4451->1942|4480->1943|4715->2150|4744->2151|4783->2162|4812->2163|4846->2170|4874->2171|4906->2176|4934->2177|5040->2247|5077->2268|5125->2270|5162->2281
-                    LINES: 26->1|29->1|35->7|35->7|36->8|36->8|36->8|37->9|37->9|37->9|38->10|38->10|38->10|43->15|43->15|43->15|44->16|44->16|44->16|45->17|45->17|45->17|47->19|47->19|47->19|48->20|48->20|48->20|51->23|51->23|52->24|52->24|53->25|53->25|56->28|56->28|58->30|58->30|58->30|58->30|59->31|59->31|59->31|59->31|60->32|60->32|62->34|62->34|63->35|63->35|63->35|63->35|64->36|64->36|67->39|67->39|69->41|69->41|72->44|72->44|74->46|74->46|75->47|75->47|76->48|76->48|80->52|80->52|81->53|81->53|82->54|82->54|83->55|83->55|88->60|88->60|88->60|88->60
+                    HASH: d19fa30d0f306e8d87759d625371eecc553210b4
+                    MATRIX: 813->1|991->85|1079->138|1105->143|1202->205|1216->211|1276->250|1367->306|1381->312|1436->346|1533->407|1548->413|1602->445|1858->665|1873->671|1937->713|2030->770|2045->776|2106->815|2199->872|2214->878|2279->921|2381->987|2396->993|2456->1031|2549->1088|2564->1094|2636->1144|2768->1248|2797->1249|2901->1317|2932->1326|2970->1337|2999->1338|3092->1403|3121->1404|3203->1458|3232->1459|3287->1486|3316->1487|3374->1517|3403->1518|3458->1545|3487->1546|3553->1585|3581->1586|3632->1609|3661->1610|3718->1639|3747->1640|3802->1667|3831->1668|3897->1707|3925->1708|3998->1753|4027->1754|4086->1786|4114->1787|4209->1854|4238->1855|4319->1908|4348->1909|4401->1934|4430->1935|4495->1972|4524->1973|4759->2180|4788->2181|4827->2192|4856->2193|4890->2200|4918->2201|4950->2206|4978->2207|5055->2248|5092->2269|5140->2271|5177->2282|5272->2341|5309->2362|5357->2364|5394->2375
+                    LINES: 26->1|29->1|35->7|35->7|36->8|36->8|36->8|37->9|37->9|37->9|38->10|38->10|38->10|43->15|43->15|43->15|44->16|44->16|44->16|45->17|45->17|45->17|47->19|47->19|47->19|48->20|48->20|48->20|51->23|51->23|52->24|52->24|53->25|53->25|56->28|56->28|58->30|58->30|58->30|58->30|59->31|59->31|59->31|59->31|60->32|60->32|62->34|62->34|63->35|63->35|63->35|63->35|64->36|64->36|67->39|67->39|69->41|69->41|72->44|72->44|74->46|74->46|75->47|75->47|76->48|76->48|80->52|80->52|81->53|81->53|82->54|82->54|83->55|83->55|86->58|86->58|86->58|86->58|89->61|89->61|89->61|89->61
                     -- GENERATED --
                 */
             

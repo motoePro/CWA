@@ -318,7 +318,7 @@ public class Application extends Controller {
                 pw.close();
             }
         }
-        return redirect("/edit_head?target_name="+name+"&user_name="+session("username"));
+        return redirect("/edit_head/target/null");
     }
     
     public static Result change(){

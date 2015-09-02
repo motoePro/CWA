@@ -31,7 +31,7 @@ function addTxt(){
 	txt_tag.id = ElementID;
 	txt_tag.className = "pchan context";
 	txt_tag.innerHTML = "タイトル";
-	txt_tag.style = "background-color: red;margin:0; padding:0";
+	txt_tag.style = "background-color:red; margin:0; padding:0; position:absolute; left:0px; top:0px";
 	// txt_tag.id = "txt_chan";
 	// body.appendChild(tag);
 	// tag.appendChild(txt_tag);

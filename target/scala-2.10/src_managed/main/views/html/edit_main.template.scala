@@ -41,7 +41,7 @@ Seq[Any](format.raw/*1.32*/("""
         
     </head>
     <frameset rows="120px,*">
-  		<frame name="edit_head" src="edit_head?target_name=null">
+  		<frame name="edit_head" src="edit_head/target/null">
   		<frameset cols="180px,*">
   			<frame name="menu" src="edit_menu">
   			<frame name="main" src="edit_page">
@@ -60,9 +60,9 @@ Seq[Any](format.raw/*1.32*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Thu Sep 03 05:22:05 JST 2015
+                    DATE: Thu Sep 03 06:35:26 JST 2015
                     SOURCE: /Users/hasegawakazuya/Desktop/CWA/app/views/edit_main.scala.html
-                    HASH: 1d893d33561f3a08a2db937b7ff1f5fb75164582
+                    HASH: 003278fa31ec963870695ed051ef4f19bbfeb407
                     MATRIX: 783->1|907->31|995->84|1021->89|1118->151|1132->157|1187->191|1283->252|1297->258|1350->290
                     LINES: 26->1|29->1|35->7|35->7|36->8|36->8|36->8|37->9|37->9|37->9
                     -- GENERATED --

@@ -70,8 +70,8 @@ Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
 }
                 /*
                     -- GENERATED --
-                    DATE: Thu Sep 03 05:35:24 JST 2015
-                    SOURCE: /Users/hasegawakazuya/Desktop/CWA/app/views/edit_menu.scala.html
+                    DATE: Mon Sep 07 09:07:19 JST 2015
+                    SOURCE: /Users/woon/Documents/workspace/CWA/app/views/edit_menu.scala.html
                     HASH: 15e178bd365de7191e97a1c8109f4b1fe85e4a04
                     MATRIX: 859->0|1009->115|1023->121|1078->155|1169->211|1183->217|1238->251|1334->312|1348->318|1401->350|1688->601|1703->607|1770->652|1863->709|1878->715|1942->757|2035->814|2050->820|2110->858|2212->924|2227->930|2299->980
                     LINES: 29->1|33->5|33->5|33->5|34->6|34->6|34->6|35->7|35->7|35->7|41->13|41->13|41->13|42->14|42->14|42->14|43->15|43->15|43->15|45->17|45->17|45->17

@@ -2,11 +2,14 @@ package models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.PersistenceUnit;
 import javax.persistence.Table;
+
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
 @Entity
+@PersistenceUnit(name = "default")
 @Table(name = "accounts")
 public class Account extends Model{
 	@Id

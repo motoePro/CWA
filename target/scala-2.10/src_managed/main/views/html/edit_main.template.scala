@@ -37,8 +37,7 @@ Seq[Any](format.raw/*1.32*/("""
         <link rel="shortcut icon" type="image/png" href=""""),_display_(Seq[Any](/*9.59*/routes/*9.65*/.Assets.at("images/favicon.png"))),format.raw/*9.97*/("""">
         
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
-        
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>    
     </head>
     <frameset rows="120px,*">
   		<frame name="edit_head" src="edit_head/target/null">
@@ -60,9 +59,9 @@ Seq[Any](format.raw/*1.32*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Mon Sep 07 09:07:19 JST 2015
-                    SOURCE: /Users/woon/Documents/workspace/CWA/app/views/edit_main.scala.html
-                    HASH: 003278fa31ec963870695ed051ef4f19bbfeb407
+                    DATE: Fri Sep 25 11:25:06 JST 2015
+                    SOURCE: /Users/hasegawakazuya/Desktop/CWA/app/views/edit_main.scala.html
+                    HASH: 8488e8b9d101e7eec111b02c704a7542013cf184
                     MATRIX: 783->1|907->31|995->84|1021->89|1118->151|1132->157|1187->191|1283->252|1297->258|1350->290
                     LINES: 26->1|29->1|35->7|35->7|36->8|36->8|36->8|37->9|37->9|37->9
                     -- GENERATED --

@@ -1,7 +1,6 @@
 @(title: String)(headLine: Array[String])(httpLine: Array[String])(edit_page: String)
 
 <!DOCTYPE html>
-
 <html>
     <head>
         <title>@title</title>
@@ -19,11 +18,11 @@
         <script src="@routes.Assets.at("javascripts/Object_in.js")" type="text/javascript"></script>
         <script src="@routes.Assets.at("javascripts/jquery.contextmenu.r2.js")" type="text/javascript"></script>
         <script type="text/javascript">
-        
-       	$(function(){
-       		parent.edit_head.location.href = "/edit_head/target/null";
-       	});
- 
+ 		
+ 		$(function(){
+ 			parent.edit_head.location.href = "/edit_head/target/@edit_page";
+ 		})
+ 		
 		//要素にdraggable,resizable属性を加える(テキストのみ)
 		function txtmv() {
 			$('.pchan').draggable();

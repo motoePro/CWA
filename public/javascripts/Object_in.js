@@ -266,3 +266,11 @@ function context() {
           	}
     });
 }
+
+function choose_link(val){
+	var form = document.getElementById('link_form');
+	var link_name = document.getElementById('link_name');
+	link_name.value = val;
+    form.submit();
+    window.close();
+}

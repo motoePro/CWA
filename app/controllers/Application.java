@@ -40,7 +40,7 @@ public class Application extends Controller {
 	}
 
 	public static Result edit_menu() {
-		return ok(edit_menu.render());
+		return ok(edit_menu.render("",""));
 	}
 
 	public static Result edit_page() {
@@ -51,7 +51,7 @@ public class Application extends Controller {
 	}
 
 	public static Result edit_head(String target_name) {
-		if(target_name.equals("null")) target_name = "初期ページ";
+		if(target_name.equals("null")){target_name = "初期ページ";}
 		String user_name = session("username");
 		return ok(edit_head.render(target_name,user_name));
 	}
@@ -195,14 +195,6 @@ public class Application extends Controller {
 
 	public static void create_standard_page(String name){
 		String dir = System.getProperty("user.dir");
-		File userdir = new File(dir + "/user/" + session("username") + "/");
-		/* ディレクトリ作成 */
-		if(userdir.exists()){
-			//System.out.println("Found User " + session("username"));
-		}else{
-			//System.out.println("Not Found User " + session("username"));
-			userdir.mkdir();
-		}
 		File file = new File(dir + "/user/" + session("username") + "/" + name + ".html");
 		PrintWriter pw = null;
 		try {
@@ -218,8 +210,7 @@ public class Application extends Controller {
 			pw.println("<title>" + name + "</title>");
 			pw.println("</head>");
 			pw.println("<body>");
-			pw.println("<h1>" + name + "</h1>");
-			pw.println("<p>これはcreate_pageにて作成されました。</p>");
+			pw.println("<h1>"+name+"</h1>");
 			pw.println("</body>");
 			pw.println("</html>");
 		} catch (IOException e) {
@@ -233,14 +224,6 @@ public class Application extends Controller {
 
 	public static void create_blog_page(String name){
 		String dir = System.getProperty("user.dir");
-		File userdir = new File(dir + "/user/" + session("username") + "/");
-		/* ディレクトリ作成 */
-		if(userdir.exists()){
-			//System.out.println("Found User " + session("username"));
-		}else{
-			//System.out.println("Not Found User " + session("username"));
-			userdir.mkdir();
-		}
 		File file = new File(dir + "/user/" + session("username") + "/" + name + ".html");
 		PrintWriter pw = null;
 		try {
@@ -400,7 +383,6 @@ public class Application extends Controller {
 	}
 
 	public static Result render_file(String fileName) {
-		edit_head(fileName);
 		String[] headLine = get_headLine(fileName);
 		String[] htmlLine = input_file(fileName);
 		return ok(edit_page.render("edit",headLine,htmlLine,fileName));
@@ -543,5 +525,25 @@ public class Application extends Controller {
 			System.out.println(sb[i]);
 		}
 		return sb;
+	}
+	
+	public static Result link(){
+		String dir = System.getProperty("user.dir");
+		File filedir = new File(dir + "/user/" + session("username"));
+		File[] files = filedir.listFiles();
+		String[] fileNames = new String[files.length];
+		for (int i = 0; i < files.length; i++) {
+			File file = files[i];
+			fileNames[i] = file.getName().replace(".html","");
+		}
+		String[] optFileNames = optimization(fileNames);
+		return ok(choose_link.render(optFileNames));
+	}
+	
+	public static Result choose_link(){
+		String name = Form.form().bindFromRequest().get("name");
+		String dir = System.getProperty("user.dir");
+		String filedir = dir + "/user/" + session("username") + "/" + name + ".html";
+		return ok(edit_menu.render(name,filedir));
 	}
 }

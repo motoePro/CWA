@@ -1,6 +1,6 @@
-// @SOURCE:/Users/woon/Documents/workspace/CWA/conf/routes
-// @HASH:f1fbec5c454665f97887aaf125d69de706246a06
-// @DATE:Mon Sep 07 09:07:18 JST 2015
+// @SOURCE:/Users/hasegawakazuya/Desktop/CWA/conf/routes
+// @HASH:7ed05ed19591324ce8178c588b23a8fcec1d67bf
+// @DATE:Wed Sep 30 12:33:37 JST 2015
 
 
 import play.core._
@@ -76,30 +76,38 @@ private[this] lazy val controllers_Application_change10 = Route("GET", PathPatte
 private[this] lazy val controllers_Application_render_file11 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("edit_call/render_file/"),DynamicPart("name", """[^/]+""",true))))
         
 
-// @LINE:24
-private[this] lazy val controllers_Application_login12 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("login"))))
+// @LINE:22
+private[this] lazy val controllers_Application_link12 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("edit_call/link"))))
         
 
-// @LINE:25
-private[this] lazy val controllers_Application_authenticate13 = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("authenticate"))))
+// @LINE:23
+private[this] lazy val controllers_Application_choose_link13 = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("edit_call/choose_link"))))
         
 
 // @LINE:26
-private[this] lazy val controllers_Application_logout14 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("logout"))))
+private[this] lazy val controllers_Application_login14 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("login"))))
+        
+
+// @LINE:27
+private[this] lazy val controllers_Application_authenticate15 = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("authenticate"))))
         
 
 // @LINE:28
-private[this] lazy val controllers_Application_register15 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("register"))))
-        
-
-// @LINE:29
-private[this] lazy val controllers_Application_create16 = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("create"))))
+private[this] lazy val controllers_Application_logout16 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("logout"))))
         
 
 // @LINE:30
-private[this] lazy val controllers_Application_userPage17 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),DynamicPart("username", """[^/]+""",true))))
+private[this] lazy val controllers_Application_register17 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("register"))))
         
-def documentation = List(("""GET""", prefix,"""controllers.Application.index()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """index""","""controllers.Application.index()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call""","""controllers.Application.call()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_menu""","""controllers.Application.edit_menu()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_page""","""controllers.Application.edit_page()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_head/target/$target_name<[^/]+>""","""controllers.Application.edit_head(target_name:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call/call_dicition_name""","""controllers.Application.dicition_name()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call/new""","""controllers.Application.new_page()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call/save""","""controllers.Application.save()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call/change""","""controllers.Application.change()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call/render_file/$name<[^/]+>""","""controllers.Application.render_file(name:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """login""","""controllers.Application.login()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """authenticate""","""controllers.Application.authenticate()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """logout""","""controllers.Application.logout()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """register""","""controllers.Application.register()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """create""","""controllers.Application.create()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """$username<[^/]+>""","""controllers.Application.userPage(username:String)""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
+
+// @LINE:31
+private[this] lazy val controllers_Application_create18 = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("create"))))
+        
+
+// @LINE:32
+private[this] lazy val controllers_Application_userPage19 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),DynamicPart("username", """[^/]+""",true))))
+        
+def documentation = List(("""GET""", prefix,"""controllers.Application.index()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """index""","""controllers.Application.index()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call""","""controllers.Application.call()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_menu""","""controllers.Application.edit_menu()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_page""","""controllers.Application.edit_page()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_head/target/$target_name<[^/]+>""","""controllers.Application.edit_head(target_name:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call/call_dicition_name""","""controllers.Application.dicition_name()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call/new""","""controllers.Application.new_page()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call/save""","""controllers.Application.save()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call/change""","""controllers.Application.change()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call/render_file/$name<[^/]+>""","""controllers.Application.render_file(name:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call/link""","""controllers.Application.link()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """edit_call/choose_link""","""controllers.Application.choose_link()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """login""","""controllers.Application.login()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """authenticate""","""controllers.Application.authenticate()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """logout""","""controllers.Application.logout()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """register""","""controllers.Application.register()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """create""","""controllers.Application.create()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """$username<[^/]+>""","""controllers.Application.userPage(username:String)""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
   case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
   case l => s ++ l.asInstanceOf[List[(String,String,String)]] 
 }}
@@ -203,48 +211,64 @@ case controllers_Application_render_file11(params) => {
 }
         
 
-// @LINE:24
-case controllers_Application_login12(params) => {
+// @LINE:22
+case controllers_Application_link12(params) => {
+   call { 
+        invokeHandler(controllers.Application.link(), HandlerDef(this, "controllers.Application", "link", Nil,"GET", """""", Routes.prefix + """edit_call/link"""))
+   }
+}
+        
+
+// @LINE:23
+case controllers_Application_choose_link13(params) => {
+   call { 
+        invokeHandler(controllers.Application.choose_link(), HandlerDef(this, "controllers.Application", "choose_link", Nil,"POST", """""", Routes.prefix + """edit_call/choose_link"""))
+   }
+}
+        
+
+// @LINE:26
+case controllers_Application_login14(params) => {
    call { 
         invokeHandler(controllers.Application.login(), HandlerDef(this, "controllers.Application", "login", Nil,"GET", """ログイン関連""", Routes.prefix + """login"""))
    }
 }
         
 
-// @LINE:25
-case controllers_Application_authenticate13(params) => {
+// @LINE:27
+case controllers_Application_authenticate15(params) => {
    call { 
         invokeHandler(controllers.Application.authenticate(), HandlerDef(this, "controllers.Application", "authenticate", Nil,"POST", """""", Routes.prefix + """authenticate"""))
    }
 }
         
 
-// @LINE:26
-case controllers_Application_logout14(params) => {
+// @LINE:28
+case controllers_Application_logout16(params) => {
    call { 
         invokeHandler(controllers.Application.logout(), HandlerDef(this, "controllers.Application", "logout", Nil,"GET", """""", Routes.prefix + """logout"""))
    }
 }
         
 
-// @LINE:28
-case controllers_Application_register15(params) => {
+// @LINE:30
+case controllers_Application_register17(params) => {
    call { 
         invokeHandler(controllers.Application.register(), HandlerDef(this, "controllers.Application", "register", Nil,"GET", """""", Routes.prefix + """register"""))
    }
 }
         
 
-// @LINE:29
-case controllers_Application_create16(params) => {
+// @LINE:31
+case controllers_Application_create18(params) => {
    call { 
         invokeHandler(controllers.Application.create(), HandlerDef(this, "controllers.Application", "create", Nil,"POST", """""", Routes.prefix + """create"""))
    }
 }
         
 
-// @LINE:30
-case controllers_Application_userPage17(params) => {
+// @LINE:32
+case controllers_Application_userPage19(params) => {
    call(params.fromPath[String]("username", None)) { (username) =>
         invokeHandler(controllers.Application.userPage(username), HandlerDef(this, "controllers.Application", "userPage", Seq(classOf[String]),"GET", """""", Routes.prefix + """$username<[^/]+>"""))
    }

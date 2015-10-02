@@ -20,13 +20,13 @@ import play.api.data.Field
 import play.mvc.Http.Context.Implicit._
 import views.html._
 /**/
-object edit_menu extends BaseScalaTemplate[play.api.templates.HtmlFormat.Appendable,Format[play.api.templates.HtmlFormat.Appendable]](play.api.templates.HtmlFormat) with play.api.templates.Template3[String,String,<error>,play.api.templates.HtmlFormat.Appendable] {
+object edit_menu extends BaseScalaTemplate[play.api.templates.HtmlFormat.Appendable,Format[play.api.templates.HtmlFormat.Appendable]](play.api.templates.HtmlFormat) with play.api.templates.Template2[String,String,play.api.templates.HtmlFormat.Appendable] {
 
     /**/
-    def apply/*1.2*/(name: String, value: String, type: String):play.api.templates.HtmlFormat.Appendable = {
+    def apply/*1.2*/(name: String, value: String):play.api.templates.HtmlFormat.Appendable = {
         _display_ {
 
-Seq[Any](format.raw/*1.45*/("""
+Seq[Any](format.raw/*1.31*/("""
 <!DOCTYPE html>
 <html>
     <head>
@@ -45,11 +45,10 @@ Seq[Any](format.raw/*1.45*/("""
         <script src=""""),_display_(Seq[Any](/*17.23*/routes/*17.29*/.Assets.at("javascripts/jquery.contextmenu.r2.js"))),format.raw/*17.79*/("""" type="text/javascript"></script>
         
         <script type="text/javascript">
-        	function append_link(name,value)"""),format.raw/*20.42*/("""{"""),format.raw/*20.43*/("""
+        	function append_button_link(name,value)"""),format.raw/*20.49*/("""{"""),format.raw/*20.50*/("""
         		var link = name;
         		var dir = value;
-        		console.log(link);
-        		if(link != "")"""),format.raw/*24.25*/("""{"""),format.raw/*24.26*/("""
+        		if(link != "")"""),format.raw/*23.25*/("""{"""),format.raw/*23.26*/("""
         			var body = parent.main.document.getElementById('body_main');
         			var tag = document.createElement('div');
 					tag.id = ElementID;
@@ -71,18 +70,16 @@ Seq[Any](format.raw/*1.45*/("""
 					parent.main.context();
 					
 					parent.menu.document.getElementById('title01').innerHTML = "";
-        		"""),format.raw/*46.11*/("""}"""),format.raw/*46.12*/("""
-        	"""),format.raw/*47.10*/("""}"""),format.raw/*47.11*/("""
+        		"""),format.raw/*45.11*/("""}"""),format.raw/*45.12*/("""
+        	"""),format.raw/*46.10*/("""}"""),format.raw/*46.11*/("""
         
-        	$(function()"""),format.raw/*49.22*/("""{"""),format.raw/*49.23*/("""
-        		var name = """"),_display_(Seq[Any](/*50.24*/name)),format.raw/*50.28*/("""";
-        		var value = """"),_display_(Seq[Any](/*51.25*/value)),format.raw/*51.30*/("""";
-        		if(name!="" && value!="")"""),format.raw/*52.36*/("""{"""),format.raw/*52.37*/("""
-        			if(type == "button")"""),format.raw/*53.32*/("""{"""),format.raw/*53.33*/("""
-        				append_link(name,value);
-        			"""),format.raw/*55.12*/("""}"""),format.raw/*55.13*/("""
-        		"""),format.raw/*56.11*/("""}"""),format.raw/*56.12*/("""
- 			"""),format.raw/*57.5*/("""}"""),format.raw/*57.6*/(""")
+        	$(function()"""),format.raw/*48.22*/("""{"""),format.raw/*48.23*/("""
+        		var name = """"),_display_(Seq[Any](/*49.24*/name)),format.raw/*49.28*/("""";
+        		var value = """"),_display_(Seq[Any](/*50.25*/value)),format.raw/*50.30*/("""";
+        		if(name!="" && value!="")"""),format.raw/*51.36*/("""{"""),format.raw/*51.37*/("""
+      				append_button_link(name,value);
+        		"""),format.raw/*53.11*/("""}"""),format.raw/*53.12*/("""
+ 			"""),format.raw/*54.5*/("""}"""),format.raw/*54.6*/(""")
         </script>
     </head>
     <body>
@@ -112,20 +109,20 @@ Seq[Any](format.raw/*1.45*/("""
 """))}
     }
     
-    def render(name:String,value:String,<error>:<error>): play.api.templates.HtmlFormat.Appendable = apply(name,value,<error>)
+    def render(name:String,value:String): play.api.templates.HtmlFormat.Appendable = apply(name,value)
     
-    def f:((String,String,<error>) => play.api.templates.HtmlFormat.Appendable) = (name,value,<error>) => apply(name,value,<error>)
+    def f:((String,String) => play.api.templates.HtmlFormat.Appendable) = (name,value) => apply(name,value)
     
     def ref: this.type = this
 
 }
                 /*
                     -- GENERATED --
-                    DATE: Fri Oct 02 12:15:24 JST 2015
+                    DATE: Fri Oct 02 12:20:59 JST 2015
                     SOURCE: /Users/hasegawakazuya/Desktop/CWA/app/views/edit_menu.scala.html
-                    HASH: 70c6d88038cb1963fcd4074540964fdb70bd62b5
-                    MATRIX: 793->1|930->44|1081->160|1095->166|1150->200|1241->256|1255->262|1310->296|1406->357|1420->363|1473->395|1751->637|1766->643|1833->688|1926->745|1941->751|2005->793|2098->850|2113->856|2173->894|2275->960|2290->966|2362->1016|2515->1141|2544->1142|2680->1250|2709->1251|3430->1944|3459->1945|3497->1955|3526->1956|3585->1987|3614->1988|3674->2012|3700->2016|3763->2043|3790->2048|3856->2086|3885->2087|3945->2119|3974->2120|4051->2169|4080->2170|4119->2181|4148->2182|4180->2187|4208->2188
-                    LINES: 26->1|29->1|34->6|34->6|34->6|35->7|35->7|35->7|36->8|36->8|36->8|41->13|41->13|41->13|42->14|42->14|42->14|43->15|43->15|43->15|45->17|45->17|45->17|48->20|48->20|52->24|52->24|74->46|74->46|75->47|75->47|77->49|77->49|78->50|78->50|79->51|79->51|80->52|80->52|81->53|81->53|83->55|83->55|84->56|84->56|85->57|85->57
+                    HASH: f75d433e4cff910a2e77e9d415586d7301a2b3ae
+                    MATRIX: 785->1|908->30|1059->146|1073->152|1128->186|1219->242|1233->248|1288->282|1384->343|1398->349|1451->381|1729->623|1744->629|1811->674|1904->731|1919->737|1983->779|2076->836|2091->842|2151->880|2253->946|2268->952|2340->1002|2500->1134|2529->1135|2636->1214|2665->1215|3386->1908|3415->1909|3453->1919|3482->1920|3541->1951|3570->1952|3630->1976|3656->1980|3719->2007|3746->2012|3812->2050|3841->2051|3922->2104|3951->2105|3983->2110|4011->2111
+                    LINES: 26->1|29->1|34->6|34->6|34->6|35->7|35->7|35->7|36->8|36->8|36->8|41->13|41->13|41->13|42->14|42->14|42->14|43->15|43->15|43->15|45->17|45->17|45->17|48->20|48->20|51->23|51->23|73->45|73->45|74->46|74->46|76->48|76->48|77->49|77->49|78->50|78->50|79->51|79->51|81->53|81->53|82->54|82->54
                     -- GENERATED --
                 */
             

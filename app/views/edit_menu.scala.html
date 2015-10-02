@@ -1,4 +1,4 @@
-@(name: String, value: String, type: String)
+@(name: String, value: String)
 <!DOCTYPE html>
 <html>
     <head>
@@ -49,9 +49,7 @@
         		var name = "@name";
         		var value = "@value";
         		if(name!="" && value!=""){
-        			if(type == "button"){
-        				append_button_link(name,value);
-        			}
+      				append_button_link(name,value);
         		}
  			})
         </script>

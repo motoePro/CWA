@@ -40,7 +40,7 @@ public class Application extends Controller {
 	}
 
 	public static Result edit_menu() {
-		return ok(edit_menu.render("",""));
+		return ok(edit_menu.render("","",""));
 	}
 
 	public static Result edit_page() {
@@ -544,6 +544,7 @@ public class Application extends Controller {
 		String name = Form.form().bindFromRequest().get("name");
 		String dir = System.getProperty("user.dir");
 		String filedir = dir + "/user/" + session("username") + "/" + name + ".html";
-		return ok(edit_menu.render(name,filedir));
+		String type = "button";
+		return ok(edit_menu.render(name,filedir,type));
 	}
 }

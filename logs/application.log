@@ -1,10 +1,10 @@
-2015-10-02 12:19:40,558 - [INFO] - from play in pool-6-thread-2 
+2015-10-02 12:23:46,875 - [INFO] - from play in pool-6-thread-3 
 Listening for HTTP on /0:0:0:0:0:0:0:0:9000
 
-2015-10-02 12:19:47,351 - [ERROR] - from application in New I/O worker #1 
+2015-10-02 12:23:52,239 - [ERROR] - from application in New I/O worker #1 
 
 
-! @6njg5a51p - Internal server error, for (GET) [/edit_call] ->
+! @6njg5o38p - Internal server error, for (GET) [/edit_call] ->
 
 play.PlayExceptions$CompilationException: Compilation error[identifier expected but 'type' found.]
 	at play.PlayReloader$$anon$1$$anonfun$reload$2$$anonfun$apply$14$$anonfun$apply$16.apply(PlayReloader.scala:304) ~[na:na]
@@ -27,15 +27,15 @@ play.PlayExceptions$CompilationException: Compilation error[identifier expected 
 	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) ~[scala-library.jar:na]
 	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) ~[scala-library.jar:na]
 
-2015-10-02 12:19:47,454 - [WARN] - from play in New I/O worker #1 
+2015-10-02 12:23:52,300 - [WARN] - from play in New I/O worker #1 
 No application found at invoker init
 
-2015-10-02 12:21:05,669 - [INFO] - from play in play-internal-execution-context-1 
+2015-10-02 12:26:10,166 - [INFO] - from play in play-internal-execution-context-1 
 database [default] connected at jdbc:h2:file:play
 
-2015-10-02 12:21:05,867 - [INFO] - from play in play-internal-execution-context-1 
+2015-10-02 12:26:10,332 - [INFO] - from play in play-internal-execution-context-1 
 database [void] connected at jdbc:h2:file:void
 
-2015-10-02 12:21:06,637 - [INFO] - from play in play-internal-execution-context-1 
+2015-10-02 12:26:10,942 - [INFO] - from play in play-internal-execution-context-1 
 Application started (Dev)
 

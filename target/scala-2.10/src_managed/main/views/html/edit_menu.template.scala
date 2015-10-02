@@ -20,13 +20,13 @@ import play.api.data.Field
 import play.mvc.Http.Context.Implicit._
 import views.html._
 /**/
-object edit_menu extends BaseScalaTemplate[play.api.templates.HtmlFormat.Appendable,Format[play.api.templates.HtmlFormat.Appendable]](play.api.templates.HtmlFormat) with play.api.templates.Template2[String,String,play.api.templates.HtmlFormat.Appendable] {
+object edit_menu extends BaseScalaTemplate[play.api.templates.HtmlFormat.Appendable,Format[play.api.templates.HtmlFormat.Appendable]](play.api.templates.HtmlFormat) with play.api.templates.Template3[String,String,String,play.api.templates.HtmlFormat.Appendable] {
 
     /**/
-    def apply/*1.2*/(name: String, value: String):play.api.templates.HtmlFormat.Appendable = {
+    def apply/*1.2*/(name: String, value: String, e_type: String):play.api.templates.HtmlFormat.Appendable = {
         _display_ {
 
-Seq[Any](format.raw/*1.31*/("""
+Seq[Any](format.raw/*1.47*/("""
 <!DOCTYPE html>
 <html>
     <head>
@@ -76,10 +76,13 @@ Seq[Any](format.raw/*1.31*/("""
         	$(function()"""),format.raw/*48.22*/("""{"""),format.raw/*48.23*/("""
         		var name = """"),_display_(Seq[Any](/*49.24*/name)),format.raw/*49.28*/("""";
         		var value = """"),_display_(Seq[Any](/*50.25*/value)),format.raw/*50.30*/("""";
-        		if(name!="" && value!="")"""),format.raw/*51.36*/("""{"""),format.raw/*51.37*/("""
-      				append_button_link(name,value);
-        		"""),format.raw/*53.11*/("""}"""),format.raw/*53.12*/("""
- 			"""),format.raw/*54.5*/("""}"""),format.raw/*54.6*/(""")
+        		var type = """"),_display_(Seq[Any](/*51.24*/e_type)),format.raw/*51.30*/("""";
+        		if(name!="" && value!="")"""),format.raw/*52.36*/("""{"""),format.raw/*52.37*/("""
+        			if(type == "button")"""),format.raw/*53.32*/("""{"""),format.raw/*53.33*/("""
+      					append_button_link(name,value);
+      				"""),format.raw/*55.11*/("""}"""),format.raw/*55.12*/("""
+        		"""),format.raw/*56.11*/("""}"""),format.raw/*56.12*/("""
+ 			"""),format.raw/*57.5*/("""}"""),format.raw/*57.6*/(""")
         </script>
     </head>
     <body>
@@ -109,20 +112,20 @@ Seq[Any](format.raw/*1.31*/("""
 """))}
     }
     
-    def render(name:String,value:String): play.api.templates.HtmlFormat.Appendable = apply(name,value)
+    def render(name:String,value:String,e_type:String): play.api.templates.HtmlFormat.Appendable = apply(name,value,e_type)
     
-    def f:((String,String) => play.api.templates.HtmlFormat.Appendable) = (name,value) => apply(name,value)
+    def f:((String,String,String) => play.api.templates.HtmlFormat.Appendable) = (name,value,e_type) => apply(name,value,e_type)
     
     def ref: this.type = this
 
 }
                 /*
                     -- GENERATED --
-                    DATE: Fri Oct 02 12:20:59 JST 2015
+                    DATE: Fri Oct 02 12:26:02 JST 2015
                     SOURCE: /Users/hasegawakazuya/Desktop/CWA/app/views/edit_menu.scala.html
-                    HASH: f75d433e4cff910a2e77e9d415586d7301a2b3ae
-                    MATRIX: 785->1|908->30|1059->146|1073->152|1128->186|1219->242|1233->248|1288->282|1384->343|1398->349|1451->381|1729->623|1744->629|1811->674|1904->731|1919->737|1983->779|2076->836|2091->842|2151->880|2253->946|2268->952|2340->1002|2500->1134|2529->1135|2636->1214|2665->1215|3386->1908|3415->1909|3453->1919|3482->1920|3541->1951|3570->1952|3630->1976|3656->1980|3719->2007|3746->2012|3812->2050|3841->2051|3922->2104|3951->2105|3983->2110|4011->2111
-                    LINES: 26->1|29->1|34->6|34->6|34->6|35->7|35->7|35->7|36->8|36->8|36->8|41->13|41->13|41->13|42->14|42->14|42->14|43->15|43->15|43->15|45->17|45->17|45->17|48->20|48->20|51->23|51->23|73->45|73->45|74->46|74->46|76->48|76->48|77->49|77->49|78->50|78->50|79->51|79->51|81->53|81->53|82->54|82->54
+                    HASH: 2effc3ff720e03c44d9edc5ba83db430dc3a82e0
+                    MATRIX: 792->1|931->46|1082->162|1096->168|1151->202|1242->258|1256->264|1311->298|1407->359|1421->365|1474->397|1752->639|1767->645|1834->690|1927->747|1942->753|2006->795|2099->852|2114->858|2174->896|2276->962|2291->968|2363->1018|2523->1150|2552->1151|2659->1230|2688->1231|3409->1924|3438->1925|3476->1935|3505->1936|3564->1967|3593->1968|3653->1992|3679->1996|3742->2023|3769->2028|3831->2054|3859->2060|3925->2098|3954->2099|4014->2131|4043->2132|4125->2186|4154->2187|4193->2198|4222->2199|4254->2204|4282->2205
+                    LINES: 26->1|29->1|34->6|34->6|34->6|35->7|35->7|35->7|36->8|36->8|36->8|41->13|41->13|41->13|42->14|42->14|42->14|43->15|43->15|43->15|45->17|45->17|45->17|48->20|48->20|51->23|51->23|73->45|73->45|74->46|74->46|76->48|76->48|77->49|77->49|78->50|78->50|79->51|79->51|80->52|80->52|81->53|81->53|83->55|83->55|84->56|84->56|85->57|85->57
                     -- GENERATED --
                 */
             

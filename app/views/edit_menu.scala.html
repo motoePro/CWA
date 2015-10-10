@@ -1,20 +1,23 @@
 @(name: String, value: String, ele_type: String)
+
+@import helper._
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>メニュー</title>
-        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
-        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/menu.css")">
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("/public","stylesheets/main.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("/public","stylesheets/menu.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("/public","images/favicon.png")">
         
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
         
-        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
-        <script src="@routes.Assets.at("javascripts/jquery-ui.min.js")" type="text/javascript"></script>
-        <script src="@routes.Assets.at("javascripts/Object_in.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("/public","javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("/public","javascripts/jquery-ui.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("/public","javascripts/Object_in.js")" type="text/javascript"></script>
         
-        <script src="@routes.Assets.at("javascripts/jquery.contextmenu.r2.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("/public","javascripts/jquery.contextmenu.r2.js")" type="text/javascript"></script>
         
         <script type="text/javascript">
         	function append_button_link(name,value){
@@ -71,13 +74,24 @@
 			<div><button onclick="Window_YouTube()">YouTube</button></div>
 			<br>
 			<div>
-				<form id="FileUpload" name="upload" method="post" action="/api/upload" target="upload-image" enctype="multipart/form-data">
+				<form id="FileUpload" name="upload" method="post" action="/upload" target="upload-image" onChange="sendImage()" enctype="multipart/form-data">
+    				@CSRF.formField
     				<input type="file" name="image"/>
-    				<input type="submit" name="submit" value="送信"/>
+    				<input type="submit" id="submit" name="submit" value="送信"/>
+    				<input type="reset" id="reset" name="reset" />
 				</form>
-				<iframe id="FileUploadIframe" name="upload-image" style="display: none;"></iframe>
+				<iframe id="FileUploadIframe" name="upload-image" "></iframe>
 			</div>
 			<br>
 			<input type="button" value="リンク" onclick="window.open('/edit_call/link','ucreatepage_link','width=640,height=480,location=0');return false;">
+			
+			
+			<!--画像送信スクリプト-->
+			<script>
+				function sendImage() {
+					$("#submit").trigger('click');
+					$("#reset").trigger('click');
+				}
+			</script>
     </body>
 </html>

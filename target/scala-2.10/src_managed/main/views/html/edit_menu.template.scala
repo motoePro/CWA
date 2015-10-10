@@ -23,32 +23,35 @@ import views.html._
 object edit_menu extends BaseScalaTemplate[play.api.templates.HtmlFormat.Appendable,Format[play.api.templates.HtmlFormat.Appendable]](play.api.templates.HtmlFormat) with play.api.templates.Template3[String,String,String,play.api.templates.HtmlFormat.Appendable] {
 
     /**/
-    def apply/*1.2*/(name: String, value: String, e_type: String):play.api.templates.HtmlFormat.Appendable = {
-        _display_ {
+    def apply/*1.2*/(name: String, value: String, ele_type: String):play.api.templates.HtmlFormat.Appendable = {
+        _display_ {import helper._
 
-Seq[Any](format.raw/*1.47*/("""
+
+Seq[Any](format.raw/*1.49*/("""
+
+"""),format.raw/*4.1*/("""
 <!DOCTYPE html>
 <html>
     <head>
         <title>メニュー</title>
-        <link rel="stylesheet" media="screen" href=""""),_display_(Seq[Any](/*6.54*/routes/*6.60*/.Assets.at("stylesheets/main.css"))),format.raw/*6.94*/("""">
-        <link rel="stylesheet" media="screen" href=""""),_display_(Seq[Any](/*7.54*/routes/*7.60*/.Assets.at("stylesheets/menu.css"))),format.raw/*7.94*/("""">
-        <link rel="shortcut icon" type="image/png" href=""""),_display_(Seq[Any](/*8.59*/routes/*8.65*/.Assets.at("images/favicon.png"))),format.raw/*8.97*/("""">
+        <link rel="stylesheet" media="screen" href=""""),_display_(Seq[Any](/*9.54*/routes/*9.60*/.Assets.at("/public","stylesheets/main.css"))),format.raw/*9.104*/("""">
+        <link rel="stylesheet" media="screen" href=""""),_display_(Seq[Any](/*10.54*/routes/*10.60*/.Assets.at("/public","stylesheets/menu.css"))),format.raw/*10.104*/("""">
+        <link rel="shortcut icon" type="image/png" href=""""),_display_(Seq[Any](/*11.59*/routes/*11.65*/.Assets.at("/public","images/favicon.png"))),format.raw/*11.107*/("""">
         
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
         
-        <script src=""""),_display_(Seq[Any](/*13.23*/routes/*13.29*/.Assets.at("javascripts/jquery-1.9.0.min.js"))),format.raw/*13.74*/("""" type="text/javascript"></script>
-        <script src=""""),_display_(Seq[Any](/*14.23*/routes/*14.29*/.Assets.at("javascripts/jquery-ui.min.js"))),format.raw/*14.71*/("""" type="text/javascript"></script>
-        <script src=""""),_display_(Seq[Any](/*15.23*/routes/*15.29*/.Assets.at("javascripts/Object_in.js"))),format.raw/*15.67*/("""" type="text/javascript"></script>
+        <script src=""""),_display_(Seq[Any](/*16.23*/routes/*16.29*/.Assets.at("/public","javascripts/jquery-1.9.0.min.js"))),format.raw/*16.84*/("""" type="text/javascript"></script>
+        <script src=""""),_display_(Seq[Any](/*17.23*/routes/*17.29*/.Assets.at("/public","javascripts/jquery-ui.min.js"))),format.raw/*17.81*/("""" type="text/javascript"></script>
+        <script src=""""),_display_(Seq[Any](/*18.23*/routes/*18.29*/.Assets.at("/public","javascripts/Object_in.js"))),format.raw/*18.77*/("""" type="text/javascript"></script>
         
-        <script src=""""),_display_(Seq[Any](/*17.23*/routes/*17.29*/.Assets.at("javascripts/jquery.contextmenu.r2.js"))),format.raw/*17.79*/("""" type="text/javascript"></script>
+        <script src=""""),_display_(Seq[Any](/*20.23*/routes/*20.29*/.Assets.at("/public","javascripts/jquery.contextmenu.r2.js"))),format.raw/*20.89*/("""" type="text/javascript"></script>
         
         <script type="text/javascript">
-        	function append_button_link(name,value)"""),format.raw/*20.49*/("""{"""),format.raw/*20.50*/("""
+        	function append_button_link(name,value)"""),format.raw/*23.49*/("""{"""),format.raw/*23.50*/("""
         		var link = name;
         		var dir = value;
-        		if(link != "")"""),format.raw/*23.25*/("""{"""),format.raw/*23.26*/("""
+        		if(link != "")"""),format.raw/*26.25*/("""{"""),format.raw/*26.26*/("""
         			var body = parent.main.document.getElementById('body_main');
         			var tag = document.createElement('div');
 					tag.id = ElementID;
@@ -70,19 +73,19 @@ Seq[Any](format.raw/*1.47*/("""
 					parent.main.context();
 					
 					parent.menu.document.getElementById('title01').innerHTML = "";
-        		"""),format.raw/*45.11*/("""}"""),format.raw/*45.12*/("""
-        	"""),format.raw/*46.10*/("""}"""),format.raw/*46.11*/("""
+        		"""),format.raw/*48.11*/("""}"""),format.raw/*48.12*/("""
+        	"""),format.raw/*49.10*/("""}"""),format.raw/*49.11*/("""
         
-        	$(function()"""),format.raw/*48.22*/("""{"""),format.raw/*48.23*/("""
-        		var name = """"),_display_(Seq[Any](/*49.24*/name)),format.raw/*49.28*/("""";
-        		var value = """"),_display_(Seq[Any](/*50.25*/value)),format.raw/*50.30*/("""";
-        		var type = """"),_display_(Seq[Any](/*51.24*/e_type)),format.raw/*51.30*/("""";
-        		if(name!="" && value!="")"""),format.raw/*52.36*/("""{"""),format.raw/*52.37*/("""
-        			if(type == "button")"""),format.raw/*53.32*/("""{"""),format.raw/*53.33*/("""
+        	$(function()"""),format.raw/*51.22*/("""{"""),format.raw/*51.23*/("""
+        		var name = """"),_display_(Seq[Any](/*52.24*/name)),format.raw/*52.28*/("""";
+        		var value = """"),_display_(Seq[Any](/*53.25*/value)),format.raw/*53.30*/("""";
+        		var type = """"),_display_(Seq[Any](/*54.24*/ele_type)),format.raw/*54.32*/("""";
+        		if(name!="" && value!="")"""),format.raw/*55.36*/("""{"""),format.raw/*55.37*/("""
+        			if(type == "button")"""),format.raw/*56.32*/("""{"""),format.raw/*56.33*/("""
       					append_button_link(name,value);
-      				"""),format.raw/*55.11*/("""}"""),format.raw/*55.12*/("""
-        		"""),format.raw/*56.11*/("""}"""),format.raw/*56.12*/("""
- 			"""),format.raw/*57.5*/("""}"""),format.raw/*57.6*/(""")
+      				"""),format.raw/*58.11*/("""}"""),format.raw/*58.12*/("""
+        		"""),format.raw/*59.11*/("""}"""),format.raw/*59.12*/("""
+ 			"""),format.raw/*60.5*/("""}"""),format.raw/*60.6*/(""")
         </script>
     </head>
     <body>
@@ -99,33 +102,44 @@ Seq[Any](format.raw/*1.47*/("""
 			<div><button onclick="Window_YouTube()">YouTube</button></div>
 			<br>
 			<div>
-				<form id="FileUpload" name="upload" method="post" action="/api/upload" target="upload-image" enctype="multipart/form-data">
+				<form id="FileUpload" name="upload" method="post" action="/upload" target="upload-image" onChange="sendImage()" enctype="multipart/form-data">
+    				"""),_display_(Seq[Any](/*78.10*/CSRF/*78.14*/.formField)),format.raw/*78.24*/("""
     				<input type="file" name="image"/>
-    				<input type="submit" name="submit" value="送信"/>
+    				<input type="submit" id="submit" name="submit" value="送信"/>
+    				<input type="reset" id="reset" name="reset" />
 				</form>
-				<iframe id="FileUploadIframe" name="upload-image" style="display: none;"></iframe>
+				<iframe id="FileUploadIframe" name="upload-image" "></iframe>
 			</div>
 			<br>
 			<input type="button" value="リンク" onclick="window.open('/edit_call/link','ucreatepage_link','width=640,height=480,location=0');return false;">
+			
+			
+			<!--画像送信スクリプト-->
+			<script>
+				function sendImage() """),format.raw/*91.26*/("""{"""),format.raw/*91.27*/("""
+					$("#submit").trigger('click');
+					$("#reset").trigger('click');
+				"""),format.raw/*94.5*/("""}"""),format.raw/*94.6*/("""
+			</script>
     </body>
 </html>
 """))}
     }
     
-    def render(name:String,value:String,e_type:String): play.api.templates.HtmlFormat.Appendable = apply(name,value,e_type)
+    def render(name:String,value:String,ele_type:String): play.api.templates.HtmlFormat.Appendable = apply(name,value,ele_type)
     
-    def f:((String,String,String) => play.api.templates.HtmlFormat.Appendable) = (name,value,e_type) => apply(name,value,e_type)
+    def f:((String,String,String) => play.api.templates.HtmlFormat.Appendable) = (name,value,ele_type) => apply(name,value,ele_type)
     
     def ref: this.type = this
 
 }
                 /*
                     -- GENERATED --
-                    DATE: Fri Oct 02 12:26:02 JST 2015
-                    SOURCE: /Users/hasegawakazuya/Desktop/CWA/app/views/edit_menu.scala.html
-                    HASH: 2effc3ff720e03c44d9edc5ba83db430dc3a82e0
-                    MATRIX: 792->1|931->46|1082->162|1096->168|1151->202|1242->258|1256->264|1311->298|1407->359|1421->365|1474->397|1752->639|1767->645|1834->690|1927->747|1942->753|2006->795|2099->852|2114->858|2174->896|2276->962|2291->968|2363->1018|2523->1150|2552->1151|2659->1230|2688->1231|3409->1924|3438->1925|3476->1935|3505->1936|3564->1967|3593->1968|3653->1992|3679->1996|3742->2023|3769->2028|3831->2054|3859->2060|3925->2098|3954->2099|4014->2131|4043->2132|4125->2186|4154->2187|4193->2198|4222->2199|4254->2204|4282->2205
-                    LINES: 26->1|29->1|34->6|34->6|34->6|35->7|35->7|35->7|36->8|36->8|36->8|41->13|41->13|41->13|42->14|42->14|42->14|43->15|43->15|43->15|45->17|45->17|45->17|48->20|48->20|51->23|51->23|73->45|73->45|74->46|74->46|76->48|76->48|77->49|77->49|78->50|78->50|79->51|79->51|80->52|80->52|81->53|81->53|83->55|83->55|84->56|84->56|85->57|85->57
+                    DATE: Fri Oct 09 20:43:28 JST 2015
+                    SOURCE: /Users/woon/Documents/workspace/CWA/app/views/edit_menu.scala.html
+                    HASH: a55d74006280787b5ce820a38bf7923314cfd4c4
+                    MATRIX: 792->1|949->48|977->67|1128->183|1142->189|1208->233|1300->289|1315->295|1382->339|1479->400|1494->406|1559->448|1837->690|1852->696|1929->751|2022->808|2037->814|2111->866|2204->923|2219->929|2289->977|2391->1043|2406->1049|2488->1109|2648->1241|2677->1242|2784->1321|2813->1322|3534->2015|3563->2016|3601->2026|3630->2027|3689->2058|3718->2059|3778->2083|3804->2087|3867->2114|3894->2119|3956->2145|3986->2153|4052->2191|4081->2192|4141->2224|4170->2225|4252->2279|4281->2280|4320->2291|4349->2292|4381->2297|4409->2298|5166->3019|5179->3023|5211->3033|5711->3505|5740->3506|5843->3582|5871->3583
+                    LINES: 26->1|30->1|32->4|37->9|37->9|37->9|38->10|38->10|38->10|39->11|39->11|39->11|44->16|44->16|44->16|45->17|45->17|45->17|46->18|46->18|46->18|48->20|48->20|48->20|51->23|51->23|54->26|54->26|76->48|76->48|77->49|77->49|79->51|79->51|80->52|80->52|81->53|81->53|82->54|82->54|83->55|83->55|84->56|84->56|86->58|86->58|87->59|87->59|88->60|88->60|106->78|106->78|106->78|119->91|119->91|122->94|122->94
                     -- GENERATED --
                 */
             

@@ -56,8 +56,8 @@ Seq[Any](format.raw/*1.47*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Fri Sep 18 11:24:54 JST 2015
-                    SOURCE: /Users/hasegawakazuya/Desktop/CWA/app/views/register.scala.html
+                    DATE: Fri Oct 09 19:32:27 JST 2015
+                    SOURCE: /Users/woon/Documents/workspace/CWA/app/views/register.scala.html
                     HASH: 63da549ba3fb0c9603f50a89db05551e62e38743
                     MATRIX: 798->1|937->46|974->49|994->61|1033->63|1107->103|1120->109|1169->150|1208->152|1246->156|1260->162|1296->177|1334->181|1406->232|1448->239|1524->294|1585->324|1618->326
                     LINES: 26->1|29->1|31->3|31->3|31->3|34->6|34->6|34->6|34->6|35->7|35->7|35->7|36->8|38->10|40->12|42->14|45->17|46->18

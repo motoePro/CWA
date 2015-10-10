@@ -1,6 +1,6 @@
-// @SOURCE:/Users/hasegawakazuya/Desktop/CWA/conf/routes
-// @HASH:7ed05ed19591324ce8178c588b23a8fcec1d67bf
-// @DATE:Wed Sep 30 12:33:37 JST 2015
+// @SOURCE:/Users/woon/Documents/workspace/CWA/conf/routes
+// @HASH:ab58bb2e2c57f4e3ca7e882cef5950791f8376f0
+// @DATE:Fri Oct 09 20:11:16 JST 2015
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -13,6 +13,8 @@ import play.libs.F
 import Router.queryString
 
 
+// @LINE:37
+// @LINE:36
 // @LINE:32
 // @LINE:31
 // @LINE:30
@@ -35,19 +37,29 @@ import Router.queryString
 // @LINE:6
 package controllers {
 
+// @LINE:36
 // @LINE:9
 class ReverseAssets {
     
 
+// @LINE:36
 // @LINE:9
-def at(file:String): Call = {
-   Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[PathBindable[String]].unbind("file", file))
+def at(path:String, file:String): Call = {
+   (path: @unchecked, file: @unchecked) match {
+// @LINE:9
+case (path, file) if path == "/public" => Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[PathBindable[String]].unbind("file", file))
+                                                        
+// @LINE:36
+case (path, file) if path == "/user" => Call("GET", _prefix + { _defaultPrefix } + "user/" + implicitly[PathBindable[String]].unbind("file", file))
+                                                        
+   }
 }
                                                 
     
 }
                           
 
+// @LINE:37
 // @LINE:32
 // @LINE:31
 // @LINE:30
@@ -85,6 +97,12 @@ def change(): Call = {
 // @LINE:16
 def edit_head(target_name:String): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "edit_head/target/" + implicitly[PathBindable[String]].unbind("target_name", dynamicString(target_name)))
+}
+                                                
+
+// @LINE:37
+def upload(): Call = {
+   Call("POST", _prefix + { _defaultPrefix } + "upload")
 }
                                                 
 
@@ -192,6 +210,8 @@ def login(): Call = {
                   
 
 
+// @LINE:37
+// @LINE:36
 // @LINE:32
 // @LINE:31
 // @LINE:30
@@ -214,16 +234,23 @@ def login(): Call = {
 // @LINE:6
 package controllers.javascript {
 
+// @LINE:36
 // @LINE:9
 class ReverseAssets {
     
 
+// @LINE:36
 // @LINE:9
 def at : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Assets.at",
    """
-      function(file) {
+      function(path, file) {
+      if (path == """ + implicitly[JavascriptLitteral[String]].to("/public") + """) {
       return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "assets/" + (""" + implicitly[PathBindable[String]].javascriptUnbind + """)("file", file)})
+      }
+      if (path == """ + implicitly[JavascriptLitteral[String]].to("/user") + """) {
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "user/" + (""" + implicitly[PathBindable[String]].javascriptUnbind + """)("file", file)})
+      }
       }
    """
 )
@@ -232,6 +259,7 @@ def at : JavascriptReverseRoute = JavascriptReverseRoute(
 }
               
 
+// @LINE:37
 // @LINE:32
 // @LINE:31
 // @LINE:30
@@ -282,6 +310,17 @@ def edit_head : JavascriptReverseRoute = JavascriptReverseRoute(
    """
       function(target_name) {
       return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "edit_head/target/" + (""" + implicitly[PathBindable[String]].javascriptUnbind + """)("target_name", encodeURIComponent(target_name))})
+      }
+   """
+)
+                        
+
+// @LINE:37
+def upload : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.Application.upload",
+   """
+      function() {
+      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "upload"})
       }
    """
 )
@@ -464,6 +503,8 @@ def login : JavascriptReverseRoute = JavascriptReverseRoute(
         
 
 
+// @LINE:37
+// @LINE:36
 // @LINE:32
 // @LINE:31
 // @LINE:30
@@ -487,6 +528,7 @@ def login : JavascriptReverseRoute = JavascriptReverseRoute(
 package controllers.ref {
 
 
+// @LINE:36
 // @LINE:9
 class ReverseAssets {
     
@@ -500,6 +542,7 @@ def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.
 }
                           
 
+// @LINE:37
 // @LINE:32
 // @LINE:31
 // @LINE:30
@@ -537,6 +580,12 @@ def change(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 // @LINE:16
 def edit_head(target_name:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.edit_head(target_name), HandlerDef(this, "controllers.Application", "edit_head", Seq(classOf[String]), "GET", """""", _prefix + """edit_head/target/$target_name<[^/]+>""")
+)
+                      
+
+// @LINE:37
+def upload(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.Application.upload(), HandlerDef(this, "controllers.Application", "upload", Seq(), "POST", """""", _prefix + """upload""")
 )
                       
 

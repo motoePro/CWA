@@ -1,5 +1,17 @@
 var ElementID = 0;
 
+
+
+//画像をページに追加
+function addImg(src) {
+	var body = parent.main.document.getElementById('body_main');
+	var img = document.createElement("img");
+	img.setAttribute("class","img_chan");
+	img.setAttribute("src",src);
+	body.appendChild(img);
+	parent.main.pctmv();
+}
+
 function addBtn(){ 
 	var body = parent.main.document.getElementById('body_main');
 	var tag = document.createElement('div');

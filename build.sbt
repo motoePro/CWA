@@ -7,6 +7,9 @@ libraryDependencies ++= Seq(
   javaEbean,
   cache,
   filters
-)     
+)
 
 play.Project.playJavaSettings
+
+playAssetsDirectories <+= baseDirectory / "user"
+

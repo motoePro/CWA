@@ -33,8 +33,8 @@ Seq[Any](format.raw/*1.32*/("""
 <html>
     <head>
         <title>"""),_display_(Seq[Any](/*7.17*/title)),format.raw/*7.22*/("""</title>
-        <link rel="stylesheet" media="screen" href=""""),_display_(Seq[Any](/*8.54*/routes/*8.60*/.Assets.at("stylesheets/main.css"))),format.raw/*8.94*/("""">
-        <link rel="shortcut icon" type="image/png" href=""""),_display_(Seq[Any](/*9.59*/routes/*9.65*/.Assets.at("images/favicon.png"))),format.raw/*9.97*/("""">
+        <link rel="stylesheet" media="screen" href=""""),_display_(Seq[Any](/*8.54*/routes/*8.60*/.Assets.at("/public","stylesheets/main.css"))),format.raw/*8.104*/("""">
+        <link rel="shortcut icon" type="image/png" href=""""),_display_(Seq[Any](/*9.59*/routes/*9.65*/.Assets.at("/public","images/favicon.png"))),format.raw/*9.107*/("""">
     </head>
     <body>
         """),_display_(Seq[Any](/*12.10*/content)),format.raw/*12.17*/("""
@@ -52,10 +52,10 @@ Seq[Any](format.raw/*1.32*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Fri Sep 18 11:24:54 JST 2015
-                    SOURCE: /Users/hasegawakazuya/Desktop/CWA/app/views/main.scala.html
-                    HASH: 25d8fca3908544e02c18d88c16a3f42f85b4736c
-                    MATRIX: 778->1|902->31|990->84|1016->89|1113->151|1127->157|1182->191|1278->252|1292->258|1345->290|1416->325|1445->332
+                    DATE: Fri Oct 09 19:32:27 JST 2015
+                    SOURCE: /Users/woon/Documents/workspace/CWA/app/views/main.scala.html
+                    HASH: fe5597b3a30cdb93d7fddb5d432d88b8ed0ceed3
+                    MATRIX: 778->1|902->31|990->84|1016->89|1113->151|1127->157|1193->201|1289->262|1303->268|1367->310|1438->345|1467->352
                     LINES: 26->1|29->1|35->7|35->7|36->8|36->8|36->8|37->9|37->9|37->9|40->12|40->12
                     -- GENERATED --
                 */

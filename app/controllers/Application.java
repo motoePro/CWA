@@ -4,6 +4,8 @@ import java.security.NoSuchAlgorithmException;
 
 import play.*;
 import play.mvc.*;
+import play.mvc.Http.MultipartFormData;
+import play.mvc.Http.MultipartFormData.FilePart;
 import views.html.*;
 import models.Account;
 import models.Login;
@@ -11,8 +13,8 @@ import play.data.Form;
 import static play.data.Form.form;
 import play.filters.csrf.AddCSRFToken;
 import play.filters.csrf.RequireCSRFCheck;
-import java.net.URL;
 
+import java.net.URL;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -63,6 +65,10 @@ public class Application extends Controller {
 		return ok(views.html.register.render("register",f));
 	}
 
+	/**
+	 * 会員の新規作成
+	 */
+	
 	@RequireCSRFCheck
 	public static Result create() throws NoSuchAlgorithmException, IOException {
 		Form<Account> f = new Form(Account.class).bindFromRequest();
@@ -77,7 +83,9 @@ public class Application extends Controller {
 			String username = f.data().get("username");
 			
 			File udir = new File(dir+"/user/"+username);
+			File imgdir = new File(dir+"/user/"+username+"/images");//ユーザ下の画像用ディレクトリ
 			udir.mkdir();
+			imgdir.mkdir();
 			File file = new File(dir+"/conf/application.conf");
 			FileWriter fw = new FileWriter(file,true);
 			fw.write("db."+username+".driver=org.h2.Driver\n");
@@ -547,4 +555,35 @@ public class Application extends Controller {
 		String type = "button";
 		return ok(edit_menu.render(name,filedir,type));
 	}
+	
+	/*
+	 * 画像ファイルのアップロード
+	 */
+	public static Result upload() {
+		String udir = System.getProperty("user.dir");
+		String name = session("username");
+		MultipartFormData body = request().body().asMultipartFormData();
+		FilePart img = body.getFile("image");
+			//ファイル受け取り成功時
+		  if (img != null) {
+		    String fileName = img.getFilename();
+		    String contentType = img.getContentType(); //ファイルの種類
+		    System.out.println("ファイル名："+fileName);
+		    System.out.println("ファイルタイプ："+contentType);
+		    File file = img.getFile();
+		    String toPath = udir+"/user/"+name+"/images/";
+		    System.out.println(toPath);
+		    if(file.renameTo(new File(toPath, fileName))){
+		    	System.out.println("成功");
+		    } else {
+		    	System.out.println("失敗");
+		    }
+		    String uri =toPath+fileName;
+		    return ok(sendimage.render(fileName,name));
+		  } else {
+			  //ファイル受け取り失敗時
+		    return ok("file upload failed..");    
+		  }
+	}
+	
 }

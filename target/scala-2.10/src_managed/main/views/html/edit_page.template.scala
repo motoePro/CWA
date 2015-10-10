@@ -32,19 +32,19 @@ Seq[Any](format.raw/*1.86*/("""
 <html>
     <head>
         <title>"""),_display_(Seq[Any](/*6.17*/title)),format.raw/*6.22*/("""</title>
-        <link rel="stylesheet" media="screen" href=""""),_display_(Seq[Any](/*7.54*/routes/*7.60*/.Assets.at("stylesheets/jquery-ui.css"))),format.raw/*7.99*/("""">
-        <link rel="stylesheet" media="screen" href=""""),_display_(Seq[Any](/*8.54*/routes/*8.60*/.Assets.at("stylesheets/main.css"))),format.raw/*8.94*/("""">
-        <link rel="shortcut icon" type="image/png" href=""""),_display_(Seq[Any](/*9.59*/routes/*9.65*/.Assets.at("images/favicon.png"))),format.raw/*9.97*/("""">
+        <link rel="stylesheet" media="screen" href=""""),_display_(Seq[Any](/*7.54*/routes/*7.60*/.Assets.at("/public","stylesheets/jquery-ui.css"))),format.raw/*7.109*/("""">
+        <link rel="stylesheet" media="screen" href=""""),_display_(Seq[Any](/*8.54*/routes/*8.60*/.Assets.at("/public","stylesheets/main.css"))),format.raw/*8.104*/("""">
+        <link rel="shortcut icon" type="image/png" href=""""),_display_(Seq[Any](/*9.59*/routes/*9.65*/.Assets.at("/public","images/favicon.png"))),format.raw/*9.107*/("""">
         
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
         
-        <script src=""""),_display_(Seq[Any](/*14.23*/routes/*14.29*/.Assets.at("javascripts/jquery-ui.min.js"))),format.raw/*14.71*/("""" type="text/javascript"></script>
-        <script src=""""),_display_(Seq[Any](/*15.23*/routes/*15.29*/.Assets.at("javascripts/jquery.min.js"))),format.raw/*15.68*/("""" type="text/javascript"></script>
-        <script src=""""),_display_(Seq[Any](/*16.23*/routes/*16.29*/.Assets.at("javascripts/jquery.fittext.js"))),format.raw/*16.72*/("""" type="text/javascript"></script>
+        <script src=""""),_display_(Seq[Any](/*14.23*/routes/*14.29*/.Assets.at("/public","javascripts/jquery-ui.min.js"))),format.raw/*14.81*/("""" type="text/javascript"></script>
+        <script src=""""),_display_(Seq[Any](/*15.23*/routes/*15.29*/.Assets.at("/public","javascripts/jquery.min.js"))),format.raw/*15.78*/("""" type="text/javascript"></script>
+        <script src=""""),_display_(Seq[Any](/*16.23*/routes/*16.29*/.Assets.at("/public","javascripts/jquery.fittext.js"))),format.raw/*16.82*/("""" type="text/javascript"></script>
         
-        <script src=""""),_display_(Seq[Any](/*18.23*/routes/*18.29*/.Assets.at("javascripts/Object_in.js"))),format.raw/*18.67*/("""" type="text/javascript"></script>
-        <script src=""""),_display_(Seq[Any](/*19.23*/routes/*19.29*/.Assets.at("javascripts/jquery.contextmenu.r2.js"))),format.raw/*19.79*/("""" type="text/javascript"></script>
+        <script src=""""),_display_(Seq[Any](/*18.23*/routes/*18.29*/.Assets.at("/public","javascripts/Object_in.js"))),format.raw/*18.77*/("""" type="text/javascript"></script>
+        <script src=""""),_display_(Seq[Any](/*19.23*/routes/*19.29*/.Assets.at("/public","javascripts/jquery.contextmenu.r2.js"))),format.raw/*19.89*/("""" type="text/javascript"></script>
         <script type="text/javascript">
  		
  		$(function()"""),format.raw/*22.16*/("""{"""),format.raw/*22.17*/("""
@@ -105,10 +105,10 @@ Seq[Any](format.raw/*1.86*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Wed Sep 30 12:56:55 JST 2015
-                    SOURCE: /Users/hasegawakazuya/Desktop/CWA/app/views/edit_page.scala.html
-                    HASH: 8c47c6f7dea25b838dff10632c1a48e5cbe1a64f
-                    MATRIX: 813->1|991->85|1078->137|1104->142|1201->204|1215->210|1275->249|1366->305|1380->311|1435->345|1531->406|1545->412|1598->444|1854->664|1869->670|1933->712|2026->769|2041->775|2102->814|2195->871|2210->877|2275->920|2377->986|2392->992|2452->1030|2545->1087|2560->1093|2632->1143|2754->1237|2783->1238|2877->1296|2908->1305|2941->1311|2969->1312|3063->1378|3092->1379|3174->1433|3203->1434|3258->1461|3287->1462|3345->1492|3374->1493|3429->1520|3458->1521|3524->1560|3552->1561|3603->1584|3632->1585|3689->1614|3718->1615|3773->1642|3802->1643|3868->1682|3896->1683|3969->1728|3998->1729|4057->1761|4085->1762|4180->1829|4209->1830|4290->1883|4319->1884|4372->1909|4401->1910|4466->1947|4495->1948|4730->2155|4759->2156|4798->2167|4827->2168|4861->2175|4889->2176|4921->2181|4949->2182|5026->2223|5063->2244|5111->2246|5148->2257|5243->2316|5280->2337|5328->2339|5365->2350
+                    DATE: Fri Oct 09 19:32:27 JST 2015
+                    SOURCE: /Users/woon/Documents/workspace/CWA/app/views/edit_page.scala.html
+                    HASH: e4077f920fee7fb977d862bbebe1f5b94cc1085b
+                    MATRIX: 813->1|991->85|1078->137|1104->142|1201->204|1215->210|1286->259|1377->315|1391->321|1457->365|1553->426|1567->432|1631->474|1887->694|1902->700|1976->752|2069->809|2084->815|2155->864|2248->921|2263->927|2338->980|2440->1046|2455->1052|2525->1100|2618->1157|2633->1163|2715->1223|2837->1317|2866->1318|2960->1376|2991->1385|3024->1391|3052->1392|3146->1458|3175->1459|3257->1513|3286->1514|3341->1541|3370->1542|3428->1572|3457->1573|3512->1600|3541->1601|3607->1640|3635->1641|3686->1664|3715->1665|3772->1694|3801->1695|3856->1722|3885->1723|3951->1762|3979->1763|4052->1808|4081->1809|4140->1841|4168->1842|4263->1909|4292->1910|4373->1963|4402->1964|4455->1989|4484->1990|4549->2027|4578->2028|4813->2235|4842->2236|4881->2247|4910->2248|4944->2255|4972->2256|5004->2261|5032->2262|5109->2303|5146->2324|5194->2326|5231->2337|5326->2396|5363->2417|5411->2419|5448->2430
                     LINES: 26->1|29->1|34->6|34->6|35->7|35->7|35->7|36->8|36->8|36->8|37->9|37->9|37->9|42->14|42->14|42->14|43->15|43->15|43->15|44->16|44->16|44->16|46->18|46->18|46->18|47->19|47->19|47->19|50->22|50->22|51->23|51->23|52->24|52->24|55->27|55->27|57->29|57->29|57->29|57->29|58->30|58->30|58->30|58->30|59->31|59->31|61->33|61->33|62->34|62->34|62->34|62->34|63->35|63->35|66->38|66->38|68->40|68->40|71->43|71->43|73->45|73->45|74->46|74->46|75->47|75->47|79->51|79->51|80->52|80->52|81->53|81->53|82->54|82->54|85->57|85->57|85->57|85->57|88->60|88->60|88->60|88->60
                     -- GENERATED --
                 */

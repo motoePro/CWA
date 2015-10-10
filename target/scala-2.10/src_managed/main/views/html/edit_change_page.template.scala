@@ -33,11 +33,11 @@ Seq[Any](format.raw/*1.31*/("""
 <html>
     <head>
         <title>編集ページ選択</title>
-        <link rel="stylesheet" media="screen" href=""""),_display_(Seq[Any](/*8.54*/routes/*8.60*/.Assets.at("stylesheets/main.css"))),format.raw/*8.94*/("""">
-        <link rel="shortcut icon" type="image/png" href=""""),_display_(Seq[Any](/*9.59*/routes/*9.65*/.Assets.at("images/favicon.png"))),format.raw/*9.97*/("""">
-        <script src=""""),_display_(Seq[Any](/*10.23*/routes/*10.29*/.Assets.at("javascripts/Object_in.js"))),format.raw/*10.67*/("""" type="text/javascript"></script>
-        <script src=""""),_display_(Seq[Any](/*11.23*/routes/*11.29*/.Assets.at("javascripts/jquery-1.9.0.min.js"))),format.raw/*11.74*/("""" type="text/javascript"></script>
-        <script src=""""),_display_(Seq[Any](/*12.23*/routes/*12.29*/.Assets.at("javascripts/jquery.contextmenu.r2.js"))),format.raw/*12.79*/("""" type="text/javascript"></script>
+        <link rel="stylesheet" media="screen" href=""""),_display_(Seq[Any](/*8.54*/routes/*8.60*/.Assets.at("/public","stylesheets/main.css"))),format.raw/*8.104*/("""">
+        <link rel="shortcut icon" type="image/png" href=""""),_display_(Seq[Any](/*9.59*/routes/*9.65*/.Assets.at("/public","images/favicon.png"))),format.raw/*9.107*/("""">
+        <script src=""""),_display_(Seq[Any](/*10.23*/routes/*10.29*/.Assets.at("/public","javascripts/Object_in.js"))),format.raw/*10.77*/("""" type="text/javascript"></script>
+        <script src=""""),_display_(Seq[Any](/*11.23*/routes/*11.29*/.Assets.at("/public","javascripts/jquery-1.9.0.min.js"))),format.raw/*11.84*/("""" type="text/javascript"></script>
+        <script src=""""),_display_(Seq[Any](/*12.23*/routes/*12.29*/.Assets.at("/public","javascripts/jquery.contextmenu.r2.js"))),format.raw/*12.89*/("""" type="text/javascript"></script>
     </head>
     <body>
 		<h2>変更先のページを指定してください。</h2>
@@ -62,10 +62,10 @@ Seq[Any](format.raw/*1.31*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Fri Sep 25 11:27:40 JST 2015
-                    SOURCE: /Users/hasegawakazuya/Desktop/CWA/app/views/edit_change_page.scala.html
-                    HASH: edf55993e26456974c0be303f9ed0150e8610b28
-                    MATRIX: 792->1|915->30|1071->151|1085->157|1140->191|1236->252|1250->258|1303->290|1364->315|1379->321|1439->359|1532->416|1547->422|1614->467|1707->524|1722->530|1794->580|1922->673|1967->702|2007->704|2116->777|2146->785|2193->796|2224->804|2263->812
+                    DATE: Fri Oct 09 19:32:27 JST 2015
+                    SOURCE: /Users/woon/Documents/workspace/CWA/app/views/edit_change_page.scala.html
+                    HASH: d670806fa37778123049cc55273cb36d9fb1aa29
+                    MATRIX: 792->1|915->30|1071->151|1085->157|1151->201|1247->262|1261->268|1325->310|1386->335|1401->341|1471->389|1564->446|1579->452|1656->507|1749->564|1764->570|1846->630|1974->723|2019->752|2059->754|2168->827|2198->835|2245->846|2276->854|2315->862
                     LINES: 26->1|29->1|36->8|36->8|36->8|37->9|37->9|37->9|38->10|38->10|38->10|39->11|39->11|39->11|40->12|40->12|40->12|45->17|45->17|45->17|46->18|46->18|46->18|46->18|47->19
                     -- GENERATED --
                 */

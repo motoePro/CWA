@@ -548,6 +548,7 @@ public class Application extends Controller {
 		return ok(choose_link.render(optFileNames));
 	}
 	
+	
 	public static Result choose_link(){
 		String name = Form.form().bindFromRequest().get("name");
 		String dir = System.getProperty("user.dir");
@@ -555,6 +556,19 @@ public class Application extends Controller {
 		String type = "button";
 		return ok(edit_menu.render(name,filedir,type));
 	}
+	
+	public static Result addlink(){
+		return ok(put_link.render());
+	}
+	
+	public static Result put_link(){
+		String text = Form.form().bindFromRequest().get("TEXT");
+		String url = Form.form().bindFromRequest().get("URL");
+		String type = "text";
+		System.out.println(text+" "+url+" "+type);
+		return ok(edit_menu.render(text,url,type));
+	}
+	
 	
 	/*
 	 * 画像ファイルのアップロード

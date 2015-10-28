@@ -1,15 +1,18 @@
-2015-10-10 18:22:15,549 - [INFO] - from play in pool-6-thread-1 
+2015-10-28 12:23:34,102 - [INFO] - from play in pool-6-thread-1 
 Listening for HTTP on /0:0:0:0:0:0:0:0:9000
 
-2015-10-10 18:22:26,014 - [INFO] - from play in play-internal-execution-context-1 
+2015-10-28 12:24:13,929 - [INFO] - from play in play-internal-execution-context-1 
 database [default] connected at jdbc:h2:file:play
 
-2015-10-10 18:22:26,176 - [INFO] - from play in play-internal-execution-context-1 
+2015-10-28 12:24:14,069 - [INFO] - from play in play-internal-execution-context-1 
 database [void] connected at jdbc:h2:file:void
 
-2015-10-10 18:22:26,331 - [INFO] - from play in play-internal-execution-context-1 
+2015-10-28 12:24:14,210 - [INFO] - from play in play-internal-execution-context-1 
 database [test] connected at jdbc:h2:file:test
 
-2015-10-10 18:22:27,332 - [INFO] - from play in play-internal-execution-context-1 
+2015-10-28 12:24:18,105 - [INFO] - from play in play-internal-execution-context-1 
+database [Taro] connected at jdbc:h2:file:Taro
+
+2015-10-28 12:24:19,047 - [INFO] - from play in play-internal-execution-context-1 
 Application started (Dev)
 

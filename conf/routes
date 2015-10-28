@@ -21,6 +21,8 @@ GET 	/edit_call/change				controllers.Application.change()
 GET 	/edit_call/render_file/:name	controllers.Application.render_file(name: String)
 GET 	/edit_call/link					controllers.Application.link()
 POST	/edit_call/choose_link			controllers.Application.choose_link()
+GET 	/edit_call/addlink				controllers.Application.addlink()
+POST	/edit_call/put_link				controllers.Application.put_link()
 
 #ログイン関連
 GET     /login                      controllers.Application.login()

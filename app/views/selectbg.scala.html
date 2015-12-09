@@ -1,0 +1,28 @@
+@import helper._
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>背景画像の設定</title>
+<script src="@routes.Assets.at("/public","javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+<script>
+<!--メニューから呼び出されていない場合はTOPへリダイレクト-->
+window.onload = function() {if(!window.opener) { location.href='http://localhost:9000/'}}
+function checkFile() {
+	if($(name = bgimage) == null) {alert("背景にする画像を指定してください。") return false;}
+}
+</script>
+</head>
+<body>
+<form name="bgselect" id="bgselect" method="post" action="/edit_call/setbg" target="upload-image" enctype="multipart/form-data" onSubmit="window.close()">
+@CSRF.formField
+<p>背景に設定する画像を指定してください</p>
+<input type="file" name="bgimage"/>
+<p><input type="checkbox" name="setAll" checked="checked" value="setAll" >全てのページに適応する</p>
+<div>
+<input type=button value="取り消し" onClick="window.close()"/>
+<input type="submit" value="決定" onClick=checkFile() />
+</div>
+</form>
+</body>
+</html>

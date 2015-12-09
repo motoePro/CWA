@@ -21,6 +21,11 @@ GET 	/edit_call/change				controllers.Application.change()
 GET 	/edit_call/render_file/:name	controllers.Application.render_file(name: String)
 GET 	/edit_call/link					controllers.Application.link()
 POST	/edit_call/choose_link			controllers.Application.choose_link()
+#背景画像指定
+GET		/edit_call/selectbg				controllers.Application.selectBg()
+POST	/edit_call/setbg				controllers.Application.setBg()
+
+
 
 #ログイン関連
 GET     /login                      controllers.Application.login()
@@ -32,6 +37,7 @@ POST    /create                     controllers.Application.create()
 GET     /:username                  controllers.Application.userPage(username: String)
 
 
-#画像関連
+##画像関連
 GET		/user/*file					controllers.Assets.at(path="/user", file)
+#ページに画像を追加
 POST	/upload						controllers.Application.upload()

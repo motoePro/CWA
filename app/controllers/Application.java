@@ -1,6 +1,9 @@
 package controllers;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import play.*;
 import play.mvc.*;
@@ -68,7 +71,7 @@ public class Application extends Controller {
 	/**
 	 * 会員の新規作成
 	 */
-	
+
 	@RequireCSRFCheck
 	public static Result create() throws NoSuchAlgorithmException, IOException {
 		Form<Account> f = new Form(Account.class).bindFromRequest();
@@ -77,11 +80,11 @@ public class Application extends Controller {
 			data = f.get();
 			data.password = models.Login.sha512(f.data().get("password"));
 			data.save();
-			
+
 			//DB接続設定
 			String dir = System.getProperty("user.dir");
 			String username = f.data().get("username");
-			
+
 			File udir = new File(dir+"/user/"+username);
 			File imgdir = new File(dir+"/user/"+username+"/images");//ユーザ下の画像用ディレクトリ
 			udir.mkdir();
@@ -91,7 +94,7 @@ public class Application extends Controller {
 			fw.write("db."+username+".driver=org.h2.Driver\n");
 			fw.write("db."+username+".url="+'"'+"jdbc:h2:file:"+username+'"'+"\n");			
 			fw.close();
-			
+
 			//スクリプト生成
 			String n = dir+"/conf/evolutions/"+username;
 			File evo = new File(n);
@@ -111,10 +114,10 @@ public class Application extends Controller {
 			pw.println("# --- !Downs");
 			pw.println("drop table articles");
 			pw.close();
-			
-			
+
+
 			return redirect("/");
-			
+
 		} else {
 			return badRequest(views.html.register.render("ERROR", f));
 		}
@@ -213,12 +216,14 @@ public class Application extends Controller {
 			// ここでファイルに文字を書き込みます。
 			pw.println("<!DOCTYPE html>");
 			pw.println("<meta charset='utf-8'>");
-			pw.println("<html>");
+			pw.println("<html style=\"width:100%;height:100%;\">");
 			pw.println("<head>");
 			pw.println("<title>" + name + "</title>");
 			pw.println("</head>");
-			pw.println("<body>");
+			pw.println("<body　style=\"width:100%;height:100%;\">");
+			pw.println("<div id="+'"'+"container"+'"'+" style="+'"'+"width:100%;height:100%;"+'"'+">");
 			pw.println("<h1>"+name+"</h1>");
+			pw.println("</div>");
 			pw.println("</body>");
 			pw.println("</html>");
 		} catch (IOException e) {
@@ -325,11 +330,11 @@ public class Application extends Controller {
 							new FileOutputStream(file)));
 
 			pw.println("<!DOCTYPE html>");
-			pw.println("<html>");
+			pw.println("<html style=\"width:100%;height:100%;\">");
 			pw.println("<head>");
 			pw.println(Head);
 			pw.println("</head>");
-			pw.println("<body>");
+			pw.println("<body style=\"width:100%;height:100%;\">");
 			pw.println(Html);
 			pw.println("</body>");
 			pw.println("</html>");
@@ -456,7 +461,7 @@ public class Application extends Controller {
 			String str = br.readLine();
 			while(str != null){
 				str = br.readLine();
-				if(str.startsWith("<body>")){
+				if(str.startsWith("<body")){
 					lineLength--;
 					while(str != null){
 						lineLength++;
@@ -479,7 +484,7 @@ public class Application extends Controller {
 			int linePosition = 0;
 			while(str != null){
 				str = br.readLine();
-				if(str.startsWith("<body>")){
+				if(str.startsWith("<body")){
 					while(str != null){
 						str = br.readLine();
 						if(str.startsWith("</body>")){
@@ -534,7 +539,7 @@ public class Application extends Controller {
 		}
 		return sb;
 	}
-	
+
 	public static Result link(){
 		String dir = System.getProperty("user.dir");
 		File filedir = new File(dir + "/user/" + session("username"));
@@ -547,7 +552,7 @@ public class Application extends Controller {
 		String[] optFileNames = optimization(fileNames);
 		return ok(choose_link.render(optFileNames));
 	}
-	
+
 	public static Result choose_link(){
 		String name = Form.form().bindFromRequest().get("name");
 		String dir = System.getProperty("user.dir");
@@ -555,7 +560,7 @@ public class Application extends Controller {
 		String type = "button";
 		return ok(edit_menu.render(name,filedir,type));
 	}
-	
+
 	/*
 	 * 画像ファイルのアップロード
 	 */
@@ -564,26 +569,140 @@ public class Application extends Controller {
 		String name = session("username");
 		MultipartFormData body = request().body().asMultipartFormData();
 		FilePart img = body.getFile("image");
-			//ファイル受け取り成功時
-		  if (img != null) {
-		    String fileName = img.getFilename();
-		    String contentType = img.getContentType(); //ファイルの種類
-		    System.out.println("ファイル名："+fileName);
-		    System.out.println("ファイルタイプ："+contentType);
-		    File file = img.getFile();
-		    String toPath = udir+"/user/"+name+"/images/";
-		    System.out.println(toPath);
-		    if(file.renameTo(new File(toPath, fileName))){
-		    	System.out.println("成功");
-		    } else {
-		    	System.out.println("失敗");
-		    }
-		    String uri =toPath+fileName;
-		    return ok(sendimage.render(fileName,name));
-		  } else {
-			  //ファイル受け取り失敗時
-		    return ok("file upload failed..");    
-		  }
+		//ファイル受け取り成功時
+		if (img != null) {
+			String fileName = img.getFilename();
+			String contentType = img.getContentType(); //ファイルの種類
+			System.out.println("ファイル名："+fileName);
+			System.out.println("ファイルタイプ："+contentType);
+			File file = img.getFile();
+			String toPath = udir+"/user/"+name+"/images/";
+			System.out.println(toPath);
+			if(file.renameTo(new File(toPath, fileName))){
+				System.out.println("成功");
+			} else {
+				System.out.println("失敗");
+			}
+			String uri =toPath+fileName;
+			return ok(sendimage.render(fileName,name));
+		} else {
+			//ファイル受け取り失敗時
+			return ok("file upload failed..");
+		}
 	}
-	
+
+
+	//背景設定画面
+	public static Result selectBg() {
+		return ok(selectbg.render());
+	}
+
+	//背景画像追加(アップロード＋現在の編集ページに適応)
+	public static Result setBg() {
+		MultipartFormData body = request().body().asMultipartFormData();
+		FilePart img = body.getFile("bgimage");
+		//ファイル受け取り成功時
+		if (img != null) {
+			String udir = System.getProperty("user.dir");
+			String fileName = img.getFilename();
+			String contentType = img.getContentType(); //ファイルの種類
+			String name = session("username");
+			System.out.println("ファイル名："+fileName);
+			System.out.println("ファイルタイプ："+contentType);
+			File file = img.getFile();
+			//ファイルの保存
+			String toPath = udir+"/user/"+name+"/images/";
+			System.out.println(toPath);
+			if(file.renameTo(new File(toPath, fileName))){
+				System.out.println("画像保存成功");
+			} else {
+				System.out.println("画像保存失敗");
+			}
+			//現在ページに背景を適応
+			System.out.println("全画面に適応?:"+form().bindFromRequest().data().get("setAll"));
+			if(form().bindFromRequest().data().get("setAll") != null) {
+				//全てのページに背景を適応
+				File[] pages = getPages(name);//ページの配列
+				
+			
+				System.out.println("持ってるページ一覧");
+				
+				for(File p: pages) {
+					System.out.println(p);
+					try {
+						BufferedReader br = new BufferedReader(new FileReader(p));
+						StringBuffer sb = new StringBuffer();
+						String str;
+						//String regex = "<div id="+'"'+"container"+'"'+",style="+'"'+"width:100%;height:100%"+'"'+",background-image="+'"'+routes.Assets.at("/user", name+"/images/"+fileName)+'"'+">";
+						String regex = "<div id=\"container\" style=\"background-image:url("+routes.Assets.at("/user", name+"/images/"+fileName)+");width:100%;height:100%;\">";
+						String oldChar = "<div id=\"container\".*;\">";
+						System.out.println("挿入予定の文章");
+						System.out.println(regex);
+						System.out.println("置換対象");
+						System.out.println(oldChar);
+						//<div id="container",style="width:100%;height:100%">
+						try {
+							
+							while((str = br.readLine()) != null) {
+								Pattern pat = Pattern.compile(oldChar);
+								//System.out.println("pat::::"+pat);
+								Matcher m = pat.matcher(str);
+								str = m.replaceFirst(regex);
+								//"<div id="+'"'+"container"+'"'+",style="+'"'+"width:100%;height:100%;"+'"'+">"
+								
+								sb.append(str+"\n");
+								System.out.println(str);
+							
+							}
+							System.out.println();
+							br.close();
+							PrintWriter pw = new PrintWriter(p);
+							pw.print(sb);
+							pw.close();
+							
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+					} catch (FileNotFoundException e) {//fileが見つからないよ
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+				return ok("checked");
+			} else {
+				//現在のページにのみ背景を追加
+				System.out.println("このぺーじにだけ背景を設定するよ!");
+				return ok(setbg.render(fileName,name));
+			}
+
+		} else {//ファイルが選択されていない
+			return ok("Set Background Image Failed...");
+		}	
+	}
+
+	//ユーザの持っているファイル(ディレクトリ)一覧の取得
+	static File[] getPages(String name){
+		String udir = System.getProperty("user.dir");
+		File fdir = new File(udir + "/user/" + name);
+		File[] pages = fdir.listFiles();
+		//ページ(htmlファイル)のみ出力
+		int pcnt = 0;
+		System.out.println("--ページ一覧--");
+		for(File p: pages) {
+			if(p.isFile() && p.getPath().endsWith(".html")) {System.out.println(p);pcnt++;}
+		}
+		System.out.println("---ファイル数"+pcnt+"----");
+		File[] html = new File[pcnt];
+		int i =0;
+		for(File p: pages) {
+			if(p.isFile() && p.getPath().endsWith(".html")) {html[i] = p;System.out.println(html[i]);i++;}
+		}
+		
+		return html;
+
+	}
+
 }

@@ -1,15 +1,63 @@
-2015-10-10 18:22:15,549 - [INFO] - from play in pool-6-thread-1 
+2015-12-04 11:15:32,283 - [INFO] - from play in pool-6-thread-3 
 Listening for HTTP on /0:0:0:0:0:0:0:0:9000
 
-2015-10-10 18:22:26,014 - [INFO] - from play in play-internal-execution-context-1 
+2015-12-04 11:15:36,756 - [INFO] - from play in play-internal-execution-context-1 
 database [default] connected at jdbc:h2:file:play
 
-2015-10-10 18:22:26,176 - [INFO] - from play in play-internal-execution-context-1 
+2015-12-04 11:15:36,910 - [INFO] - from play in play-internal-execution-context-1 
 database [void] connected at jdbc:h2:file:void
 
-2015-10-10 18:22:26,331 - [INFO] - from play in play-internal-execution-context-1 
+2015-12-04 11:15:37,059 - [INFO] - from play in play-internal-execution-context-1 
 database [test] connected at jdbc:h2:file:test
 
-2015-10-10 18:22:27,332 - [INFO] - from play in play-internal-execution-context-1 
+2015-12-04 11:15:38,213 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2015-12-04 11:41:34,216 - [INFO] - from play in play-internal-execution-context-5 
+database [default] connected at jdbc:h2:file:play
+
+2015-12-04 11:41:34,347 - [INFO] - from play in play-internal-execution-context-5 
+database [void] connected at jdbc:h2:file:void
+
+2015-12-04 11:41:34,467 - [INFO] - from play in play-internal-execution-context-5 
+database [test] connected at jdbc:h2:file:test
+
+2015-12-04 11:41:34,672 - [INFO] - from play in play-internal-execution-context-5 
+Application started (Dev)
+
+2015-12-04 11:47:49,860 - [INFO] - from play in play-internal-execution-context-14 
+database [default] connected at jdbc:h2:file:play
+
+2015-12-04 11:47:50,003 - [INFO] - from play in play-internal-execution-context-14 
+database [void] connected at jdbc:h2:file:void
+
+2015-12-04 11:47:50,124 - [INFO] - from play in play-internal-execution-context-14 
+database [test] connected at jdbc:h2:file:test
+
+2015-12-04 11:47:50,345 - [INFO] - from play in play-internal-execution-context-14 
+Application started (Dev)
+
+2015-12-04 11:49:12,624 - [INFO] - from play in play-internal-execution-context-17 
+database [default] connected at jdbc:h2:file:play
+
+2015-12-04 11:49:12,747 - [INFO] - from play in play-internal-execution-context-17 
+database [void] connected at jdbc:h2:file:void
+
+2015-12-04 11:49:12,858 - [INFO] - from play in play-internal-execution-context-17 
+database [test] connected at jdbc:h2:file:test
+
+2015-12-04 11:49:13,001 - [INFO] - from play in play-internal-execution-context-17 
+Application started (Dev)
+
+2015-12-04 11:52:40,265 - [INFO] - from play in play-internal-execution-context-18 
+database [default] connected at jdbc:h2:file:play
+
+2015-12-04 11:52:40,409 - [INFO] - from play in play-internal-execution-context-18 
+database [void] connected at jdbc:h2:file:void
+
+2015-12-04 11:52:40,544 - [INFO] - from play in play-internal-execution-context-18 
+database [test] connected at jdbc:h2:file:test
+
+2015-12-04 11:52:40,767 - [INFO] - from play in play-internal-execution-context-18 
 Application started (Dev)
 

@@ -17,7 +17,7 @@
 		}
 		<input type="button" value="閉じる" onclick="window.open('about:blank','_self').close();">
 		
-		<form id="link_form" action="/edit_call/choose_link" method="POST" target="menu" style="display:none">
+		<form id="link_form" action="/edit_call/choose_link" method="POST" target="set-bg" style="display:none">
 			@CSRF.formField
 			<input type="text" id="link_name" name="name" value="">
 		</form>

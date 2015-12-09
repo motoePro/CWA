@@ -77,11 +77,16 @@
 				<form id="FileUpload" name="upload" method="post" action="/upload" target="upload-image" onChange="sendImage()" enctype="multipart/form-data">
     				@CSRF.formField
     				<input type="file" name="image"/>
-    				<input type="submit" id="submit" name="submit" value="送信"/>
-    				<input type="reset" id="reset" name="reset" />
+    				<input type="submit" id="submit" name="submit" style="display:none;" value="送信"/>
+    				<input type="reset" id="reset" name="reset" style="display:none;"/>
 				</form>
-				<iframe id="FileUploadIframe" name="upload-image" "></iframe>
+				<iframe id="FileUploadIframe" name="upload-image" ></iframe>
 			</div>
+			
+			<input type="button" value="背景画像設定" onClick="toSelectBg()" />
+			
+			<input type="button" value="背景リセット" onClick="resetBg()"/>
+			
 			<br>
 			<input type="button" value="リンク" onclick="window.open('/edit_call/link','ucreatepage_link','width=640,height=480,location=0');return false;">
 			
@@ -92,6 +97,11 @@
 					$("#submit").trigger('click');
 					$("#reset").trigger('click');
 				}
+				<!--背景画像選択ウィンドウの表示-->
+				function toSelectBg() {
+					window.open("/edit_call/selectbg","selectbg","width=600,height=450,menubar=no,toolbar=no,location=no,status=no");return false;
+				}
+				
 			</script>
     </body>
 </html>

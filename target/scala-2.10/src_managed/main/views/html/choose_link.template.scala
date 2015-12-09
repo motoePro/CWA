@@ -45,7 +45,7 @@ Seq[Any](format.raw/*1.31*/("""
 		""")))})),format.raw/*17.4*/("""
 		<input type="button" value="閉じる" onclick="window.open('about:blank','_self').close();">
 		
-		<form id="link_form" action="/edit_call/choose_link" method="POST" target="menu" style="display:none">
+		<form id="link_form" action="/edit_call/choose_link" method="POST" target="set-bg" style="display:none">
 			"""),_display_(Seq[Any](/*21.5*/CSRF/*21.9*/.formField)),format.raw/*21.19*/("""
 			<input type="text" id="link_name" name="name" value="">
 		</form>
@@ -62,10 +62,10 @@ Seq[Any](format.raw/*1.31*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Fri Oct 09 19:32:27 JST 2015
+                    DATE: Wed Oct 21 12:14:35 JST 2015
                     SOURCE: /Users/woon/Documents/workspace/CWA/app/views/choose_link.scala.html
-                    HASH: ffec210aacc735f0e83e9dcde064eacaa325db68
-                    MATRIX: 787->1|926->30|953->48|1105->165|1119->171|1185->215|1281->276|1295->282|1359->324|1420->349|1435->355|1505->403|1598->460|1613->466|1690->521|1783->578|1798->584|1880->644|1979->708|2024->737|2064->739|2148->787|2178->795|2226->807|2256->815|2295->823|2533->1026|2545->1030|2577->1040
+                    HASH: 4febf330ca6d3ff549eb32d99e92e334df8ebf7a
+                    MATRIX: 787->1|926->30|953->48|1105->165|1119->171|1185->215|1281->276|1295->282|1359->324|1420->349|1435->355|1505->403|1598->460|1613->466|1690->521|1783->578|1798->584|1880->644|1979->708|2024->737|2064->739|2148->787|2178->795|2226->807|2256->815|2295->823|2535->1028|2547->1032|2579->1042
                     LINES: 26->1|30->1|31->3|36->8|36->8|36->8|37->9|37->9|37->9|38->10|38->10|38->10|39->11|39->11|39->11|40->12|40->12|40->12|43->15|43->15|43->15|44->16|44->16|44->16|44->16|45->17|49->21|49->21|49->21
                     -- GENERATED --
                 */

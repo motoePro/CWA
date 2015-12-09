@@ -1,0 +1,13 @@
+@(fileName: String, name: String)
+
+
+<!DOCTYPE html>
+<head>
+<script>
+	var uri  = "@routes.Assets.at("/user", name+"/images/"+fileName)";
+	console.log(uri);
+	parent.addBg(uri);
+</script>
+</head>
+<body></body>
+</html>

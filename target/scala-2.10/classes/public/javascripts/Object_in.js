@@ -1,6 +1,22 @@
 var ElementID = 0;
 
 
+//背景画像を設定
+function addBg(src) {
+	// var body = parent.main.document.getElementsByTagName("body")[0];
+	// body.setAttribute("background",src);
+	var v = "url("+src+")";
+	console.log(v);
+	// $('#container').style.background = v;
+	var container = parent.main.document.getElementById('container');
+	container.style.backgroundImage = v;
+	// container.css('background-image','url('+src+')');
+	// parent.main.$('#container').css('background-image',v);
+	// $('#container').css('background-color','red');
+	// $('#container').css('background-image', 'none');
+}
+
+
 
 //画像をページに追加
 function addImg(src) {
@@ -56,23 +72,38 @@ function addTxt(){
 
 function addTxb(){
 	var body = parent.main.document.getElementById('body_main');
-	var tag = document.createElement('div');
-	tag.id = ElementID;
-	tag.className = "context";
-	// tag.style.width =  "130px";
-	
-	var txb_tag = document.createElement('input');
-	txb_tag.type = "text";
-	txb_tag.value = "Sample";
-	txb_tag.className = "pchan";
-	
-	body.appendChild(tag);
-	tag.appendChild(txb_tag);
+	var txt_tag = document.createElement('a');
+	txt_tag.id = ElementID;
+	txt_tag.className = "pchan context";
+	txt_tag.href = "ddfasfasd";
+	txt_tag.innerHTML = "タイトル";
+	txt_tag.style = "background-color:red; margin:0; padding:0; position:absolute; left:0px; top:0px";
+	// txt_tag.id = "txt_chan";
+	// body.appendChild(tag);
+	// tag.appendChild(txt_tag);
+	body.appendChild(txt_tag);
 	parent.main.txtmv();
-	//parent.main.drg();
-
+	
 	ElementID++;
 	parent.main.context();
+	// var body = parent.main.document.getElementById('body_main');
+	// var tag = document.createElement('div');
+	// tag.id = ElementID;
+	// tag.className = "context";
+	// // tag.style.width =  "130px";
+	
+	// var txb_tag = document.createElement('input');
+	// txb_tag.type = "text";
+	// txb_tag.value = "Sample";
+	// txb_tag.className = "pchan";
+	
+	// body.appendChild(tag);
+	// tag.appendChild(txb_tag);
+	// parent.main.txtmv();
+	// //parent.main.drg();
+
+	// ElementID++;
+	// parent.main.context();
 }
 
 function addPct(){
@@ -211,11 +242,14 @@ function change_page(){
 }
 
 function save_page(){
+
 	var head = parent.main.document.getElementById('head_main');
 	var headLine = head.innerHTML;
 
 	var body = parent.main.document.getElementById('body_main');
 	var HtmlLine = body.innerHTML;
+
+	console.log(HtmlLine);
 	
 	var form = document.createElement("form");
 	
@@ -285,4 +319,11 @@ function choose_link(val){
 	link_name.value = val;
     form.submit();
     window.close();
+}
+
+
+function resetBg() {
+	var container = parent.main.document.getElementById('container');
+	container.style.backgroundImage = null;
+	console.log(container);
 }

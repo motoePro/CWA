@@ -19,6 +19,7 @@
         <input name="name" type="text"></input>.html</br>
         </br>
         <input type="radio" name="type" value="standard" checked="checked">スタンダード
+        <input type="radio" name="type" value="blog">ブログ
         </br>
         </br>
         <input type="submit" value="決定"/>

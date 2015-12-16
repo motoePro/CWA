@@ -1,5 +1,5 @@
 @(title: String)(headLine: Array[String])(httpLine: Array[String])(edit_page: String)
-
+@import helper._
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,6 +21,9 @@
  		
  		$(function(){
  			parent.edit_head.location.href = "/edit_head/target/@edit_page";
+			context();
+			txtmv();
+ 			btnmv();
  		})
  		
 		//要素にdraggable,resizable属性を加える(テキストのみ)
@@ -29,7 +32,19 @@
 			$('.pchan').resizable({stop: fix(), handles: "all"});
 			//$('.pchan').resizable({stop: fix(), handles: "all"}).parent(".ui-wrapper").draggable();
 		}
+		function mv() {
+			$('.mv').draggable();
+		}
 		
+		//要素のdraggable,resizable属性を削除(テキストのみ)
+		function txtmvdestroy() {
+			$('.pchan').draggable( 'destroy' );
+			$('.pchan').resizable( 'destroy' );
+			//$('.pchan').resizable({stop: fix(), handles: "all"}).parent(".ui-wrapper").draggable();
+		}
+		function btnmv() {
+			$('.btnmv').draggable();
+		}
 		function pctmv() {
 			$('.img_chan').resizable({stop: fix(), handles: "all"}).parent(".ui-wrapper").draggable();
 		}
@@ -39,28 +54,16 @@
 			$('#txt_chan').fitText();
 		}
 		</script>
-        <script type='text/javascript'>
-		$(function(){
-    		$('.context').contextMenu('myMenu',
-        		{
-            		bindings: {
-            		'delete': function(t) {
-                		var body = parent.main.document.getElementById('body_main');
-                		console.log(body.childNodes[t.id]);
-                		body.removeChild(body.childNodes[t.id]);
-            		}
-        		}
-    		});
-		});
-		
-		</script>
 		<div id='head_main'>@for(line <- headLine){@Html(line)}</div>
     </head>
     <body>
         <div id='body_main'>@for(line <- httpLine){@Html(line)}</div>
-        
+        <form id="t_edit" method="post">
+        	@CSRF.formField
+        </form>
         <div class='contextMenu' id='myMenu'>
     		<ul>
+			<li id='edit'>Edit</li>
         		<li id='delete'>Close</li>
     		</ul>
 		</div>

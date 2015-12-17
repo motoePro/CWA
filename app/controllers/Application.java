@@ -1,10 +1,15 @@
 package controllers;
 
+import controllers.Xml_edit;
+
 import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+import java.security.SecureRandom;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import play.*;
 import play.mvc.*;
 import play.mvc.Http.MultipartFormData;
@@ -31,8 +36,11 @@ import java.io.PrintWriter;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 
-import org.w3c.dom.*;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 
+import org.w3c.dom.*;
+import org.xml.sax.SAXException;
 
 public class Application extends Controller {
 	public static Result index() {
@@ -88,31 +96,31 @@ public class Application extends Controller {
 			File imgdir = new File(dir+"/user/"+username+"/images");//ユーザ下の画像用ディレクトリ
 			udir.mkdir();
 			imgdir.mkdir();
-//			File file = new File(dir+"/conf/application.conf");
-//			FileWriter fw = new FileWriter(file,true);
-//			fw.write("db."+username+".driver=org.h2.Driver\n");
-//			fw.write("db."+username+".url="+'"'+"jdbc:h2:file:"+username+'"'+"\n");			
-//			fw.close();
-//
-//			//スクリプト生成
-//			String n = dir+"/conf/evolutions/"+username;
-//			File evo = new File(n);
-//			evo.mkdir();
-//			File sql = new File(n+"/1.sql");
-//			PrintWriter pw = new PrintWriter(sql);
-//			pw.println("# articles");
-//			pw.println("# --- !Ups");
-//			pw.println("create table articles (");
-//			pw.println("	id	bigint not null,");
-//			pw.println("	title	varchar(255) not null,");
-//			pw.println("	body	text not null,");
-//			pw.println("	release	date not null,");
-//			pw.println("	primary key(id),");
-//			pw.println(");");
-//			pw.println("create sequence articles_seq;");
-//			pw.println("# --- !Downs");
-//			pw.println("drop table articles");
-//			pw.close();
+			//			File file = new File(dir+"/conf/application.conf");
+			//			FileWriter fw = new FileWriter(file,true);
+			//			fw.write("db."+username+".driver=org.h2.Driver\n");
+			//			fw.write("db."+username+".url="+'"'+"jdbc:h2:file:"+username+'"'+"\n");			
+			//			fw.close();
+			//
+			//			//スクリプト生成
+			//			String n = dir+"/conf/evolutions/"+username;
+			//			File evo = new File(n);
+			//			evo.mkdir();
+			//			File sql = new File(n+"/1.sql");
+			//			PrintWriter pw = new PrintWriter(sql);
+			//			pw.println("# articles");
+			//			pw.println("# --- !Ups");
+			//			pw.println("create table articles (");
+			//			pw.println("	id	bigint not null,");
+			//			pw.println("	title	varchar(255) not null,");
+			//			pw.println("	body	text not null,");
+			//			pw.println("	release	date not null,");
+			//			pw.println("	primary key(id),");
+			//			pw.println(");");
+			//			pw.println("create sequence articles_seq;");
+			//			pw.println("# --- !Downs");
+			//			pw.println("drop table articles");
+			//			pw.close();
 
 
 			return redirect("/");
@@ -150,7 +158,7 @@ public class Application extends Controller {
 				returnUrl = routes.Application.index().url();
 				returnUrl+=Username;
 			}
-//			return redirect(returnUrl);
+			//			return redirect(returnUrl);
 			System.out.println(session("username"));
 			return redirect(routes.Application.userPage(session("username")));
 		}
@@ -226,7 +234,7 @@ public class Application extends Controller {
 			pw.println("</head>");
 			pw.println("<body　style=\"width:100%;height:100%;\">");
 			pw.println("<div id="+'"'+"container"+'"'+" style="+'"'+"width:100%;height:100%;"+'"'+">");
-			pw.println("<h1>"+title+"</h1>");
+			pw.println("<h1 class=\"pchan\">"+title+"</h1>");
 			pw.println("</div>");
 			pw.println("</body>");
 			pw.println("</html>");
@@ -317,6 +325,7 @@ public class Application extends Controller {
 	/**
 	 * 保存アクション
 	 */
+	static public final String DATE_PATTERN ="yyyy/MM/dd HH:mm:ss";
 	@RequireCSRFCheck
 	public static Result save(){
 		String name = Form.form().bindFromRequest().get("name");
@@ -326,6 +335,23 @@ public class Application extends Controller {
 		String[] source = null;
 		String Head = Form.form().bindFromRequest().get("head");
 		String Html = Form.form().bindFromRequest().get("html");
+		Date date = new Date();
+		int start_comment_index = Html.indexOf("<div id=\"comments\">");
+		if(start_comment_index != -1){
+			start_comment_index += 19;
+			//System.out.println(start_comment_index);
+			String remove_start_comment_HTML = Html.substring(start_comment_index,Html.length());
+			//System.out.println(remove_start_comment_HTML);
+			int end_comment_index = remove_start_comment_HTML.indexOf("</div>")+start_comment_index;
+			//System.out.println(end_comment_index);
+			Html = Html.substring(0,start_comment_index)+Html.substring(end_comment_index,Html.length());
+			System.out.println(Html);
+			Html.replaceAll("<div id=\"comments\">", "<div id=\"comments\"></div>");
+		}
+		int start_blog_index = Html.indexOf("<div id=\"article\">");
+		if(start_blog_index != -1){
+			//System.out.println("start_blog_index:"+start_blog_index);
+		}
 
 		try {
 			// 出力ストリームを生成します。
@@ -353,17 +379,72 @@ public class Application extends Controller {
 				pw.close();
 			}
 		}
+		if(Html.matches(".*comments.*")){
+			File xmlfile = new File(dir + "/user/" + session("username") + "/" + name + ".xml");
+			if(xmlfile.exists()){
+				System.out.println("既に指定のxmlファイルは存在しています。 :"+xmlfile);
+			}else{
+				pw = null;
+				try {
+					pw = new PrintWriter(
+							new OutputStreamWriter(
+									new FileOutputStream(xmlfile)));
+					pw.println("<?xml version='1.0' encoding='utf-8' standalone='no'?><list></list>");
+				} catch (IOException e) {
+					System.out.println(e);
+				} finally {
+					if (pw != null) {
+						pw.close();
+					}
+				}
+			}
+		}
+		String str;
+		if(start_blog_index != -1){
+			File xmlfile = new File(dir + "/user/" + session("username") + "/" + name + "_articles.xml");
+			str = new SimpleDateFormat(DATE_PATTERN).format(date);
+			if(xmlfile.exists()){
+				System.out.println("既に指定のxmlファイルは存在しています。: "+xmlfile);
+			}else{
+				pw = null;
+				try {
+					pw = new PrintWriter(
+							new OutputStreamWriter(
+									new FileOutputStream(xmlfile)));
+					pw.println("<?xml version='1.0' encoding='utf-8' standalone='no'?><articles>");
+					pw.println("<article><id>1</id><date>"+ str +"</date><title>サンプル</title><maintext>サンプル文章です。</maintext></article></articles>");
+
+				} catch (IOException e) {
+					System.out.println(e);
+				} finally {
+					if (pw != null) {
+						pw.close();
+					}
+				}
+			}
+		}
 		return redirect("/edit_head/target/null");
 	}
 
 	public static Result change(){
 		String dir = System.getProperty("user.dir");
 		File filedir = new File(dir + "/user/" + session("username"));
+		int files_length = 0;
+		int files_pointer = 0;
 		File[] files = filedir.listFiles();
-		String[] fileNames = new String[files.length];
 		for (int i = 0; i < files.length; i++) {
 			File file = files[i];
-			fileNames[i] = file.getName().replace(".html","");
+			if(file.getName().indexOf(".html") != -1){
+				files_length++;
+			}
+		}
+		String[] fileNames = new String[files_length];
+		for (int i = 0; i < files.length; i++) {
+			File file = files[i];
+			if(file.getName().indexOf(".html") != -1){
+				fileNames[files_pointer] = file.getName().replace(".html","");
+				files_pointer++;
+			}
 		}
 
 		String[] optFileNames = optimization(fileNames);
@@ -547,11 +628,22 @@ public class Application extends Controller {
 	public static Result link(){
 		String dir = System.getProperty("user.dir");
 		File filedir = new File(dir + "/user/" + session("username"));
+		int files_length = 0;
+		int files_pointer = 0;
 		File[] files = filedir.listFiles();
-		String[] fileNames = new String[files.length];
 		for (int i = 0; i < files.length; i++) {
 			File file = files[i];
-			fileNames[i] = file.getName().replace(".html","");
+			if(file.getName().indexOf(".html") != -1){
+				files_length++;
+			}
+		}
+		String[] fileNames = new String[files_length];
+		for (int i = 0; i < files.length; i++) {
+			File file = files[i];
+			if(file.getName().indexOf(".html") != -1){
+				fileNames[files_pointer] = file.getName().replace(".html","");
+				files_pointer++;
+			}
 		}
 		String[] optFileNames = optimization(fileNames);
 		return ok(choose_link.render(optFileNames));
@@ -568,7 +660,7 @@ public class Application extends Controller {
 	public static Result addlink(){
 		return ok(put_link.render());
 	}
-	
+
 	public static Result put_link(){
 		String text = Form.form().bindFromRequest().get("TEXT");
 		String url = Form.form().bindFromRequest().get("URL");
@@ -608,6 +700,7 @@ public class Application extends Controller {
 	}
 
 
+
 	//背景設定画面
 	public static Result selectBg() {
 		return ok(selectbg.render());
@@ -639,10 +732,10 @@ public class Application extends Controller {
 			if(form().bindFromRequest().data().get("setAll") != null) {
 				//全てのページに背景を適応
 				File[] pages = getPages(name);//ページの配列
-				
-			
+
+
 				System.out.println("持ってるページ一覧");
-				
+
 				for(File p: pages) {
 					System.out.println(p);
 					try {
@@ -658,37 +751,37 @@ public class Application extends Controller {
 						System.out.println(oldChar);
 						//<div id="container",style="width:100%;height:100%">
 						try {
-							
+
 							while((str = br.readLine()) != null) {
 								Pattern pat = Pattern.compile(oldChar);
 								//System.out.println("pat::::"+pat);
 								Matcher m = pat.matcher(str);
 								str = m.replaceFirst(regex);
 								//"<div id="+'"'+"container"+'"'+",style="+'"'+"width:100%;height:100%;"+'"'+">"
-								
+
 								sb.append(str+"\n");
 								System.out.println(str);
-							
+
 							}
 							System.out.println();
 							br.close();
 							PrintWriter pw = new PrintWriter(p);
 							pw.print(sb);
 							pw.close();
-							
+
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						
+
 					} catch (FileNotFoundException e) {//fileが見つからないよ
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
+
 				}
 				return ok(setbg.render(fileName,name));
-//				return ok("checked");
+				//				return ok("checked");
 			} else {
 				//現在のページにのみ背景を追加
 				System.out.println("このぺーじにだけ背景を設定するよ!");
@@ -717,9 +810,223 @@ public class Application extends Controller {
 		for(File p: pages) {
 			if(p.isFile() && p.getPath().endsWith(".html")) {html[i] = p;System.out.println(html[i]);i++;}
 		}
-		
+
 		return html;
 
+	}
+
+
+	/*
+	 * テキストに対してコンテキストメニューでのリンク付与
+	 */
+
+	@RequireCSRFCheck
+	public static Result edit_text(){
+		String id = Form.form().bindFromRequest().get("id");
+		return ok(edit_text.render(id));/*,textbox,result*/
+	}
+
+	@RequireCSRFCheck
+	public static Result edit_text_save(){
+		String id = Form.form().bindFromRequest().get("ID");
+		String innerHTML = Form.form().bindFromRequest().get("text");
+		String url_count = Form.form().bindFromRequest().get("url_count");
+		int length = new Integer(url_count).intValue();
+		String url[] = new String[length];
+		for(int i=0; i<length; i++){
+			url[i] = Form.form().bindFromRequest().get("url0"+String.valueOf(i));
+		}
+		String innerText = innerHTML.replaceAll("\r\n", "#BR#");
+		innerText = innerText.replaceAll("\r\n", "#BR#");
+		innerText = innerText.replaceAll("\r\n", "#BR#");
+		return ok(edit_text_save.render(id,innerText,url));
+	}
+	@RequireCSRFCheck
+	public static Result data_add(){
+		String user_name = Form.form().bindFromRequest().get("un");
+		String file_name = Form.form().bindFromRequest().get("fn");
+		String name = Form.form().bindFromRequest().get("name");
+		String comment = Form.form().bindFromRequest().get("comment");
+		System.out.println(file_name);
+		String xmlFileDir = "user/"+user_name+"/"+file_name+".xml";
+		Xml_edit xml = new Xml_edit();
+		try {
+			xml.domCommentAdd(xmlFileDir,name,comment);
+			System.out.println("OK: xml.domCommentAdd()");
+		} catch (TransformerException e) {
+		} catch (SAXException e) {
+		} catch (IOException e) {
+		} catch (ParserConfigurationException e) {
+		}
+		String url = "/cwa/"+user_name+"/"+file_name;
+		System.out.println("Url: "+url);
+		try {
+			Thread.sleep(3 * 1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return redirect(url);
+	}
+	public static Result view(String user_name, String file_name){
+		String dir = System.getProperty("user.dir");
+		String file_dir = dir+"/user/"+user_name+"/"+file_name+".html";
+		int lineLength = 0;
+		String[] sub_strings = new String[50000];
+		try{
+			File file = new File(file_dir);
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String str;
+			while((str = br.readLine()) != null){
+				sub_strings[lineLength] = str;
+				lineLength++;
+			}
+			br.close();
+		}catch(FileNotFoundException e){
+			System.out.println("view: "+e);
+		}catch(IOException e){
+			System.out.println("view: "+e);
+		}
+		String[] strings = new String[lineLength];
+		for(int i=0;i<lineLength;i++){
+			if(strings[i] != "null"){
+				strings[i] = sub_strings[i];
+			}
+		}
+		return ok(file_view.render(strings));
+	}
+
+	public static Result blog_data_read(){
+		List<String> blog_list = null;
+		String user_name = session("username");
+		String page_name = Form.form().bindFromRequest().get("page_name");
+		System.out.println(page_name+" "+user_name);
+		String file_name = page_name+"_articles";
+		String xmlFileDir = "user/"+user_name+"/"+file_name+".xml";
+		Xml_edit xml = new Xml_edit();
+		try {
+			blog_list = xml.domBlogRead(xmlFileDir);
+			System.out.println("OK: xml.domBlogRead()");
+		} catch (SAXException e) {
+		} catch (IOException e) {
+		} catch (ParserConfigurationException e) {
+		}
+		String[] blog_id = new String[blog_list.size()/3];
+		String[] blog_title = new String[blog_list.size()/3];
+		String[] blog_value = new String[blog_list.size()/3];
+		for(int i = 0; i < blog_list.size()/3; i++){
+			blog_id[i] = blog_list.get(i*3+0);
+			blog_title[i] = blog_list.get(i*3+1);
+			blog_value[i] = blog_list.get(i*3+2);
+		}
+		System.out.println("id:");
+		for(int i = 0; i < blog_id.length; i++){
+			System.out.println(blog_id[i]);
+		}
+		System.out.println("title:");
+		for(int i = 0; i < blog_title.length; i++){
+			System.out.println(blog_title[i]);
+		}
+		System.out.println("value:");
+		for(int i = 0; i < blog_value.length; i++){
+			System.out.println(blog_value[i]);
+		}
+		/*
+         String url = "/cwa/"+user_name+"/"+file_name;
+         System.out.println("Url: "+url);
+         try {
+	        Thread.sleep(3 * 1000);
+         } catch (InterruptedException e) {
+	        e.printStackTrace();
+         }
+		 */
+		return ok(edit_blog.render(blog_id,blog_title,blog_value,user_name,page_name));
+	}
+
+	public static Result blog_data_edit(){
+		List<String> blog_list = null;
+		String user_name = session("username");
+		String id = Form.form().bindFromRequest().get("id");
+		String title = Form.form().bindFromRequest().get("title");
+		String main_text = Form.form().bindFromRequest().get("main_text");
+		String page_name = Form.form().bindFromRequest().get("page_name");
+		String file_name = page_name+"_articles";
+		String xmlFileDir = "user/"+user_name+"/"+file_name+".xml";
+		String type = Form.form().bindFromRequest().get("save_type");
+		System.out.println("blog_data_save() start:");
+		System.out.println("id:"+id);
+		System.out.println("title:"+title);
+		System.out.println("main_text:"+main_text);
+		System.out.println("xmlFileDir:"+xmlFileDir);
+		System.out.println("page_name:"+page_name+", user_name:"+user_name);
+		System.out.println("type:"+type);
+		Xml_edit xml = new Xml_edit();
+		try {
+			if(type.equals("change")){
+				xml.domBlogChange(xmlFileDir,id,title,main_text);
+				System.out.println("OK: xml.domBlogChange()");
+			}else if(type.equals("add")){
+				xml.domBlogAdd(xmlFileDir);
+				System.out.println("OK: xml.domBlogAdd()");
+			}else if(type.equals("delete")){
+				xml.domBlogDelete(xmlFileDir,id);
+				System.out.println("OK: xml.domBlogDelete()");
+			}
+			blog_list = xml.domBlogRead(xmlFileDir);
+			System.out.println("OK: xml.domBlogRead()");
+		} catch (TransformerException e) {
+		} catch (SAXException e) {
+		} catch (IOException e) {
+		} catch (ParserConfigurationException e) {
+		}
+		String[] blog_id = new String[blog_list.size()/3];
+		String[] blog_title = new String[blog_list.size()/3];
+		String[] blog_value = new String[blog_list.size()/3];
+		for(int i = 0; i < blog_list.size()/3; i++){
+			blog_id[i] = blog_list.get(i*3+0);
+			blog_title[i] = blog_list.get(i*3+1);
+			blog_value[i] = blog_list.get(i*3+2);
+		}
+		System.out.println("id:");
+		for(int i = 0; i < blog_id.length; i++){
+			System.out.println(blog_id[i]);
+		}
+		System.out.println("title:");
+		for(int i = 0; i < blog_title.length; i++){
+			System.out.println(blog_title[i]);
+		}
+		System.out.println("value:");
+		for(int i = 0; i < blog_value.length; i++){
+			System.out.println(blog_value[i]);
+		}
+
+		return ok(edit_blog.render(blog_id,blog_title,blog_value,user_name,page_name));
+	}
+	public static Result edit_blog(){
+		String dir = System.getProperty("user.dir");
+		String user = session("username");
+		File filedir = new File(dir + "/user/" + session("username"));
+		int files_length = 0;
+		int files_pointer = 0;
+		File[] files = filedir.listFiles();
+		for (int i = 0; i < files.length; i++) {
+			File file = files[i];
+			if(file.getName().indexOf("_articles.xml") != -1){
+				files_length++;
+			}
+		}
+		String[] fileNames = new String[files_length];
+		for (int i = 0; i < files.length; i++) {
+			File file = files[i];
+			if(file.getName().indexOf("_articles.xml") != -1){
+				fileNames[files_pointer] = file.getName().replace("_articles.xml","");
+				files_pointer++;
+			}
+		}
+		String[] optFileNames = optimization(fileNames);
+		for (int i = 0; i < optFileNames.length; i++) {
+			System.out.println(optFileNames[i]);
+		}
+		return ok(edit_blog_home.render(user,optFileNames));
 	}
 
 }

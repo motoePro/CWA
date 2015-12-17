@@ -6,8 +6,8 @@
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("/public","stylesheets/main.css")">
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("/public","stylesheets/menu.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("/public","images/favicon.png")">
-        <script src="@routes.Assets.at("/public","javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
         <script src="@routes.Assets.at("/public","javascripts/Object_in.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("/public","javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
         <script src="@routes.Assets.at("/public","javascripts/jquery.contextmenu.r2.js")" type="text/javascript"></script>  
     </head>
     <body>
@@ -15,7 +15,8 @@
     		<input type="hidden" name="edit_page_name" value="@target_name">
     	</form>
     	<div class="head_menu">
-    		<p>現在、[ @target_name ]を操作しています。<br>
+		<p>ようこそ、<span id="userName">@user_name</span>さん<br>
+    		現在、[ @target_name ]を操作しています。<br>
     		<a href="/@user_name" target="_top">ユーザページに戻る</a></p>
     	</div>
         <div class="head_menu">

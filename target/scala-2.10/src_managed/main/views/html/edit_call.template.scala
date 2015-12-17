@@ -40,7 +40,7 @@ Seq[Any](_display_(Seq[Any](/*1.2*/edit_main("編集ページ")/*1.20*/{_display
 }
                 /*
                     -- GENERATED --
-                    DATE: Wed Dec 16 15:20:57 JST 2015
+                    DATE: Thu Dec 17 13:31:28 JST 2015
                     SOURCE: /Users/woon/Documents/workspace/CWA/app/views/edit_call.scala.html
                     HASH: 8f158013696fa5d6e71204b877dbc967f2963d4e
                     MATRIX: 868->1|894->19|932->20|964->22

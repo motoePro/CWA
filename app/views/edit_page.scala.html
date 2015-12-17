@@ -1,5 +1,5 @@
 @(title: String)(headLine: Array[String])(httpLine: Array[String])(edit_page: String)
-
+@import helper._
 <!DOCTYPE html>
 <html style="width:100%;height:100%;">
     <head>
@@ -20,6 +20,9 @@
         <script type="text/javascript">
  		$(function(){
  			parent.edit_head.location.href = "/edit_head/target/@edit_page";
+			context();
+			txtmv();
+ 			btnmv();
  		})
  		
 		//要素にdraggable,resizable属性を加える(テキストのみ)
@@ -29,7 +32,21 @@
 			//$('.pchan').resizable({stop: fix(), handles: "all"}).parent(".ui-wrapper").draggable();
 		}
 
-		//画像にdraggable,resizable属性を加える(画像)		
+
+
+		function mv() {
+			$('.mv').draggable();
+		}
+		
+		//要素のdraggable,resizable属性を削除(テキストのみ)
+		function txtmvdestroy() {
+			$('.pchan').draggable( 'destroy' );
+			$('.pchan').resizable( 'destroy' );
+			//$('.pchan').resizable({stop: fix(), handles: "all"}).parent(".ui-wrapper").draggable();
+		}
+		function btnmv() {
+			$('.btnmv').draggable();
+		}
 		function pctmv() {
 			$('.img_chan').resizable({stop: fix(), handles: "all"}).parent(".ui-wrapper").draggable();
 		}
@@ -44,7 +61,6 @@
 		function fix() {
 			$('#txt_chan').fitText();
 		}
-
 
 	
 		$(function(){
@@ -70,9 +86,18 @@
         		<p>右上の「新規作成」「ページの変更」ボタンを押して、編集するページを選択してください。</p>
         	}
         </div>
-        
+
+		</script>
+		<div id='head_main'>@for(line <- headLine){@Html(line)}</div>
+    </head>
+    <body>
+        <div id='body_main'>@for(line <- httpLine){@Html(line)}</div>
+        <form id="t_edit" method="post">
+        	@CSRF.formField
+        </form>
         <div class='contextMenu' id='myMenu'>
     		<ul>
+			<li id='edit'>Edit</li>
         		<li id='delete'>Close</li>
     		</ul>
 		</div>

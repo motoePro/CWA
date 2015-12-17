@@ -65,7 +65,7 @@ function checkFile() """),format.raw/*11.22*/("""{"""),format.raw/*11.23*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Fri Dec 11 12:00:15 JST 2015
+                    DATE: Thu Dec 17 13:31:28 JST 2015
                     SOURCE: /Users/woon/Documents/workspace/CWA/app/views/selectbg.scala.html
                     HASH: b3822f43026c5e3d4eebbf338bed66a0be99c1e6
                     MATRIX: 874->17|977->85|991->91|1067->146|1202->253|1231->254|1278->273|1307->274|1374->313|1403->314|1432->315|1482->337|1511->338|1571->370|1600->371|1668->411|1697->412|1725->413|1753->414|1970->596|1982->600|2014->610

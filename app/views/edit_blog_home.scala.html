@@ -1,0 +1,38 @@
+@(user: String, blog_title: Array[String])
+@import helper._
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>編集するブログの選択ポージ</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("/public","stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("/public","images/favicon.png")">
+        <script>
+        	function go_to_edit(page_name){
+        		//window.open('/','text_edit','width=720,height=480,location=0');
+				var form = document.getElementById('t_edit');
+           		form.setAttribute("action", "/edit_call/blog_data_read");
+				//form.setAttribute("target", "text_edit");
+				var page = document.createElement("input");
+				page.setAttribute("name", "page_name");
+				page.setAttribute("type", "hidden");
+				page.setAttribute("value", page_name);
+				form.appendChild(page);
+				form.submit();
+				form.removeChild(page);
+				form.setAttribute("action", "");
+				form.setAttribute("target", "");
+        	}
+        </script>
+    </head>
+    <body>
+        <h1>編集するブログを選択してください</h1>
+		@for(title <- blog_title){
+			<a href="javascript:void(0)" onclick="go_to_edit('@title')">@title</a>
+		}
+		<form id="t_edit" method="post">
+        	@CSRF.formField
+        </form>
+        <a href="/@user">ユーザページに戻る</a>
+    </body>
+</html>

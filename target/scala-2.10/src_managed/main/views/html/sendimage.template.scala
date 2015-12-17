@@ -51,7 +51,7 @@ Seq[Any](format.raw/*1.34*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Fri Dec 11 12:00:15 JST 2015
+                    DATE: Thu Dec 17 13:31:28 JST 2015
                     SOURCE: /Users/woon/Documents/workspace/CWA/app/views/sendimage.scala.html
                     HASH: 8bfe10261328dd705d188a62f4ce1c94d8e138af
                     MATRIX: 785->1|911->33|1000->87|1014->93|1080->138

@@ -1,0 +1,85 @@
+@(ID: String, text: String, url_params: Array[String])
+@import helper._
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>リンク指定</title>
+        <script src="@routes.Assets.at("/public","javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+        <script type="text/javascript">
+        $(function(){
+        	if(!window.opener || window.opener.closed){
+				window.alert('メインウィンドウがありません');
+			}else{
+				var obj = window.opener.parent.main.document.getElementById("@ID");
+				window.opener.parent.main.txtmvdestroy();
+				var result = "@text";
+				var url = new Array();
+				var url_start = new Array();
+				var cnt = 0;
+				var target,target_split;
+				var start_index,end_index,html,text;
+    			@for(param <- url_params){
+    				url[cnt] = "@param";
+    				target_split = url[cnt].split(" ");
+    				url_start[cnt] = parseInt(target_split[0]);
+    				var url_end = parseInt(target_split[1]);
+    				if(url_start[cnt] == 0 && url_end == 0){
+    					alert("hit");
+    					cnt--;
+    				}
+    				cnt++;
+    			}
+    			var index = new Array();
+    			var i,j,tmp,urls,idx;
+    			for(var b=0;b<cnt;b++){
+    				index[b]=b;
+    			}
+        		for(i=index.length-1;0<=i;i--){
+            		for(j=index.length-i-1;0<j;j--){
+            			//alert("if url[j-1]: "+url_start[j-1]+" < url[j]: "+url_start[j]);
+                		if(url_start[j-1] < url_start[j]){
+                    		urls = url_start[j-1];
+                    		idx = index[j-1];
+                    		tmp = url[j-1];
+                    		url_start[j-1] = url_start[j];
+                    		index[j-1] = index[j];
+                    		url[j-1] = url[j]
+                    		url_start[j] = urls;
+                    		index[j] = idx;
+                    		url[j] = tmp;
+                    		//alert("change");
+                		}
+           		 	}
+       		 	}
+       		 	//alert("index:["+index+"] url:["+url+"]");
+       		 	result = result.replace(/#BR#/g, "\n");
+       		 	//alert(url[1]);
+       		 	for(var i=0; i<cnt; i++){
+    				target = url[i];
+    				//alert(target);
+    				target_split = target.split(" ");
+    				start_index = target_split[0];
+    				end_index = target_split[1];
+    				html =  target_split[2];
+    				text = target_split[3];
+    				//alert("s_i: "+start_index+" e_i: "+end_index+" html: "+html+" text: "+text);
+    				var tag = result.substring(start_index,end_index);
+    				//alert("tag: "+tag+" text: "+text);
+    				if(result.substring(start_index,end_index) == target_split[3]){
+    					tag = "<a id='link0"+String(i)+"' href='"+ html +"'>"+result.substring(start_index,end_index)+"</a>";
+    				}
+    				result = result.substring(0,start_index)+tag+result.substring(end_index,result.length);
+    				//alert(result);
+    			}
+    			var result = result.replace(/[\n]/g, "<br>");
+    			//alert(result);
+				obj.innerHTML = result;
+				window.opener.parent.main.txtmv();
+				window.close();
+			}
+        })
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

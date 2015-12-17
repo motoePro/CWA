@@ -1,0 +1,8 @@
+@(htmlLine: Array[String])
+@import helper._
+@for(line <- htmlLine){
+	@Html(line)
+}
+<form id="post">
+	@CSRF.formField
+</form>

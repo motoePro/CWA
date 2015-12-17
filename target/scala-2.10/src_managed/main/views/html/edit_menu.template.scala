@@ -48,10 +48,11 @@ Seq[Any](format.raw/*1.49*/("""
         <script src=""""),_display_(Seq[Any](/*20.23*/routes/*20.29*/.Assets.at("/public","javascripts/jquery.contextmenu.r2.js"))),format.raw/*20.89*/("""" type="text/javascript"></script>
         
         <script type="text/javascript">
-        	function append_button_link(name,value)"""),format.raw/*23.49*/("""{"""),format.raw/*23.50*/("""
+		
+        	function append_button_link(name,value)"""),format.raw/*24.49*/("""{"""),format.raw/*24.50*/("""
         		var link = name;
         		var dir = value;
-        		if(link != "")"""),format.raw/*26.25*/("""{"""),format.raw/*26.26*/("""
+        		if(link != "")"""),format.raw/*27.25*/("""{"""),format.raw/*27.26*/("""
         			var body = parent.main.document.getElementById('body_main');
         			var tag = document.createElement('div');
 					tag.id = ElementID;
@@ -72,13 +73,13 @@ Seq[Any](format.raw/*1.49*/("""
 					parent.main.context();
 					
 					//parent.menu.document.getElementById('title01').innerHTML = "";
-        		"""),format.raw/*47.11*/("""}"""),format.raw/*47.12*/("""
-        	"""),format.raw/*48.10*/("""}"""),format.raw/*48.11*/("""
+        		"""),format.raw/*48.11*/("""}"""),format.raw/*48.12*/("""
+        	"""),format.raw/*49.10*/("""}"""),format.raw/*49.11*/("""
         
-        	function append_text_link(name,value)"""),format.raw/*50.47*/("""{"""),format.raw/*50.48*/("""
+        	function append_text_link(name,value)"""),format.raw/*51.47*/("""{"""),format.raw/*51.48*/("""
         		var link = name;
         		var dir = value;
-        		if(link != "")"""),format.raw/*53.25*/("""{"""),format.raw/*53.26*/("""
+        		if(link != "")"""),format.raw/*54.25*/("""{"""),format.raw/*54.26*/("""
         			var body = parent.main.document.getElementById('body_main');
         			var tag = document.createElement('div');
 					tag.id = ElementID;
@@ -98,45 +99,44 @@ Seq[Any](format.raw/*1.49*/("""
 					parent.main.context();
 					
 					parent.menu.document.getElementById('title01').innerHTML = "";
-        		"""),format.raw/*73.11*/("""}"""),format.raw/*73.12*/("""
+        		"""),format.raw/*74.11*/("""}"""),format.raw/*74.12*/("""
         		
-        	"""),format.raw/*75.10*/("""}"""),format.raw/*75.11*/("""
-        	
-        	$(function()"""),format.raw/*77.22*/("""{"""),format.raw/*77.23*/("""
-        		var name = """"),_display_(Seq[Any](/*78.24*/name)),format.raw/*78.28*/("""";
-        		var value = """"),_display_(Seq[Any](/*79.25*/value)),format.raw/*79.30*/("""";
-        		var type = """"),_display_(Seq[Any](/*80.24*/ele_type)),format.raw/*80.32*/("""";
-        		if(name!="" && value!="")"""),format.raw/*81.36*/("""{"""),format.raw/*81.37*/("""
-        			if(type == "button")"""),format.raw/*82.32*/("""{"""),format.raw/*82.33*/("""
+        	"""),format.raw/*76.10*/("""}"""),format.raw/*76.11*/("""
+        	window.onload = function()"""),format.raw/*77.36*/("""{"""),format.raw/*77.37*/("""
+			var user_name = parent.edit_head.document.getElementById('userName');
+			var user_link = document.getElementById("user_link");
+			user_link.value = "リンク("+user_name.innerHTML+"さんが作成したページ)";
+		"""),format.raw/*81.3*/("""}"""),format.raw/*81.4*/("""
+        	$(function()"""),format.raw/*82.22*/("""{"""),format.raw/*82.23*/("""
+        		var name = """"),_display_(Seq[Any](/*83.24*/name)),format.raw/*83.28*/("""";
+        		var value = """"),_display_(Seq[Any](/*84.25*/value)),format.raw/*84.30*/("""";
+        		var type = """"),_display_(Seq[Any](/*85.24*/ele_type)),format.raw/*85.32*/("""";
+        		if(name!="" && value!="")"""),format.raw/*86.36*/("""{"""),format.raw/*86.37*/("""
+        			if(type == "button")"""),format.raw/*87.32*/("""{"""),format.raw/*87.33*/("""
       					append_button_link(name,value);
-      				"""),format.raw/*84.11*/("""}"""),format.raw/*84.12*/("""else if(type == "text")"""),format.raw/*84.35*/("""{"""),format.raw/*84.36*/("""
+      				"""),format.raw/*89.11*/("""}"""),format.raw/*89.12*/("""else if(type == "text")"""),format.raw/*89.35*/("""{"""),format.raw/*89.36*/("""
       					append_text_link(name,value);
-      				"""),format.raw/*86.11*/("""}"""),format.raw/*86.12*/("""
-        		"""),format.raw/*87.11*/("""}"""),format.raw/*87.12*/("""
- 			"""),format.raw/*88.5*/("""}"""),format.raw/*88.6*/(""")
+      				"""),format.raw/*91.11*/("""}"""),format.raw/*91.12*/("""
+        		"""),format.raw/*92.11*/("""}"""),format.raw/*92.12*/("""
+ 			"""),format.raw/*93.5*/("""}"""),format.raw/*93.6*/(""")
         </script>
     </head>
     <body>
         <div id="menu" class="demo1">
-			<div><button onclick="addBtn()">ボタン</button></div>
 			<div><button onclick="addTxt()">テキスト</button></div>
-			<div><button onclick="addTxb()">テキストボックス</button></div>
-			
-			<div><button onclick="addPct()">画像</button></div>
-	
-			<div><button onclick="addTwt()">Twitter</button></div>
-			<div><button onclick="addLine()">Line</button></div>
-			<div><button onclick="addFace()">Facebook</button></div>
 			<div><button onclick="Window_YouTube()">YouTube</button></div>
 			<br>
 			<div>
+				<span>画像</span>
 				<form id="FileUpload" name="upload" method="post" action="/upload" target="upload-image" onChange="sendImage()" enctype="multipart/form-data">
-    				"""),_display_(Seq[Any](/*106.10*/CSRF/*106.14*/.formField)),format.raw/*106.24*/("""
+    				"""),_display_(Seq[Any](/*104.10*/CSRF/*104.14*/.formField)),format.raw/*104.24*/("""
     				<input type="file" name="image"/>
     				<input type="submit" id="submit" name="submit" style="display:none;" value="送信"/>
     				<input type="reset" id="reset" name="reset" style="display:none;"/>
 				</form>
-				<iframe id="FileUploadIframe" name="upload-image" ></iframe>
+				<iframe id="FileUploadIframe" name="upload-image" style="display:none;"></iframe>
+
+
 			</div>
 			
 			<input type="button" value="背景画像設定" onClick="toSelectBg()" />
@@ -144,7 +144,7 @@ Seq[Any](format.raw/*1.49*/("""
 			<input type="button" value="背景リセット" onClick="resetBg()"/>
 			
 			<br>
-			<input type="button" value="リンク" onclick="window.open('/edit_call/link','ucreatepage_link','width=640,height=480,location=0');return false;">
+			<input type="button" id="user_link" value="リンク(あなたが作成したページ)" onclick="window.open('/edit_call/link','ucreatepage_link','width=640,height=480,location=0');return false;">
 			
 			<br>
 			<input type="button" value="外部リンク" onclick="window.open('/edit_call/addlink','ucreatepage_addlink','width=640,height=480,location=0');return false;">
@@ -160,6 +160,8 @@ Seq[Any](format.raw/*1.49*/("""
 				"""),format.raw/*132.5*/("""}"""),format.raw/*132.6*/("""
 				
 			</script>
+			<div><button onclick="comment()">コメント</button></div>
+			<div><button onclick="blog()">ブログ</button></div>
     </body>
 </html>
 """))}
@@ -174,11 +176,11 @@ Seq[Any](format.raw/*1.49*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Fri Dec 11 12:00:15 JST 2015
+                    DATE: Thu Dec 17 14:23:31 JST 2015
                     SOURCE: /Users/woon/Documents/workspace/CWA/app/views/edit_menu.scala.html
-                    HASH: 08f12ba99028bc5cfd3a103d67dbc3c182235f79
-                    MATRIX: 792->1|949->48|977->67|1128->183|1142->189|1208->233|1300->289|1315->295|1382->339|1479->400|1494->406|1559->448|1837->690|1852->696|1929->751|2022->808|2037->814|2111->866|2204->923|2219->929|2289->977|2391->1043|2406->1049|2488->1109|2648->1241|2677->1242|2784->1321|2813->1322|3530->2011|3559->2012|3597->2022|3626->2023|3710->2079|3739->2080|3846->2159|3875->2160|4500->2757|4529->2758|4578->2779|4607->2780|4667->2812|4696->2813|4756->2837|4782->2841|4845->2868|4872->2873|4934->2899|4964->2907|5030->2945|5059->2946|5119->2978|5148->2979|5230->3033|5259->3034|5310->3057|5339->3058|5419->3110|5448->3111|5487->3122|5516->3123|5548->3128|5576->3129|6334->3850|6348->3854|6381->3864|7219->4673|7249->4674|7353->4750|7382->4751|7464->4804|7494->4805|7659->4942|7688->4943
-                    LINES: 26->1|30->1|32->4|37->9|37->9|37->9|38->10|38->10|38->10|39->11|39->11|39->11|44->16|44->16|44->16|45->17|45->17|45->17|46->18|46->18|46->18|48->20|48->20|48->20|51->23|51->23|54->26|54->26|75->47|75->47|76->48|76->48|78->50|78->50|81->53|81->53|101->73|101->73|103->75|103->75|105->77|105->77|106->78|106->78|107->79|107->79|108->80|108->80|109->81|109->81|110->82|110->82|112->84|112->84|112->84|112->84|114->86|114->86|115->87|115->87|116->88|116->88|134->106|134->106|134->106|153->125|153->125|156->128|156->128|158->130|158->130|160->132|160->132
+                    HASH: 6209e5d985c3db087a2ea8c357c0f0a23e38b27c
+                    MATRIX: 792->1|949->48|977->67|1128->183|1142->189|1208->233|1300->289|1315->295|1382->339|1479->400|1494->406|1559->448|1837->690|1852->696|1929->751|2022->808|2037->814|2111->866|2204->923|2219->929|2289->977|2391->1043|2406->1049|2488->1109|2651->1244|2680->1245|2787->1324|2816->1325|3533->2014|3562->2015|3600->2025|3629->2026|3713->2082|3742->2083|3849->2162|3878->2163|4503->2760|4532->2761|4581->2782|4610->2783|4674->2819|4703->2820|4926->3016|4954->3017|5004->3039|5033->3040|5093->3064|5119->3068|5182->3095|5209->3100|5271->3126|5301->3134|5367->3172|5396->3173|5456->3205|5485->3206|5567->3260|5596->3261|5647->3284|5676->3285|5756->3337|5785->3338|5824->3349|5853->3350|5885->3355|5913->3356|6345->3751|6359->3755|6392->3765|7281->4625|7311->4626|7415->4702|7444->4703|7526->4756|7556->4757|7721->4894|7750->4895
+                    LINES: 26->1|30->1|32->4|37->9|37->9|37->9|38->10|38->10|38->10|39->11|39->11|39->11|44->16|44->16|44->16|45->17|45->17|45->17|46->18|46->18|46->18|48->20|48->20|48->20|52->24|52->24|55->27|55->27|76->48|76->48|77->49|77->49|79->51|79->51|82->54|82->54|102->74|102->74|104->76|104->76|105->77|105->77|109->81|109->81|110->82|110->82|111->83|111->83|112->84|112->84|113->85|113->85|114->86|114->86|115->87|115->87|117->89|117->89|117->89|117->89|119->91|119->91|120->92|120->92|121->93|121->93|132->104|132->104|132->104|153->125|153->125|156->128|156->128|158->130|158->130|160->132|160->132
                     -- GENERATED --
                 */
             

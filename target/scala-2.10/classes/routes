@@ -3,11 +3,12 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
+GET     /                           	controllers.Application.index()
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
-GET     /index                      controllers.Application.index()
+GET     /assets/*file               	controllers.Assets.at(path="/public", file)
+GET     /index                      	controllers.Application.index()
+GET	/cwa/:user_name/:file_name	controllers.Application.view(user_name: String, file_name: String)
 
 #編集ページ関係
 GET     /edit_call                  	controllers.Application.call()
@@ -15,30 +16,38 @@ GET     /edit_menu                  	controllers.Application.edit_menu()
 GET     /edit_page                  	controllers.Application.edit_page()
 GET     /edit_head/target/:target_name	controllers.Application.edit_head(target_name: String)
 GET		/edit_call/call_dicition_name	controllers.Application.dicition_name()
-POST  	/edit_call/new		  			controllers.Application.new_page()
-POST  	/edit_call/save					controllers.Application.save()
-GET 	/edit_call/change				controllers.Application.change()
+POST  	/edit_call/new		  	controllers.Application.new_page()
+POST  	/edit_call/save			controllers.Application.save()
+GET 	/edit_call/change		controllers.Application.change()
 GET 	/edit_call/render_file/:name	controllers.Application.render_file(name: String)
-GET 	/edit_call/link					controllers.Application.link()
-POST	/edit_call/choose_link			controllers.Application.choose_link()
 
 #背景画像指定
 GET		/edit_call/selectbg				controllers.Application.selectBg()
 POST	/edit_call/setbg				controllers.Application.setBg()
 
 #リンク
-GET 	/edit_call/addlink				controllers.Application.addlink()
-POST	/edit_call/put_link				controllers.Application.put_link()
+POST	/edit_call/blog_data_read	controllers.Application.blog_data_read()
+POST	/edit_call/edit_blog_edit	controllers.Application.blog_data_edit()
+POST	/edit_call/data_add		controllers.Application.data_add()
+GET		/edit_blog			controllers.Application.edit_blog()
+GET 	/edit_call/link			controllers.Application.link()
+POST	/edit_call/choose_link		controllers.Application.choose_link()
+GET 	/edit_call/addlink		controllers.Application.addlink()
+POST	/edit_call/put_link		controllers.Application.put_link()
+POST	/edit_call/edit_text		controllers.Application.edit_text()
+POST	/edit_call/edit_text_save	controllers.Application.edit_text_save()
+
 
 
 #ログイン関連
-GET     /login                      controllers.Application.login()
-POST    /authenticate               controllers.Application.authenticate()
-GET     /logout                     controllers.Application.logout()
+GET     /login                      	controllers.Application.login()
+POST    /authenticate               	controllers.Application.authenticate()
+GET     /logout                     	controllers.Application.logout()
 
-GET     /register                   controllers.Application.register()
-POST    /create                     controllers.Application.create()
-GET     /:username                  controllers.Application.userPage(username: String)
+GET     /register                   	controllers.Application.register()
+POST    /create                     	controllers.Application.create()
+GET     /:username                  	controllers.Application.userPage(username: String)
+
 
 
 ##画像関連

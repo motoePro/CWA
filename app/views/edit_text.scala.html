@@ -1,0 +1,47 @@
+@(id: String)
+@import helper._
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>テキストの編集</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("/public","stylesheets/jquery-ui.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("/public","images/favicon.png")">
+        <script src="@routes.Assets.at("/public","javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("/public","javascripts/jquery.contextmenu.r2.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("/public","javascripts/editor.js")" type="text/javascript"></script>
+        <script type="text/javascript">
+        	var object_id;
+        	window.onload = function(){
+        		window.opener.parent.main.txtmvdestroy();
+        		object_id = "@id";
+        		var doc = document.getElementsByTagName("iframe")[0].contentWindow.document;
+        		var obj = window.opener.parent.main.document.getElementById(object_id);
+        		doc.body.innerHTML = obj.innerHTML;
+        		window.opener.parent.main.txtmv();
+        		var ED = new Editor('edit');
+			}
+			
+			function save(){
+				window.opener.parent.main.txtmvdestroy();
+				var doc = document.getElementsByTagName("iframe")[0].contentWindow.document;
+				var obj = window.opener.parent.main.document.getElementById(object_id);
+				obj.innerHTML = doc.body.innerHTML;
+				window.opener.parent.main.txtmv();
+				window.close();
+			}
+        </script>
+    </head>
+    <body>
+    	<div id="menuroot"></div>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+		<form id="link_form" name="link_form" action="/edit_call/edit_text_save" method="POST">
+			@CSRF.formField
+			<iframe id="edit" width="100px" height="100px" scrolling="on"></iframe>
+			<input type="button" onclick="save()" value="送信">
+		</form>
+    </body>
+</html>

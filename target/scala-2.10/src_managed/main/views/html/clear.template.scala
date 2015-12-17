@@ -42,7 +42,7 @@ Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
 }
                 /*
                     -- GENERATED --
-                    DATE: Fri Dec 11 12:00:15 JST 2015
+                    DATE: Thu Dec 17 13:31:28 JST 2015
                     SOURCE: /Users/woon/Documents/workspace/CWA/app/views/clear.scala.html
                     HASH: 6597d9adcd4b41105ae7260d732f24a752e6db3c
                     MATRIX: 855->0

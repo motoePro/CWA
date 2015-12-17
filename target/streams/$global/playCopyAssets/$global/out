@@ -1,6 +1,24 @@
 [0m[[0mdebug[0m] [0mCopy play resource mappings: [0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/images/backcolor.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/images/backcolor.png)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/images/bold.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/images/bold.png)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/images/cancel.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/images/cancel.png)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/images/exec.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/images/exec.png)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/images/favicon.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/images/favicon.png)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/images/forecolor.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/images/forecolor.png)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/images/indent.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/images/indent.png)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/images/italic.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/images/italic.png)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/images/justifycenter.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/images/justifycenter.png)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/images/justifyleft.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/images/justifyleft.png)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/images/justifyright.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/images/justifyright.png)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/images/link.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/images/link.png)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/images/orderlist.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/images/orderlist.png)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/images/outdent.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/images/outdent.png)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/images/redo.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/images/redo.png)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/images/senshu-u.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/images/senshu-u.png)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/images/underline.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/images/underline.png)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/images/undo.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/images/undo.png)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/images/unorderlist.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/images/unorderlist.png)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/javascripts/editor.js,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/javascripts/editor.js)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/javascripts/jquery-1.9.0.min.js,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/javascripts/jquery-1.9.0.min.js)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/javascripts/jquery-ui.min.js,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/javascripts/jquery-ui.min.js)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/javascripts/jquery.contextmenu.r2.js,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/javascripts/jquery.contextmenu.r2.js)[0m

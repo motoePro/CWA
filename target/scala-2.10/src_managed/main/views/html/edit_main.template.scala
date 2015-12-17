@@ -39,7 +39,7 @@ Seq[Any](format.raw/*1.32*/("""
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>    
     </head>
-    <frameset rows="120px,*">
+    <frameset rows="145px,*">
   		<frame name="edit_head" src="edit_head/target/null">
   		<frameset cols="180px,*">
   			<frame name="menu" src="edit_menu">
@@ -59,9 +59,9 @@ Seq[Any](format.raw/*1.32*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Fri Dec 11 12:00:15 JST 2015
+                    DATE: Thu Dec 17 13:31:28 JST 2015
                     SOURCE: /Users/woon/Documents/workspace/CWA/app/views/edit_main.scala.html
-                    HASH: c9821a8330a18c5f847b96158981476f7f016aa2
+                    HASH: 5fb85781a78fe3fedcebbf0a984dc8567b672e4e
                     MATRIX: 783->1|907->31|995->84|1021->89|1118->151|1132->157|1198->201|1294->262|1308->268|1372->310
                     LINES: 26->1|29->1|35->7|35->7|36->8|36->8|36->8|37->9|37->9|37->9
                     -- GENERATED --

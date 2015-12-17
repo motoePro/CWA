@@ -18,8 +18,23 @@
         <script src="@routes.Assets.at("/public","javascripts/Object_in.js")" type="text/javascript"></script>
         <script src="@routes.Assets.at("/public","javascripts/jquery.contextmenu.r2.js")" type="text/javascript"></script>
         <script type="text/javascript">
+        
+        
+        window.onload = $(function(){
+	var context = parent.main.document.getElementsByClassName("context");
+	var context_length = context.length;
+	for(var i = 0; i < context_length; i++){
+		if(ElementID < context[i].id){
+			ElementID = context[i].id;
+		}
+	}
+	ElementID++;
+})
+
+        
  		$(function(){
  			parent.edit_head.location.href = "/edit_head/target/@edit_page";
+ 			parent.menu.target = "@edit_page";
 			context();
 			txtmv();
  			btnmv();
@@ -31,9 +46,6 @@
 			$('.pchan').resizable({stop: fix(), handles: "all"});
 			//$('.pchan').resizable({stop: fix(), handles: "all"}).parent(".ui-wrapper").draggable();
 		}
-
-
-
 		function mv() {
 			$('.mv').draggable();
 		}
@@ -68,9 +80,13 @@
         		{
             		bindings: {
             		'delete': function(t) {
-                		var body = parent.main.document.getElementById('body_main');
-                		console.log(body.childNodes[t.id]);
-                		body.removeChild(body.childNodes[t.id]);
+                		var body = parent.main.document.getElementById('container');
+                		var elm = document.getElementById(t.id);
+                		console.log(elm);
+                		body.removeChild(elm);
+                		
+                		//console.log(body.childNodes[t.id]);
+                		//body.removeChild(body.childNodes[t.id]);
             		}
         		}
     		});
@@ -82,16 +98,9 @@
     <body style="width:100%;height:100%;">
         <div id='body_main' style="width:100%;height:100%;">
         	@for(line <- httpLine){@Html(line)}
-        	@if(httpLine==null) {
-        		<p>右上の「新規作成」「ページの変更」ボタンを押して、編集するページを選択してください。</p>
-        	}
+        	@if("@httpLine[0]"=="") {<p>右上の「新規作成」「ページの変更」ボタンを押して、編集するページを選択してください。</p>}
+        	<script>console.log(if("@httpLine"==""));</script>
         </div>
-
-		</script>
-		<div id='head_main'>@for(line <- headLine){@Html(line)}</div>
-    </head>
-    <body>
-        <div id='body_main'>@for(line <- httpLine){@Html(line)}</div>
         <form id="t_edit" method="post">
         	@CSRF.formField
         </form>

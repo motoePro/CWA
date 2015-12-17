@@ -20,6 +20,7 @@ POST  	/edit_call/new		  	controllers.Application.new_page()
 POST  	/edit_call/save			controllers.Application.save()
 GET 	/edit_call/change		controllers.Application.change()
 GET 	/edit_call/render_file/:name	controllers.Application.render_file(name: String)
+GET		/edit_call/delete_page/:target			controllers.Application.deletePage(target: String)
 
 #背景画像指定
 GET		/edit_call/selectbg				controllers.Application.selectBg()

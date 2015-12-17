@@ -179,8 +179,13 @@ public class Application extends Controller {
 	public static Result userPage(String name) {
 		//System.out.println(name.equals(session("username")));
 		if(name.equals(session("username"))) {
+			File[] pages = Application.getPages(name);
+			String[] p = new String[pages.length];
+			for(int i=0; i < p.length; i++) {
+				p[i] = pages[i].getName();
+			}
 			//System.out.println("seikou!:)");
-			return ok(user_page.render(name));
+			return ok(user_page.render(name,p));
 		} else {
 			//System.out.println("name:        "+name);
 			//System.out.println("sessionname: "+session("username"));
@@ -234,7 +239,7 @@ public class Application extends Controller {
 			pw.println("</head>");
 			pw.println("<body　style=\"width:100%;height:100%;\">");
 			pw.println("<div id="+'"'+"container"+'"'+" style="+'"'+"width:100%;height:100%;"+'"'+">");
-			pw.println("<h1 class=\"pchan\">"+title+"</h1>");
+			pw.println("<h1 id=\"title \"class=\"pchan context\">"+title+"</h1>");
 			pw.println("</div>");
 			pw.println("</body>");
 			pw.println("</html>");
@@ -1028,5 +1033,23 @@ public class Application extends Controller {
 		}
 		return ok(edit_blog_home.render(user,optFileNames));
 	}
+	
+	//ページの削除
+	public static Result deletePage(String target) {
+		String dir = System.getProperty("user.dir");
+		String name = session("username");
+		File file = new File(dir+"/user/"+name+"/"+target+".html");
+		if(file.exists()) {
+			file.delete();
+			String[] dm = new String[1];
+			dm[0] = "";
+			return ok(edit_page.render("edit",dm,dm,"null"));
+		} else {
+			System.out.println("そのページは存在しません。");
+			return ok("処理中にエラーが発生しました。");
+		}
+		
+	}
+	
 
 }

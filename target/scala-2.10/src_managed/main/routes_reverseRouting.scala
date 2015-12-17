@@ -1,6 +1,6 @@
 // @SOURCE:/Users/woon/Documents/workspace/CWA/conf/routes
-// @HASH:0fb9e78b3c84645f20765e117848eb24ca624dd6
-// @DATE:Thu Dec 17 18:21:28 JST 2015
+// @HASH:e1326c9b979963aac562f61a7d7ce0b1a51bd896
+// @DATE:Fri Dec 18 00:28:38 JST 2015
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -13,14 +13,15 @@ import play.libs.F
 import Router.queryString
 
 
-// @LINE:56
-// @LINE:54
+// @LINE:57
+// @LINE:55
+// @LINE:50
 // @LINE:49
 // @LINE:48
-// @LINE:47
+// @LINE:46
 // @LINE:45
 // @LINE:44
-// @LINE:43
+// @LINE:39
 // @LINE:38
 // @LINE:37
 // @LINE:36
@@ -30,9 +31,9 @@ import Router.queryString
 // @LINE:32
 // @LINE:31
 // @LINE:30
-// @LINE:29
+// @LINE:27
 // @LINE:26
-// @LINE:25
+// @LINE:23
 // @LINE:22
 // @LINE:21
 // @LINE:20
@@ -48,19 +49,19 @@ import Router.queryString
 // @LINE:6
 package controllers {
 
-// @LINE:54
+// @LINE:55
 // @LINE:9
 class ReverseAssets {
     
 
-// @LINE:54
+// @LINE:55
 // @LINE:9
 def at(path:String, file:String): Call = {
    (path: @unchecked, file: @unchecked) match {
 // @LINE:9
 case (path, file) if path == "/public" => Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[PathBindable[String]].unbind("file", file))
                                                         
-// @LINE:54
+// @LINE:55
 case (path, file) if path == "/user" => Call("GET", _prefix + { _defaultPrefix } + "user/" + implicitly[PathBindable[String]].unbind("file", file))
                                                         
    }
@@ -70,13 +71,14 @@ case (path, file) if path == "/user" => Call("GET", _prefix + { _defaultPrefix }
 }
                           
 
-// @LINE:56
+// @LINE:57
+// @LINE:50
 // @LINE:49
 // @LINE:48
-// @LINE:47
+// @LINE:46
 // @LINE:45
 // @LINE:44
-// @LINE:43
+// @LINE:39
 // @LINE:38
 // @LINE:37
 // @LINE:36
@@ -86,9 +88,9 @@ case (path, file) if path == "/user" => Call("GET", _prefix + { _defaultPrefix }
 // @LINE:32
 // @LINE:31
 // @LINE:30
-// @LINE:29
+// @LINE:27
 // @LINE:26
-// @LINE:25
+// @LINE:23
 // @LINE:22
 // @LINE:21
 // @LINE:20
@@ -104,13 +106,13 @@ case (path, file) if path == "/user" => Call("GET", _prefix + { _defaultPrefix }
 class ReverseApplication {
     
 
-// @LINE:25
+// @LINE:26
 def selectBg(): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "edit_call/selectbg")
 }
                                                 
 
-// @LINE:34
+// @LINE:35
 def choose_link(): Call = {
    Call("POST", _prefix + { _defaultPrefix } + "edit_call/choose_link")
 }
@@ -128,13 +130,13 @@ def edit_head(target_name:String): Call = {
 }
                                                 
 
-// @LINE:56
+// @LINE:57
 def upload(): Call = {
    Call("POST", _prefix + { _defaultPrefix } + "upload")
 }
                                                 
 
-// @LINE:49
+// @LINE:50
 def userPage(username:String): Call = {
    Call("GET", _prefix + { _defaultPrefix } + implicitly[PathBindable[String]].unbind("username", dynamicString(username)))
 }
@@ -146,13 +148,13 @@ def edit_page(): Call = {
 }
                                                 
 
-// @LINE:48
+// @LINE:49
 def create(): Call = {
    Call("POST", _prefix + { _defaultPrefix } + "create")
 }
                                                 
 
-// @LINE:36
+// @LINE:37
 def put_link(): Call = {
    Call("POST", _prefix + { _defaultPrefix } + "edit_call/put_link")
 }
@@ -176,43 +178,43 @@ def dicition_name(): Call = {
 }
                                                 
 
-// @LINE:26
+// @LINE:27
 def setBg(): Call = {
    Call("POST", _prefix + { _defaultPrefix } + "edit_call/setbg")
 }
                                                 
 
-// @LINE:30
+// @LINE:31
 def blog_data_edit(): Call = {
    Call("POST", _prefix + { _defaultPrefix } + "edit_call/edit_blog_edit")
 }
                                                 
 
-// @LINE:31
+// @LINE:32
 def data_add(): Call = {
    Call("POST", _prefix + { _defaultPrefix } + "edit_call/data_add")
 }
                                                 
 
-// @LINE:29
+// @LINE:30
 def blog_data_read(): Call = {
    Call("POST", _prefix + { _defaultPrefix } + "edit_call/blog_data_read")
 }
                                                 
 
-// @LINE:45
+// @LINE:46
 def logout(): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "logout")
 }
                                                 
 
-// @LINE:47
+// @LINE:48
 def register(): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "register")
 }
                                                 
 
-// @LINE:33
+// @LINE:34
 def link(): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "edit_call/link")
 }
@@ -230,19 +232,19 @@ def save(): Call = {
 }
                                                 
 
-// @LINE:35
+// @LINE:36
 def addlink(): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "edit_call/addlink")
 }
                                                 
 
-// @LINE:37
+// @LINE:38
 def edit_text(): Call = {
    Call("POST", _prefix + { _defaultPrefix } + "edit_call/edit_text")
 }
                                                 
 
-// @LINE:44
+// @LINE:45
 def authenticate(): Call = {
    Call("POST", _prefix + { _defaultPrefix } + "authenticate")
 }
@@ -262,6 +264,12 @@ case () if true => Call("GET", _prefix + { _defaultPrefix } + "index")
 }
                                                 
 
+// @LINE:23
+def deletePage(target:String): Call = {
+   Call("GET", _prefix + { _defaultPrefix } + "edit_call/delete_page/" + implicitly[PathBindable[String]].unbind("target", dynamicString(target)))
+}
+                                                
+
 // @LINE:11
 def view(user_name:String, file_name:String): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "cwa/" + implicitly[PathBindable[String]].unbind("user_name", dynamicString(user_name)) + "/" + implicitly[PathBindable[String]].unbind("file_name", dynamicString(file_name)))
@@ -274,19 +282,19 @@ def new_page(): Call = {
 }
                                                 
 
-// @LINE:32
+// @LINE:33
 def edit_blog(): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "edit_blog")
 }
                                                 
 
-// @LINE:38
+// @LINE:39
 def edit_text_save(): Call = {
    Call("POST", _prefix + { _defaultPrefix } + "edit_call/edit_text_save")
 }
                                                 
 
-// @LINE:43
+// @LINE:44
 def login(): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "login")
 }
@@ -298,14 +306,15 @@ def login(): Call = {
                   
 
 
-// @LINE:56
-// @LINE:54
+// @LINE:57
+// @LINE:55
+// @LINE:50
 // @LINE:49
 // @LINE:48
-// @LINE:47
+// @LINE:46
 // @LINE:45
 // @LINE:44
-// @LINE:43
+// @LINE:39
 // @LINE:38
 // @LINE:37
 // @LINE:36
@@ -315,9 +324,9 @@ def login(): Call = {
 // @LINE:32
 // @LINE:31
 // @LINE:30
-// @LINE:29
+// @LINE:27
 // @LINE:26
-// @LINE:25
+// @LINE:23
 // @LINE:22
 // @LINE:21
 // @LINE:20
@@ -333,12 +342,12 @@ def login(): Call = {
 // @LINE:6
 package controllers.javascript {
 
-// @LINE:54
+// @LINE:55
 // @LINE:9
 class ReverseAssets {
     
 
-// @LINE:54
+// @LINE:55
 // @LINE:9
 def at : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Assets.at",
@@ -358,13 +367,14 @@ def at : JavascriptReverseRoute = JavascriptReverseRoute(
 }
               
 
-// @LINE:56
+// @LINE:57
+// @LINE:50
 // @LINE:49
 // @LINE:48
-// @LINE:47
+// @LINE:46
 // @LINE:45
 // @LINE:44
-// @LINE:43
+// @LINE:39
 // @LINE:38
 // @LINE:37
 // @LINE:36
@@ -374,9 +384,9 @@ def at : JavascriptReverseRoute = JavascriptReverseRoute(
 // @LINE:32
 // @LINE:31
 // @LINE:30
-// @LINE:29
+// @LINE:27
 // @LINE:26
-// @LINE:25
+// @LINE:23
 // @LINE:22
 // @LINE:21
 // @LINE:20
@@ -392,7 +402,7 @@ def at : JavascriptReverseRoute = JavascriptReverseRoute(
 class ReverseApplication {
     
 
-// @LINE:25
+// @LINE:26
 def selectBg : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.selectBg",
    """
@@ -403,7 +413,7 @@ def selectBg : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:34
+// @LINE:35
 def choose_link : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.choose_link",
    """
@@ -436,7 +446,7 @@ def edit_head : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:56
+// @LINE:57
 def upload : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.upload",
    """
@@ -447,7 +457,7 @@ def upload : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:49
+// @LINE:50
 def userPage : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.userPage",
    """
@@ -469,7 +479,7 @@ def edit_page : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:48
+// @LINE:49
 def create : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.create",
    """
@@ -480,7 +490,7 @@ def create : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:36
+// @LINE:37
 def put_link : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.put_link",
    """
@@ -524,7 +534,7 @@ def dicition_name : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:26
+// @LINE:27
 def setBg : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.setBg",
    """
@@ -535,7 +545,7 @@ def setBg : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:30
+// @LINE:31
 def blog_data_edit : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.blog_data_edit",
    """
@@ -546,7 +556,7 @@ def blog_data_edit : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:31
+// @LINE:32
 def data_add : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.data_add",
    """
@@ -557,7 +567,7 @@ def data_add : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:29
+// @LINE:30
 def blog_data_read : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.blog_data_read",
    """
@@ -568,7 +578,7 @@ def blog_data_read : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:45
+// @LINE:46
 def logout : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.logout",
    """
@@ -579,7 +589,7 @@ def logout : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:47
+// @LINE:48
 def register : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.register",
    """
@@ -590,7 +600,7 @@ def register : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:33
+// @LINE:34
 def link : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.link",
    """
@@ -623,7 +633,7 @@ def save : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:35
+// @LINE:36
 def addlink : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.addlink",
    """
@@ -634,7 +644,7 @@ def addlink : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:37
+// @LINE:38
 def edit_text : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.edit_text",
    """
@@ -645,7 +655,7 @@ def edit_text : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:44
+// @LINE:45
 def authenticate : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.authenticate",
    """
@@ -673,6 +683,17 @@ def index : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
+// @LINE:23
+def deletePage : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.Application.deletePage",
+   """
+      function(target) {
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "edit_call/delete_page/" + (""" + implicitly[PathBindable[String]].javascriptUnbind + """)("target", encodeURIComponent(target))})
+      }
+   """
+)
+                        
+
 // @LINE:11
 def view : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.view",
@@ -695,7 +716,7 @@ def new_page : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:32
+// @LINE:33
 def edit_blog : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.edit_blog",
    """
@@ -706,7 +727,7 @@ def edit_blog : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:38
+// @LINE:39
 def edit_text_save : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.edit_text_save",
    """
@@ -717,7 +738,7 @@ def edit_text_save : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:43
+// @LINE:44
 def login : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.login",
    """
@@ -734,14 +755,15 @@ def login : JavascriptReverseRoute = JavascriptReverseRoute(
         
 
 
-// @LINE:56
-// @LINE:54
+// @LINE:57
+// @LINE:55
+// @LINE:50
 // @LINE:49
 // @LINE:48
-// @LINE:47
+// @LINE:46
 // @LINE:45
 // @LINE:44
-// @LINE:43
+// @LINE:39
 // @LINE:38
 // @LINE:37
 // @LINE:36
@@ -751,9 +773,9 @@ def login : JavascriptReverseRoute = JavascriptReverseRoute(
 // @LINE:32
 // @LINE:31
 // @LINE:30
-// @LINE:29
+// @LINE:27
 // @LINE:26
-// @LINE:25
+// @LINE:23
 // @LINE:22
 // @LINE:21
 // @LINE:20
@@ -770,7 +792,7 @@ def login : JavascriptReverseRoute = JavascriptReverseRoute(
 package controllers.ref {
 
 
-// @LINE:54
+// @LINE:55
 // @LINE:9
 class ReverseAssets {
     
@@ -784,13 +806,14 @@ def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.
 }
                           
 
-// @LINE:56
+// @LINE:57
+// @LINE:50
 // @LINE:49
 // @LINE:48
-// @LINE:47
+// @LINE:46
 // @LINE:45
 // @LINE:44
-// @LINE:43
+// @LINE:39
 // @LINE:38
 // @LINE:37
 // @LINE:36
@@ -800,9 +823,9 @@ def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.
 // @LINE:32
 // @LINE:31
 // @LINE:30
-// @LINE:29
+// @LINE:27
 // @LINE:26
-// @LINE:25
+// @LINE:23
 // @LINE:22
 // @LINE:21
 // @LINE:20
@@ -818,13 +841,13 @@ def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.
 class ReverseApplication {
     
 
-// @LINE:25
+// @LINE:26
 def selectBg(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.selectBg(), HandlerDef(this, "controllers.Application", "selectBg", Seq(), "GET", """背景画像指定""", _prefix + """edit_call/selectbg""")
 )
                       
 
-// @LINE:34
+// @LINE:35
 def choose_link(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.choose_link(), HandlerDef(this, "controllers.Application", "choose_link", Seq(), "POST", """""", _prefix + """edit_call/choose_link""")
 )
@@ -842,13 +865,13 @@ def edit_head(target_name:String): play.api.mvc.HandlerRef[_] = new play.api.mvc
 )
                       
 
-// @LINE:56
+// @LINE:57
 def upload(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.upload(), HandlerDef(this, "controllers.Application", "upload", Seq(), "POST", """ページに画像を追加""", _prefix + """upload""")
 )
                       
 
-// @LINE:49
+// @LINE:50
 def userPage(username:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.userPage(username), HandlerDef(this, "controllers.Application", "userPage", Seq(classOf[String]), "GET", """""", _prefix + """$username<[^/]+>""")
 )
@@ -860,13 +883,13 @@ def edit_page(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 )
                       
 
-// @LINE:48
+// @LINE:49
 def create(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.create(), HandlerDef(this, "controllers.Application", "create", Seq(), "POST", """""", _prefix + """create""")
 )
                       
 
-// @LINE:36
+// @LINE:37
 def put_link(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.put_link(), HandlerDef(this, "controllers.Application", "put_link", Seq(), "POST", """""", _prefix + """edit_call/put_link""")
 )
@@ -890,43 +913,43 @@ def dicition_name(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 )
                       
 
-// @LINE:26
+// @LINE:27
 def setBg(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.setBg(), HandlerDef(this, "controllers.Application", "setBg", Seq(), "POST", """""", _prefix + """edit_call/setbg""")
 )
                       
 
-// @LINE:30
+// @LINE:31
 def blog_data_edit(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.blog_data_edit(), HandlerDef(this, "controllers.Application", "blog_data_edit", Seq(), "POST", """""", _prefix + """edit_call/edit_blog_edit""")
 )
                       
 
-// @LINE:31
+// @LINE:32
 def data_add(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.data_add(), HandlerDef(this, "controllers.Application", "data_add", Seq(), "POST", """""", _prefix + """edit_call/data_add""")
 )
                       
 
-// @LINE:29
+// @LINE:30
 def blog_data_read(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.blog_data_read(), HandlerDef(this, "controllers.Application", "blog_data_read", Seq(), "POST", """リンク""", _prefix + """edit_call/blog_data_read""")
 )
                       
 
-// @LINE:45
+// @LINE:46
 def logout(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.logout(), HandlerDef(this, "controllers.Application", "logout", Seq(), "GET", """""", _prefix + """logout""")
 )
                       
 
-// @LINE:47
+// @LINE:48
 def register(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.register(), HandlerDef(this, "controllers.Application", "register", Seq(), "GET", """""", _prefix + """register""")
 )
                       
 
-// @LINE:33
+// @LINE:34
 def link(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.link(), HandlerDef(this, "controllers.Application", "link", Seq(), "GET", """""", _prefix + """edit_call/link""")
 )
@@ -944,19 +967,19 @@ def save(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 )
                       
 
-// @LINE:35
+// @LINE:36
 def addlink(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.addlink(), HandlerDef(this, "controllers.Application", "addlink", Seq(), "GET", """""", _prefix + """edit_call/addlink""")
 )
                       
 
-// @LINE:37
+// @LINE:38
 def edit_text(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.edit_text(), HandlerDef(this, "controllers.Application", "edit_text", Seq(), "POST", """""", _prefix + """edit_call/edit_text""")
 )
                       
 
-// @LINE:44
+// @LINE:45
 def authenticate(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.authenticate(), HandlerDef(this, "controllers.Application", "authenticate", Seq(), "POST", """""", _prefix + """authenticate""")
 )
@@ -965,6 +988,12 @@ def authenticate(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 // @LINE:6
 def index(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.index(), HandlerDef(this, "controllers.Application", "index", Seq(), "GET", """ Home page""", _prefix + """""")
+)
+                      
+
+// @LINE:23
+def deletePage(target:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.Application.deletePage(target), HandlerDef(this, "controllers.Application", "deletePage", Seq(classOf[String]), "GET", """""", _prefix + """edit_call/delete_page/$target<[^/]+>""")
 )
                       
 
@@ -980,19 +1009,19 @@ def new_page(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 )
                       
 
-// @LINE:32
+// @LINE:33
 def edit_blog(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.edit_blog(), HandlerDef(this, "controllers.Application", "edit_blog", Seq(), "GET", """""", _prefix + """edit_blog""")
 )
                       
 
-// @LINE:38
+// @LINE:39
 def edit_text_save(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.edit_text_save(), HandlerDef(this, "controllers.Application", "edit_text_save", Seq(), "POST", """""", _prefix + """edit_call/edit_text_save""")
 )
                       
 
-// @LINE:43
+// @LINE:44
 def login(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.login(), HandlerDef(this, "controllers.Application", "login", Seq(), "GET", """ログイン関連""", _prefix + """login""")
 )

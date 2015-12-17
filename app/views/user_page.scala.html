@@ -1,8 +1,17 @@
-@(UserName: String)
+@(UserName: String,pages: Array[String])
 
 @main("ユーザページ") {
 	<h1>ユーザのページ</h1>
 	<p>ようこそ。@UserName さん</p>
+	<fieldset>
+	<legend>作成したページ</legend>
+	<ul>
+	@for(p <- pages) {
+	<li><a href="@routes.Assets.at("/user",UserName+"/"+p)">@p</a></li>
+	}
+	</ul>
+	</fieldset>
+	
 	</br>
 	<a href="/edit_call">編集ページへ</a>
 

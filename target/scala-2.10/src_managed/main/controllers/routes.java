@@ -1,6 +1,6 @@
 // @SOURCE:/Users/woon/Documents/workspace/CWA/conf/routes
-// @HASH:0fb9e78b3c84645f20765e117848eb24ca624dd6
-// @DATE:Thu Dec 17 18:21:28 JST 2015
+// @HASH:e1326c9b979963aac562f61a7d7ce0b1a51bd896
+// @DATE:Fri Dec 18 00:28:38 JST 2015
 
 package controllers;
 

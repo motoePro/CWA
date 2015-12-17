@@ -1,11 +1,11 @@
 var ElementID = 1;
-
+var target = "";
 
 //背景画像を設定
 function addBg(src) {
 	// var body = parent.main.document.getElementsByTagName("body")[0];
 	// body.setAttribute("background",src);
-	var v = "url("+src+")";
+	var v = "url(\""+src+"\")";
 	console.log(v);
 	// $('#container').style.background = v;
 	var container = parent.main.document.getElementById('container');
@@ -17,16 +17,7 @@ function addBg(src) {
 }
 
 
-window.onload = $(function(){
-	var context = parent.main.document.getElementsByClassName("context");
-	var context_length = context.length;
-	for(var i = 0; i < context_length; i++){
-		if(ElementID < context[i].id){
-			ElementID = context[i].id;
-		}
-	}
-	ElementID++;
-})
+
 
 
 //画像をページに追加
@@ -243,7 +234,7 @@ function comment(){
 	}else{
 		var title = parent.main.document.getElementsByTagName('title');
 		var user_name = parent.edit_head.document.getElementById('userName');
-		var body = parent.main.document.getElementById('body_main');
+		var body = parent.main.document.getElementById('container');
 		var tag = document.createElement('div');
 		tag.id = ElementID;
 		tag.className = "pchan context";
@@ -301,11 +292,13 @@ function comment(){
 	}
 }
 
-function blog(){
-	var title = parent.main.document.getElementsByTagName('title');
+function blog(target){
+	console.log(target);
+	//var title = parent.main.document.getElementsByTagName('title');
+	var title = target;
 	//alert(title[1].innerHTML);
 	var user_name = parent.edit_head.document.getElementById('userName');
-	var body = parent.main.document.getElementById('body_main');
+	var body = parent.main.document.getElementById('container');
 	var tag = document.createElement('div');
 	tag.id = ElementID;
 	tag.className = "pchan context edit blog";
@@ -332,9 +325,9 @@ function blog(){
 	var script = document.createElement('script');
 	var scriptcode = '';
 	scriptcode+= 'var pageMax = 0;var page = 0;var page_in_articles = 5;var target_page;var back_button;var next_button;';
-	scriptcode+= 'function back(){if(page > 0){page--;if(page <= 0){back_button.disabled = true;}if(page < pageMax){next_button.disabled = false;}}requestFile(null,"GET","/user/'+user_name.innerHTML+'/'+title[1].innerHTML+'_articles.xml",true);window.scrollTo(0,0);}';
-	scriptcode+= 'function next(){if(page < pageMax){page++;if(page > 0){back_button.disabled = false;}if(page >= pageMax){next_button.disabled = true;}}requestFile(null,"GET","/user/'+user_name.innerHTML+'/'+title[1].innerHTML+'_articles.xml",true);window.scrollTo(0,0);}';
-	scriptcode+= 'window.onload=function(){back_button = document.getElementById("page_back_button");next_button = document.getElementById("page_next_button");back_button.disabled = true;requestFile(null,"GET","/user/'+user_name.innerHTML+'/'+title[1].innerHTML+'_articles.xml",true);};';
+	scriptcode+= 'function back(){if(page > 0){page--;if(page <= 0){back_button.disabled = true;}if(page < pageMax){next_button.disabled = false;}}requestFile(null,"GET","/user/'+user_name.innerHTML+'/'+title+'_articles.xml",true);window.scrollTo(0,0);}';
+	scriptcode+= 'function next(){if(page < pageMax){page++;if(page > 0){back_button.disabled = false;}if(page >= pageMax){next_button.disabled = true;}}requestFile(null,"GET","/user/'+user_name.innerHTML+'/'+title+'_articles.xml",true);window.scrollTo(0,0);}';
+	scriptcode+= 'window.onload=function(){back_button = document.getElementById("page_back_button");next_button = document.getElementById("page_next_button");back_button.disabled = true;requestFile(null,"GET","/user/'+user_name.innerHTML+'/'+title+'_articles.xml",true);};';
 	scriptcode+= 'function creHR(){return new window.XMLHttpRequest();}';
 	scriptcode+= 'function requestFile(data, method, fname, async) {var HttpObject = creHR();HttpObject.open(method, fname, async);HttpObject.onreadystatechange = function(){if(HttpObject.readyState == 4){CB(HttpObject);}};HttpObject.send(data);}';
 	scriptcode+= 'function CB(HttpObj){var resHTTP = HttpObj.responseXML.documentElement;articleList = resHTTP.getElementsByTagName("article");articleTitle = resHTTP.getElementsByTagName("title");articleMaintext = resHTTP.getElementsByTagName("maintext");';
@@ -473,8 +466,9 @@ function context() {
            			}
            		},
           		'delete': function(t) {
-    				var body = parent.main.document.getElementById('body_main');
+    				var body = parent.main.document.getElementById('container');
     				var asset = parent.main.document.getElementById(t.id);
+    				console.log("削除対象→"+t);
     				body.removeChild(asset);
 				}
           	}

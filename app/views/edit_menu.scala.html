@@ -120,6 +120,7 @@
 			
 			<br>
 			<input type="button" value="外部リンク" onclick="window.open('/edit_call/addlink','ucreatepage_addlink','width=640,height=480,location=0');return false;">
+			<input type="button" value="ページの削除" onclick="delConfirm()" />
 			<!--画像送信スクリプト-->
 			<script>
 				function sendImage() {
@@ -132,7 +133,19 @@
 				}
 				
 			</script>
+			<!--ページ削除-->
+			<script>
+			//var target = "null";
+			function delConfirm(){
+				var res = confirm("このページを削除しますか？");
+				if(res) {
+				console.log(target);
+				parent.main.location.href="edit_call/delete_page/"+target;
+				} else {
+				}
+			}
+			</script>
 			<div><button onclick="comment()">コメント</button></div>
-			<div><button onclick="blog()">ブログ</button></div>
+			<div><button onclick="blog(target)">ブログ</button></div>
     </body>
 </html>

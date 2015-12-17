@@ -209,10 +209,10 @@ function Window_YouTube(){
 	var Url;
 	Url = prompt("Urlを入力してください。","");
 	if(Url.match(/www.youtube.com/)){
-		var body = parent.main.document.getElementById('body_main');
+		var body = parent.main.document.getElementById('container');
 		var tag = document.createElement('div');
 		tag.id = ElementID;
-		tag.className = "hover img_chan context";
+		tag.className = "hover img_chan context mv_chan ui-draggable";
 		tag.style.width =  "644px";
 		tag.style.height = "364px";
 		
@@ -224,9 +224,11 @@ function Window_YouTube(){
     	div_youtube.style.height = "360px";
     	div_youtube.allowfullscreen;
     	
+
     	body.appendChild(tag);
     	tag.appendChild(div_youtube);
     	parent.main.pctmv();
+    	parent.main.mvmv();
     	
 		ElementID++;
 		parent.main.context();

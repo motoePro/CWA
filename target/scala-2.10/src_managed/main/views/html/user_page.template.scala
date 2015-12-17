@@ -33,6 +33,7 @@ Seq[Any](format.raw/*1.20*/("""
 	<p>ようこそ。"""),_display_(Seq[Any](/*5.11*/UserName)),format.raw/*5.19*/(""" さん</p>
 	</br>
 	<a href="/edit_call">編集ページへ</a>
+	<a href="/logout">ログアウト</a>
 """)))})))}
     }
     
@@ -45,9 +46,9 @@ Seq[Any](format.raw/*1.20*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Fri Oct 09 19:32:27 JST 2015
+                    DATE: Wed Dec 16 11:41:44 JST 2015
                     SOURCE: /Users/woon/Documents/workspace/CWA/app/views/user_page.scala.html
-                    HASH: 95ecc6a036857913e62ff7c4d260014d510fce3a
+                    HASH: 792d20e14c89cd1c83817745e896a4fe6fc6f9a2
                     MATRIX: 778->1|890->19|927->22|949->36|988->38|1052->67|1081->75
                     LINES: 26->1|29->1|31->3|31->3|31->3|33->5|33->5
                     -- GENERATED --

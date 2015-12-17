@@ -4,7 +4,7 @@
 		module="cwa-build-build"
 		revision="0.1-SNAPSHOT"
 		status="integration"
-		publication="20151009125455"
+		publication="20151209110251"
 		e:sbtVersion="0.13" e:scalaVersion="2.10"
 	>
 		<description>

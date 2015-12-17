@@ -81,7 +81,6 @@ public class Application extends Controller {
 			data.password = models.Login.sha512(f.data().get("password"));
 			data.save();
 
-			//DB接続設定
 			String dir = System.getProperty("user.dir");
 			String username = f.data().get("username");
 
@@ -89,31 +88,31 @@ public class Application extends Controller {
 			File imgdir = new File(dir+"/user/"+username+"/images");//ユーザ下の画像用ディレクトリ
 			udir.mkdir();
 			imgdir.mkdir();
-			File file = new File(dir+"/conf/application.conf");
-			FileWriter fw = new FileWriter(file,true);
-			fw.write("db."+username+".driver=org.h2.Driver\n");
-			fw.write("db."+username+".url="+'"'+"jdbc:h2:file:"+username+'"'+"\n");			
-			fw.close();
-
-			//スクリプト生成
-			String n = dir+"/conf/evolutions/"+username;
-			File evo = new File(n);
-			evo.mkdir();
-			File sql = new File(n+"/1.sql");
-			PrintWriter pw = new PrintWriter(sql);
-			pw.println("# articles");
-			pw.println("# --- !Ups");
-			pw.println("create table articles (");
-			pw.println("	id	bigint not null,");
-			pw.println("	title	varchar(255) not null,");
-			pw.println("	body	text not null,");
-			pw.println("	release	date not null,");
-			pw.println("	primary key(id),");
-			pw.println(");");
-			pw.println("create sequence articles_seq;");
-			pw.println("# --- !Downs");
-			pw.println("drop table articles");
-			pw.close();
+//			File file = new File(dir+"/conf/application.conf");
+//			FileWriter fw = new FileWriter(file,true);
+//			fw.write("db."+username+".driver=org.h2.Driver\n");
+//			fw.write("db."+username+".url="+'"'+"jdbc:h2:file:"+username+'"'+"\n");			
+//			fw.close();
+//
+//			//スクリプト生成
+//			String n = dir+"/conf/evolutions/"+username;
+//			File evo = new File(n);
+//			evo.mkdir();
+//			File sql = new File(n+"/1.sql");
+//			PrintWriter pw = new PrintWriter(sql);
+//			pw.println("# articles");
+//			pw.println("# --- !Ups");
+//			pw.println("create table articles (");
+//			pw.println("	id	bigint not null,");
+//			pw.println("	title	varchar(255) not null,");
+//			pw.println("	body	text not null,");
+//			pw.println("	release	date not null,");
+//			pw.println("	primary key(id),");
+//			pw.println(");");
+//			pw.println("create sequence articles_seq;");
+//			pw.println("# --- !Downs");
+//			pw.println("drop table articles");
+//			pw.close();
 
 
 			return redirect("/");
@@ -151,7 +150,9 @@ public class Application extends Controller {
 				returnUrl = routes.Application.index().url();
 				returnUrl+=Username;
 			}
-			return redirect(returnUrl);
+//			return redirect(returnUrl);
+			System.out.println(session("username"));
+			return redirect(routes.Application.userPage(session("username")));
 		}
 	}
 
@@ -189,22 +190,25 @@ public class Application extends Controller {
 	@RequireCSRFCheck
 	public static Result new_page(){
 		String name = Form.form().bindFromRequest().get("name");
+		String title = Form.form().bindFromRequest().get("tit");
+		if(title=="") {title = name;}
+		System.out.println("Title:"+title);
 		String type = Form.form().bindFromRequest().get("type");
-		create_page(name,type);
+		create_page(name,type,title);
 		String[] headLine = get_headLine(name);
 		String[] htmlLine = input_file(name);
 		return ok(edit_page.render("edit",headLine,htmlLine,name));
 	}
 
-	public static void create_page(String name,String type){
+	public static void create_page(String name,String type,String title){
 		if("standard".equals(type)){
-			create_standard_page(name);
+			create_standard_page(name,title);
 		}else if("blog".equals(type)){
-			create_blog_page(name);
+			create_blog_page(name,title);
 		}
 	}
 
-	public static void create_standard_page(String name){
+	public static void create_standard_page(String name, String title){
 		String dir = System.getProperty("user.dir");
 		File file = new File(dir + "/user/" + session("username") + "/" + name + ".html");
 		PrintWriter pw = null;
@@ -218,11 +222,11 @@ public class Application extends Controller {
 			pw.println("<meta charset='utf-8'>");
 			pw.println("<html style=\"width:100%;height:100%;\">");
 			pw.println("<head>");
-			pw.println("<title>" + name + "</title>");
+			pw.println("<title>" + title + "</title>");
 			pw.println("</head>");
 			pw.println("<body　style=\"width:100%;height:100%;\">");
 			pw.println("<div id="+'"'+"container"+'"'+" style="+'"'+"width:100%;height:100%;"+'"'+">");
-			pw.println("<h1>"+name+"</h1>");
+			pw.println("<h1>"+title+"</h1>");
 			pw.println("</div>");
 			pw.println("</body>");
 			pw.println("</html>");
@@ -235,7 +239,7 @@ public class Application extends Controller {
 		}
 	}
 
-	public static void create_blog_page(String name){
+	public static void create_blog_page(String name, String title){
 		String dir = System.getProperty("user.dir");
 		File file = new File(dir + "/user/" + session("username") + "/" + name + ".html");
 		PrintWriter pw = null;
@@ -248,7 +252,7 @@ public class Application extends Controller {
 			pw.println("<meta charset='utf-8'>");
 			pw.println("<html>");
 			pw.println("<head>");
-			pw.println("<title>" + name + "</title>");
+			pw.println("<title>" + title + "</title>");
 			pw.println("<style type='text/css'>");
 			pw.println("html,body{margin:0;padding:0;height:100%;width:100%;}");
 			pw.println("div#contents{background-color:#999;position:relative;min-height:100%;}");
@@ -561,6 +565,18 @@ public class Application extends Controller {
 		return ok(edit_menu.render(name,filedir,type));
 	}
 
+	public static Result addlink(){
+		return ok(put_link.render());
+	}
+	
+	public static Result put_link(){
+		String text = Form.form().bindFromRequest().get("TEXT");
+		String url = Form.form().bindFromRequest().get("URL");
+		String type = "text";
+		System.out.println(text+" "+url+" "+type);
+		return ok(edit_menu.render(text,url,type));
+	}
+
 	/*
 	 * 画像ファイルのアップロード
 	 */
@@ -671,7 +687,8 @@ public class Application extends Controller {
 					}
 					
 				}
-				return ok("checked");
+				return ok(setbg.render(fileName,name));
+//				return ok("checked");
 			} else {
 				//現在のページにのみ背景を追加
 				System.out.println("このぺーじにだけ背景を設定するよ!");

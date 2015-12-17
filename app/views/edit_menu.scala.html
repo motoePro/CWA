@@ -37,17 +37,43 @@
 					btn_tag.value = link+"へ移動";
 					var f = "location.href='" + dir + "'";
 					btn_tag.setAttribute('onclick', f);
-					
 					body.appendChild(tag);
 					tag.appendChild(btn_tag);
 					
 					ElementID++;
 					parent.main.context();
 					
-					parent.menu.document.getElementById('title01').innerHTML = "";
+					//parent.menu.document.getElementById('title01').innerHTML = "";
         		}
         	}
         
+        	function append_text_link(name,value){
+        		var link = name;
+        		var dir = value;
+        		if(link != ""){
+        			var body = parent.main.document.getElementById('body_main');
+        			var tag = document.createElement('div');
+					tag.id = ElementID;
+					tag.className = "context";
+					tag.style.width =  "60px";
+					tag.style.height = "30px";
+        			
+        			var txt_tag = document.createElement('a');
+					txt_tag.id = "txt_id";
+					txt_tag.href = dir;
+					txt_tag.innerHTML = link;
+					
+					body.appendChild(tag);
+					tag.appendChild(txt_tag);
+					
+					ElementID++;
+					parent.main.context();
+					
+					parent.menu.document.getElementById('title01').innerHTML = "";
+        		}
+        		
+        	}
+        	
         	$(function(){
         		var name = "@name";
         		var value = "@value";
@@ -55,6 +81,8 @@
         		if(name!="" && value!=""){
         			if(type == "button"){
       					append_button_link(name,value);
+      				}else if(type == "text"){
+      					append_text_link(name,value);
       				}
         		}
  			})
@@ -90,7 +118,8 @@
 			<br>
 			<input type="button" value="リンク" onclick="window.open('/edit_call/link','ucreatepage_link','width=640,height=480,location=0');return false;">
 			
-			
+			<br>
+			<input type="button" value="外部リンク" onclick="window.open('/edit_call/addlink','ucreatepage_addlink','width=640,height=480,location=0');return false;">
 			<!--画像送信スクリプト-->
 			<script>
 				function sendImage() {

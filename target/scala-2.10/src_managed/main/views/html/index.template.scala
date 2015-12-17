@@ -30,11 +30,17 @@ Seq[Any](format.raw/*1.19*/("""
 
 """),_display_(Seq[Any](/*3.2*/main("TOP")/*3.13*/ {_display_(Seq[Any](format.raw/*3.15*/("""
 	<h1>トップページ</h1>
-	<p>ようこそ。
-		<a href=""""),_display_(Seq[Any](/*6.13*/routes/*6.19*/.Application.register())),format.raw/*6.42*/("""">会員登録</a>
-		<a href=""""),_display_(Seq[Any](/*7.13*/routes/*7.19*/.Application.login())),format.raw/*7.39*/("""">ログインはこちら</a>
-	</p>
-""")))})),format.raw/*9.2*/("""
+	<p>ようこそ。</p>
+	
+	<p>
+	"""),_display_(Seq[Any](/*8.3*/if(session.get("username") == null )/*8.39*/ {_display_(Seq[Any](format.raw/*8.41*/("""
+			<a href=""""),_display_(Seq[Any](/*9.14*/routes/*9.20*/.Application.register())),format.raw/*9.43*/("""">会員登録</a>
+			<a href=""""),_display_(Seq[Any](/*10.14*/routes/*10.20*/.Application.login())),format.raw/*10.40*/("""">ログインはこちら</a>
+		""")))}/*11.5*/else/*11.10*/{_display_(Seq[Any](format.raw/*11.11*/("""
+			<a href=""""),_display_(Seq[Any](/*12.14*/routes/*12.20*/.Application.userPage(session.get("username")))),format.raw/*12.66*/("""">ユーザページへ</a>
+		""")))})),format.raw/*13.4*/("""
+	<p>
+""")))})),format.raw/*15.2*/("""
 """))}
     }
     
@@ -47,11 +53,11 @@ Seq[Any](format.raw/*1.19*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Fri Oct 09 19:32:27 JST 2015
+                    DATE: Fri Dec 11 12:00:15 JST 2015
                     SOURCE: /Users/woon/Documents/workspace/CWA/app/views/index.scala.html
-                    HASH: 62689a0bccf950f8ff3a9c3dcadd639bb8a139d8
-                    MATRIX: 774->1|885->18|922->21|941->32|980->34|1055->74|1069->80|1113->103|1171->126|1185->132|1226->152|1278->174
-                    LINES: 26->1|29->1|31->3|31->3|31->3|34->6|34->6|34->6|35->7|35->7|35->7|37->9
+                    HASH: acb0be8157fe83eaa8ce37dcaf46d67f83047a96
+                    MATRIX: 774->1|885->18|922->21|941->32|980->34|1055->75|1099->111|1138->113|1187->127|1201->133|1245->156|1305->180|1320->186|1362->206|1398->225|1411->230|1450->231|1500->245|1515->251|1583->297|1631->314|1669->321
+                    LINES: 26->1|29->1|31->3|31->3|31->3|36->8|36->8|36->8|37->9|37->9|37->9|38->10|38->10|38->10|39->11|39->11|39->11|40->12|40->12|40->12|41->13|43->15
                     -- GENERATED --
                 */
             

@@ -4,9 +4,13 @@
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/conf/routes,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/routes)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/conf/evolutions/dddn,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/evolutions/dddn)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/conf/evolutions/default,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/evolutions/default)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/conf/evolutions/Taro,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/evolutions/Taro)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/conf/evolutions/test,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/evolutions/test)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/conf/evolutions/uwa,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/evolutions/uwa)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/conf/evolutions/void,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/evolutions/void)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/conf/evolutions/dddn/1.sql,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/evolutions/dddn/1.sql)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/conf/evolutions/default/1.sql,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/evolutions/default/1.sql)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/conf/evolutions/Taro/1.sql,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/evolutions/Taro/1.sql)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/conf/evolutions/test/1.sql,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/evolutions/test/1.sql)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/conf/evolutions/uwa/1.sql,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/evolutions/uwa/1.sql)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/conf/evolutions/void/1.sql,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/evolutions/void/1.sql)[0m

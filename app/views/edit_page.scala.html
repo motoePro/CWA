@@ -28,9 +28,16 @@
 			$('.pchan').resizable({stop: fix(), handles: "all"});
 			//$('.pchan').resizable({stop: fix(), handles: "all"}).parent(".ui-wrapper").draggable();
 		}
-		
+
+		//画像にdraggable,resizable属性を加える(画像)		
 		function pctmv() {
 			$('.img_chan').resizable({stop: fix(), handles: "all"}).parent(".ui-wrapper").draggable();
+		}
+		
+		//youtubeにdraggable,resizable属性を加える
+		function mvmv() {
+			$('.mv_chan').draggable();
+			$('.mv_chan').resizable();
 		}
 		
 		//要素の横幅に併せて文字サイズを変更する
@@ -38,6 +45,8 @@
 			$('#txt_chan').fitText();
 		}
 
+
+	
 		$(function(){
     		$('.context').contextMenu('myMenu',
         		{
@@ -55,7 +64,12 @@
 			<span id='head_main'>@for(line <- headLine){@Html(line)}</span>
     </head>
     <body style="width:100%;height:100%;">
-        <div id='body_main' style="width:100%;height:100%;">@for(line <- httpLine){@Html(line)}</div>
+        <div id='body_main' style="width:100%;height:100%;">
+        	@for(line <- httpLine){@Html(line)}
+        	@if(httpLine==null) {
+        		<p>右上の「新規作成」「ページの変更」ボタンを押して、編集するページを選択してください。</p>
+        	}
+        </div>
         
         <div class='contextMenu' id='myMenu'>
     		<ul>

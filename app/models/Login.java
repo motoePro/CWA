@@ -18,9 +18,7 @@ public class Login {
 	}
 
 	public static Account authenticate(String username, String password) throws java.security.NoSuchAlgorithmException {
-		Model.Finder<Long, Account> find = new Model.Finder<Long, Account>(
-				Long.class, Account.class
-				);
+		Model.Finder<Long, Account> find = new Model.Finder<Long, Account>(Long.class, Account.class);
 		String hashedPassword = "";
 		if (password != null) {
 			hashedPassword = sha512(password);

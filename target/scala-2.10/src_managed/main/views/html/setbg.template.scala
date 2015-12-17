@@ -50,7 +50,7 @@ Seq[Any](format.raw/*1.34*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Thu Nov 26 09:11:15 JST 2015
+                    DATE: Fri Dec 11 12:00:15 JST 2015
                     SOURCE: /Users/woon/Documents/workspace/CWA/app/views/setbg.scala.html
                     HASH: af48c933e97411d35069b56c58ba17a4f47604c3
                     MATRIX: 781->1|907->33|991->82|1005->88|1071->133

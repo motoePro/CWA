@@ -2,8 +2,14 @@
 
 @main("TOP") {
 	<h1>トップページ</h1>
-	<p>ようこそ。
-		<a href="@routes.Application.register()">会員登録</a>
-		<a href="@routes.Application.login()">ログインはこちら</a>
-	</p>
+	<p>ようこそ。</p>
+	
+	<p>
+	@if(session.get("username") == null ) {
+			<a href="@routes.Application.register()">会員登録</a>
+			<a href="@routes.Application.login()">ログインはこちら</a>
+		} else {
+			<a href="@routes.Application.userPage(session.get("username"))">ユーザページへ</a>
+		}
+	<p>
 }

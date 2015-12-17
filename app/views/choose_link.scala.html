@@ -12,12 +12,14 @@
         <script src="@routes.Assets.at("/public","javascripts/jquery.contextmenu.r2.js")" type="text/javascript"></script>
     </head>
     <body>
+    	<p>作成するリンクのリンク先を選択してください</p>
     	@for(fileName <- optFileNames) {
 			<input type="button" onclick="choose_link('@fileName')" value="@fileName" />
 		}
+		<p>
 		<input type="button" value="閉じる" onclick="window.open('about:blank','_self').close();">
-		
-		<form id="link_form" action="/edit_call/choose_link" method="POST" target="set-bg" style="display:none">
+		</p>
+		<form id="link_form" action="/edit_call/choose_link" method="POST" target="menu" style="display:none">
 			@CSRF.formField
 			<input type="text" id="link_name" name="name" value="">
 		</form>

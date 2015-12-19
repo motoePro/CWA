@@ -238,7 +238,7 @@ public class Application extends Controller {
 			pw.println("<title>" + title + "</title>");
 			pw.println("</head>");
 			pw.println("<body　style=\"width:100%;height:100%;\">");
-			pw.println("<div id="+'"'+"container"+'"'+" style="+'"'+"width:100%;height:100%;"+'"'+">");
+			pw.println("<div id="+'"'+"container"+'"'+" style="+'"'+"width:100%;min-height:100%;"+'"'+">");
 			pw.println("<h1 id=\"title \"class=\"pchan context\">"+title+"</h1>");
 			pw.println("</div>");
 			pw.println("</body>");
@@ -748,7 +748,7 @@ public class Application extends Controller {
 						StringBuffer sb = new StringBuffer();
 						String str;
 						//String regex = "<div id="+'"'+"container"+'"'+",style="+'"'+"width:100%;height:100%"+'"'+",background-image="+'"'+routes.Assets.at("/user", name+"/images/"+fileName)+'"'+">";
-						String regex = "<div id=\"container\" style=\"background-image:url("+routes.Assets.at("/user", name+"/images/"+fileName)+");width:100%;height:100%;\">";
+						String regex = "<div id=\"container\" style=\"background-image:url("+routes.Assets.at("/user", name+"/images/"+fileName)+");width:100%;min-height:100%;\">";
 						String oldChar = "<div id=\"container\".*;\">";
 						System.out.println("挿入予定の文章");
 						System.out.println(regex);
@@ -827,8 +827,17 @@ public class Application extends Controller {
 
 	@RequireCSRFCheck
 	public static Result edit_text(){
+		//所持しているファイル一覧の取得
+		File[] pages = Application.getPages(session("username"));
+		String[] p = new  String[pages.length];
+		for(int i=0; i<pages.length; i++) {
+			p[i]=pages[i].getName();
+			System.out.println(p[i]);
+		}
+		
+		System.out.println(p);
 		String id = Form.form().bindFromRequest().get("id");
-		return ok(edit_text.render(id));/*,textbox,result*/
+		return ok(edit_text.render(id,p));/*,textbox,result*/
 	}
 
 	@RequireCSRFCheck

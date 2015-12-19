@@ -38,6 +38,8 @@
 			context();
 			txtmv();
  			btnmv();
+ 			pctmv();
+ 			mvmv();
  		})
  		
 		//要素にdraggable,resizable属性を加える(テキストのみ)
@@ -56,11 +58,23 @@
 			$('.pchan').resizable( 'destroy' );
 			//$('.pchan').resizable({stop: fix(), handles: "all"}).parent(".ui-wrapper").draggable();
 		}
+		function pctmvdestroy() {
+			$('.img_chan').resizable({stop: fix(), handles: "all"}).parent(".ui-wrapper").draggable( 'destroy' );
+			$('.img_chan').resizable( 'destroy' );
+		}
+		function mvmvdestroy() {
+			$('.mv_chan').draggable( 'destroy' );
+			$('.mv_chan').resizable( 'destroy' );
+		}
+		
+		
 		function btnmv() {
 			$('.btnmv').draggable();
 		}
 		function pctmv() {
+			$('.img_chan').resizable({stop: fix(), handles: "all"}).parent(".ui-wrapper").addClass("context");
 			$('.img_chan').resizable({stop: fix(), handles: "all"}).parent(".ui-wrapper").draggable();
+			
 		}
 		
 		//youtubeにdraggable,resizable属性を加える
@@ -80,6 +94,7 @@
         		{
             		bindings: {
             		'delete': function(t) {
+            			parent.main.pctmvdestroy();
                 		var body = parent.main.document.getElementById('container');
                 		var elm = document.getElementById(t.id);
                 		console.log(elm);
@@ -108,6 +123,7 @@
     		<ul>
 			<li id='edit'>Edit</li>
         		<li id='delete'>Close</li>
+        		<li id='link'>Link</li>
     		</ul>
 		</div>
     </body>

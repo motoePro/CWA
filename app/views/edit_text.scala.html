@@ -1,4 +1,4 @@
-@(id: String)
+@(id: String, pages: Array[String])
 @import helper._
 <!DOCTYPE html>
 <html>
@@ -19,6 +19,7 @@
         		doc.body.innerHTML = obj.innerHTML;
         		window.opener.parent.main.txtmv();
         		var ED = new Editor('edit');
+        		
 			}
 			
 			function save(){

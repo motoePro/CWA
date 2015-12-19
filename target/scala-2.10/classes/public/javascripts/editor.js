@@ -1026,11 +1026,11 @@ function LinkMenu(editor)
   this.createMenu = function ()
     {
       this.setTitle("リンクの作成")
+      console.log(parent.p);
 
       var menu = document.createElement("div");
-      menu.innerHTML =
-	"1. URLを指定してください。 " + 
-	"<form name='linkmenu'><input name='url' type='text' size=50 /></form>" +
+      menu.innerHTML = "1. URLを指定してください。 <br/>";
+      menu.innerHTML +=  "<form name='linkmenu'><input name='url' type='text' size=50 /></form>" +
         "2. リンク化したい文字列を選択後、実行ボタンを押してください。<br>";
 
       menu.appendChild(this.do_btn);
@@ -1197,7 +1197,13 @@ function ForeColorMenu(editor)
 
   this.onExec = function (div)
     {
-      myObj.editor.forecolor(div.style.backgroundColor);
+      var color = div.style.backgroundColor.replace("rgb(", "").replace(")", "").replace(/ /g, "");
+      var rgb = color.split(",");
+      rgb[0] = parseInt(rgb[0]).toString(16);
+      rgb[1] = parseInt(rgb[1]).toString(16);
+      rgb[2] = parseInt(rgb[2]).toString(16);
+      var setColor = "#"+rgb[0]+rgb[1]+rgb[2];
+      myObj.editor.forecolor(setColor);
     }
 
   // Menuの中身を作成

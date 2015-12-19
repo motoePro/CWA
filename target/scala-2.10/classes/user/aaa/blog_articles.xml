@@ -1,8 +1,2 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?><articles>
-<article>
-    <id>1</id>
-    <date>2015/12/18 01:45:01</date>
-    
-    
-<title/><maintext/></article>
-<article><id>2</id><date>Fri Dec 18 02:09:39 JST 2015</date><title>新しい記事</title><maintext>ここに文字を入力してください。</maintext></article><article><id>3</id><date>Fri Dec 18 02:09:41 JST 2015</date><title>新しい記事</title><maintext>ここに文字を入力してください。</maintext></article><article><id>4</id><date>Fri Dec 18 02:09:42 JST 2015</date><title>新しい記事</title><maintext>ここに文字を入力してください。</maintext></article><article><id>5</id><date>Fri Dec 18 02:09:42 JST 2015</date><title>新しい記事</title><maintext>ここに文字を入力してください。</maintext></article></articles>
+<article><id>1</id><date>2015/12/18 02:35:33</date><title>はじめてのブログ</title><maintext>はじめて書きました。&lt;br&gt;とても緊張しますね＾＾；&lt;br&gt;</maintext></article><article><id>2</id><date>Fri Dec 18 02:36:01 JST 2015</date><title>新しいことに挑戦！</title><maintext>文字にいろいろ飾り付けが出来ることをしりました！&lt;br&gt;こんな&lt;font color="rgb(0, 170, 0)"&gt;&lt;span style="background-color: rgb(255, 255, 255);"&gt;かわいい色付き文字&lt;/span&gt;&lt;/font&gt;や、&lt;br&gt;&lt;i&gt;こんなカッコイイ文字まで！&lt;br&gt;&lt;b&gt;超イケてる。&lt;/b&gt;&lt;br&gt;&lt;/i&gt;</maintext></article></articles>

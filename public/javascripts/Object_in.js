@@ -24,10 +24,13 @@ function addBg(src) {
 function addImg(src) {
 	var body = parent.main.document.getElementById('container');
 	var img = document.createElement("img");
-	img.setAttribute("class","img_chan");
+	img.setAttribute("class","img_chan context");
 	img.setAttribute("src",src);
 	body.appendChild(img);
+	img.id = ElementID;
 	parent.main.pctmv();
+	parent.main.context();
+	ElementID++;
 }
 
 function addBtn(){ 
@@ -205,7 +208,7 @@ function Window_YouTube(){
 		var body = parent.main.document.getElementById('container');
 		var tag = document.createElement('div');
 		tag.id = ElementID;
-		tag.className = "hover img_chan context mv_chan ui-draggable";
+		tag.className = "hover context mv_chan ui-draggable";
 		tag.style.width =  "644px";
 		tag.style.height = "364px";
 		
@@ -220,7 +223,7 @@ function Window_YouTube(){
 
     	body.appendChild(tag);
     	tag.appendChild(div_youtube);
-    	parent.main.pctmv();
+    	//parent.main.pctmv();
     	parent.main.mvmv();
     	
 		ElementID++;
@@ -358,8 +361,8 @@ function change_page(){
 }
 
 function save_page(){
-
-	parent.main.txtmvdestroy();
+	parent.main.pctmvdestroy();
+	parent.main.mvmvdestroy();
 	var head = parent.main.document.getElementById('head_main');
 	var headLine = head.innerHTML;
 
@@ -399,7 +402,8 @@ function save_page(){
     form.setAttribute("action","/edit_call/save");
     form.setAttribute("method", "POST");
     form.submit();
-	parent.main.txtmv();
+	parent.main.pctmv();
+	parent.main.mvmv();
 }
 
 function read_directory(){
@@ -466,11 +470,35 @@ function context() {
            			}
            		},
           		'delete': function(t) {
+          			parent.main.mvmvdestroy();
+          			parent.main.pctmvdestroy();
     				var body = parent.main.document.getElementById('container');
     				var asset = parent.main.document.getElementById(t.id);
     				console.log("削除対象→"+t);
     				body.removeChild(asset);
-				}
+    				parent.main.mvmv();
+    				parent.main.pctmv();
+				},
+          	'link': function(t){
+          		if($(t).hasClass("img_chan")){
+          			console.log(t);
+          			var res = prompt("URLを入力してください","");
+          			if(res){
+          				parent.main.pctmvdestroy();
+          				var pct = parent.main.document.getElementById(t.id);
+          				var body = parent.main.document.getElementById('container');
+          				var link = document.createElement("a");
+          				link.href=res;
+          				link.className="pchan";
+          				link.appendChild(pct);
+          				body.appendChild(link);
+          				parent.main.pctmv();
+
+          			} else {console.log("リンクの追加：キャンセる")}
+
+          		} else { alert("この要素には対応してません。");
+          		}
+          	}
           	}
     });
 }

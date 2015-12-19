@@ -19,6 +19,7 @@
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/images/undo.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/images/undo.png)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/images/unorderlist.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/images/unorderlist.png)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/javascripts/editor.js,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/javascripts/editor.js)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/javascripts/jglycy-1.0.js,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/javascripts/jglycy-1.0.js)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/javascripts/jquery-1.9.0.min.js,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/javascripts/jquery-1.9.0.min.js)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/javascripts/jquery-ui.min.js,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/javascripts/jquery-ui.min.js)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/javascripts/jquery.contextmenu.r2.js,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/javascripts/jquery.contextmenu.r2.js)[0m
@@ -28,16 +29,20 @@
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/stylesheets/jquery-ui.css,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/stylesheets/jquery-ui.css)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/stylesheets/main.css,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/stylesheets/main.css)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/public/stylesheets/menu.css,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/public/stylesheets/menu.css)[0m
-[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/user/aaa/bgtest.html,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/user/aaa/bgtest.html)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/user/aaa/blog.html,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/user/aaa/blog.html)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/user/aaa/blog_articles.xml,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/user/aaa/blog_articles.xml)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/user/aaa/example.html,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/user/aaa/example.html)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/user/aaa/idtest.html,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/user/aaa/idtest.html)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/user/aaa/idtest_articles.xml,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/user/aaa/idtest_articles.xml)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/user/aaa/image.html,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/user/aaa/image.html)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/user/aaa/imglink.html,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/user/aaa/imglink.html)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/user/aaa/index.html,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/user/aaa/index.html)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/user/aaa/test.html,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/user/aaa/test.html)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/user/aaa/title.html,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/user/aaa/title.html)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/user/aaa/zenjitu.html,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/user/aaa/zenjitu.html)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/user/aaa/images/10,0,0.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/user/aaa/images/10,0,0.png)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/user/aaa/images/aozora.jpg,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/user/aaa/images/aozora.jpg)[0m
+[0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/user/aaa/images/cwa.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/user/aaa/images/cwa.png)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/user/aaa/images/free2materials11_2.jpg,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/user/aaa/images/free2materials11_2.jpg)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/user/aaa/images/スクリーンショット 2013-11-27 13.42.03.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/user/aaa/images/スクリーンショット 2013-11-27 13.42.03.png)[0m
 [0m[[0mdebug[0m] [0m	(/Users/woon/Documents/workspace/CWA/user/aaa/images/スクリーンショット 2015-12-18 2.06.14.png,/Users/woon/Documents/workspace/CWA/target/scala-2.10/classes/user/aaa/images/スクリーンショット 2015-12-18 2.06.14.png)[0m

@@ -1026,11 +1026,11 @@ function LinkMenu(editor)
   this.createMenu = function ()
     {
       this.setTitle("リンクの作成")
+      console.log(parent.p);
 
       var menu = document.createElement("div");
-      menu.innerHTML =
-	"1. URLを指定してください。 " + 
-	"<form name='linkmenu'><input name='url' type='text' size=50 /></form>" +
+      menu.innerHTML = "1. URLを指定してください。 <br/>";
+      menu.innerHTML +=  "<form name='linkmenu'><input name='url' type='text' size=50 /></form>" +
         "2. リンク化したい文字列を選択後、実行ボタンを押してください。<br>";
 
       menu.appendChild(this.do_btn);

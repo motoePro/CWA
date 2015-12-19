@@ -1197,7 +1197,13 @@ function ForeColorMenu(editor)
 
   this.onExec = function (div)
     {
-      myObj.editor.forecolor(div.style.backgroundColor);
+      var color = div.style.backgroundColor.replace("rgb(", "").replace(")", "").replace(/ /g, "");
+      var rgb = color.split(",");
+      rgb[0] = parseInt(rgb[0]).toString(16);
+      rgb[1] = parseInt(rgb[1]).toString(16);
+      rgb[2] = parseInt(rgb[2]).toString(16);
+      var setColor = "#"+rgb[0]+rgb[1]+rgb[2];
+      myObj.editor.forecolor(setColor);
     }
 
   // Menuの中身を作成
